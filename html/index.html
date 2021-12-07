@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>QBCore Phone</title>
+    
+    <!-- CDN's -->
+    <script src="./js/simple-wheel.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- JQuery -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> <!-- Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.js"></script> <!-- Color CDN -->
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" > <!-- Google Material Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"> <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> <!-- Bootstrap -->
+    
+    <!-- CSS File's -->
+    <link rel="stylesheet" href="./css/simple-wheel.css">
+    <link rel="stylesheet" href="./css/theme.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/tooltip.css">
+    <link rel="stylesheet" href="./css/settings.css">
+    <link rel="stylesheet" href="./css/phone.css">
+    <link rel="stylesheet" href="./css/twitter.css">
+    <link rel="stylesheet" href="./css/calculator.css">
+    <link rel="stylesheet" href="./css/clock.css">
+    <link rel="stylesheet" href="./css/food.css">
+    <link rel="stylesheet" href="./css/bank.css">
+    <link rel="stylesheet" href="./css/whatsapp.css">
+    <link rel="stylesheet" href="./css/vprime.css">
+    <link rel="stylesheet" href="./css/garage.css">
+    <link rel="stylesheet" href="./css/mail.css">
+    <link rel="stylesheet" href="./css/meos.css">
+    <link rel="stylesheet" href="./css/arrests.css">
+    <link rel="stylesheet" href="./css/crypto.css">
+    <link rel="stylesheet" href="./css/racing.css">
+    <link rel="stylesheet" href="./css/houses.css">
+    <link rel="stylesheet" href="./css/lawyers.css">
+	<link rel="stylesheet" href="./css/taxi.css">
+    <link rel="stylesheet" href="./css/tow.css">
+	<link rel="stylesheet" href="./css/mechanic.css">
+    <link rel="stylesheet" href="./css/emergency.css">
+    <link rel="stylesheet" href="./css/qstore.css">
+    <link rel="stylesheet" href="./css/trucker.css">
+
+</head>
+    <body style="background-color: transparent !important";>
+        <div class="container disableSelection">
+            <img src="./img/iphone-cover.png" class="phone-frame">
+            <div class="phone-container phone-background">
+                <!-- Phone Header -->
+                <div class="phone-header">
+                    <div id="phone-time">00:00</div>
+
+                    <div id="phone-icons">
+                        <div class="cellular" style=" display: flex; align-items: baseline;">
+                            <div class="cellular-signal" style="height: 4px;"></div>
+                            <div class="cellular-signal" style="height: 6px;"></div>
+                            <div class="cellular-signal" style="height: 8px;"></div>
+                            <div class="cellular-signal" style="height: 10px;"></div>
+                        </div>
+
+                        <i class="fas fa-battery-three-quarters" id="phone-battery"></i>
+                    </div>
+                </div>
+
+                <!-- Phone Notification -->
+                <div class="phone-notification-container">
+                    <div class="phone-notification-blur"></div>
+                    <div class="phone-notification-info-bar">
+                        <div class="notification-icon"></div>
+                        <div class="notification-title"></div>
+                        <div class="notification-time">şimdi</div>
+                    </div>
+                    <div class="notification-text"></div>
+                    <div class="phone-notification-background-blur"></div>
+                </div>
+
+                <!-- Phone Big Image -->
+                <!-- DOING NOW -->
+                <div class="phone-image-container">
+                    <div class="image-rotate-cover"></div>
+                    <div id="phone-image-container-header" class="global-app-header" style="margin-bottom: 32px; z-index: 50;">
+                        <p id="cancel-image-container" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p>
+                        <p>Fotoğraflar</p>
+                        <p id="save-image-to-gallery" class="blue-text" style="cursor: not-allowed;">Kaydet</p>
+                        <!-- <p id="cancel-settings-submenu" class="blue-text">Kaydet</p> -->
+                    </div>
+                    <div class="phone-image-source-container">
+                        <div class="phone-image-source-container-child">
+                            <img class="phone-image-source" src="https://wallpaperaccess.com/full/2029165.jpg"></img>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Home Applications -->
+                <div class="phone-applications">
+                    <div class="phone-footer-applications">
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="1" style="left: unset; margin: unset !important;"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="2" style="left: unset; margin: unset !important;"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="3" style="left: unset; margin: unset !important;"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="4" style="left: unset; margin: unset !important;"></div>
+                    </div>
+
+                    <div class="phone-home-applications">
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="5"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="6"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="7"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="8"></div>
+
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="9"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="10"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="11"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="12"></div>
+
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="13"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="14"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="15"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="16"></div>
+                        
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="17"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="18"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="19"></div>
+                        <div class="phone-application" data-toggle="tooltip" data-placement="bottom" title="" data-appslot="20"></div>
+                    </div>
+                </div>
+
+
+                <!-- Unread Alerts -->
+                <!-- <div class="app-unread-alerts">1</div> -->
+
+                <!-- Container for all application's -->
+                <div class="phone-application-container">
+                    <div class="settings-app">
+                        <div class="settings-app-header"><p>Ayarlar</p></div>
+                        
+                        <div class="settings-app-tab-appereance">
+                            <div class="settings-app-tab" style="height: 96px;" data-settingstab="profilepicture">
+                                <div class="settings-tab-icon" style="width: 52px; height: 52px;"></div>
+                                <div class="settings-tab-texts">
+                                    <div id="settings-player-name" class="settings-tab-title"><p>Abdülrezzak Tektaşşak</p></div>
+                                    <div class="settings-tab-description"><p>Hesap Detayları</p></div>
+                                </div>
+                                <i class="settings-tab-little-icon fas fa-chevron-right big-icon"></i>
+                            </div>
+                            <div class="settings-app-tab nomargin" style="border-top: 1px solid var(--border-gray)" data-settingstab="background">
+                                <div class="settings-tab-icon"><i class="fas fa-share-alt-square"></i></div>
+                                <div class="settings-tab-title"><p>Duvar Kağıdı</p></div>
+                                <i class="settings-tab-little-icon fas fa-chevron-right"></i>
+                            </div>
+                            <div class="settings-app-tab" style="border-bottom: 1px solid var(--border-gray)" data-settingstab="details">
+                                <div class="settings-tab-icon"><i class="fas fa-caret-square-right"></i></div>
+                                <div class="settings-tab-title"><p>Telefon Detayları</p></div>
+                                <i class="settings-tab-little-icon fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+
+                        <div class="settings-app-tab-information">
+                            <div class="settings-app-tab secondTab nomargin" style="border-top: 1px solid var(--border-gray)" data-settingstab="numberrecognition">
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input class="numberrec-box" type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+
+                                <div class="settings-tab-icon"><i class="fas fa-phone-square-alt"></i></div>
+                                <div class="settings-tab-title"><p>Gizli Numara</p></div>
+                                <div class="settings-tab-description" id="numberrecognition"></div>
+                            </div>
+                            <div class="settings-app-tab secondTab" style="border-bottom: 1px solid var(--border-gray)" data-settingstab="darkmode">
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input class="darkmode-box" type="checkbox" disabled>
+                                    <span class="slider round"></span>
+                                </label>
+
+                                <div class="settings-tab-icon"><i class="fas fa-pen-square"></i></div>
+                                <div class="settings-tab-title"><p>Koyu Tema</p></div>
+                                <div class="settings-tab-description" id="darkmode"></div>
+                            </div>
+
+                            <div class="settings-app-tab secondTab gray-border" data-settingstab="myPhone">
+                                <div class="settings-tab-icon"><i class="fas fa-th"></i></div>
+                                <div class="settings-tab-title"><p>Telefon Numarası</p></div>
+                                <div class="settings-tab-description" id="myPhoneNumber"><p>0612345678</p></div>
+                            </div>
+                        </div>
+
+                        <div class="settings-details-tab">
+                            <div class="global-app-header">
+                                <p id="cancel-settings-submenu" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p>
+                                <p>Telefon Detayları</p>
+                            </div>
+                            <div class="settings-app-tab secondTab nomargin" style="border-top: 1px solid var(--border-gray);">
+                                <div class="settings-tab-title"><p>Yazılım Sürümü</p></div>
+                                <div class="settings-tab-description"><p>ViOS-Beta-0.4</p></div>
+                                <i class="fas fa-exclamation-circle" style="color: var(--main-red); margin-left: 8px;"></i>
+                            </div>
+                            <div class="settings-app-tab secondTab nomargin">
+                                <div class="settings-tab-title"><p>IMEI Numarası</p></div>
+                                <div class="settings-tab-description" id="mySerialNumber"><p>0612345678</p></div>
+                            </div>
+                            <div class="settings-app-tab secondTab nomargin">
+                                <div class="settings-tab-title"><p>Depolama Alanı</p></div>
+                                <div class="settings-tab-description" id="mySerialNumber"><p>32.68/64GB</p></div>
+                            </div>
+                            <div class="settings-app-tab secondTab" style="border-bottom: 1px solid var(--border-gray);">
+                                <div class="settings-tab-title"><p>RAM</p></div>
+                                <div class="settings-tab-description" id="mySerialNumber"><p>8GB</p></div>
+                            </div>
+                        </div>
+
+                        <div class="settings-background-tab">
+                            <div class="global-app-header">
+                                <p id="cancel-settings-submenu" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p>
+                                <p>Duvar Kağıdı</p>
+                            </div>
+
+                            <!-- <div class="background-options">
+                                <div class="background-option" data-background="default-qbus">
+                                    <div class="background-option-icon"> <i class="fas fa-paint-brush"></i> </div>
+                                    <div class="background-option-title">Varsayılan</div>
+                                    <div class="background-option-description">Varsayılan arkaplanı kullanın</div>
+                                    <div class="background-option-current"><i class="fas fa-check-circle"></i></div>
+                                </div>
+                                <div class="background-option" data-background="custom-background">
+                                    <div class="background-option-icon"><i class="fas fa-paint-brush"></i></div>
+                                    <div class="background-option-title">Özel</div>
+                                    <div class="background-option-description">URL ile özel arkaplan kullanın</div>
+                                </div>
+                            </div> -->
+
+                            <div class="settings-app-tab nomargin background-option" data-background="custom-background" style="border-top: 1px-solid var(--border-gray);">
+                                <div class="settings-tab-title">URL Kullan</div>
+                            </div>
+                            <div class="settings-app-tab background-option" data-background="custom-camera" style="border-bottom: 1px-solid var(--border-gray)">
+                                <div class="settings-tab-title">Fotoğraf Çek</div>
+                            </div>
+                            
+                            <div class="background-container">
+                                <div class="quick-background" data-background="ios-1">
+                                    <img src="../html/img/backgrounds/ios-1.png"></img>
+                                </div>
+                                <div class="quick-background" data-background="ios-2">
+                                    <img src="../html/img/backgrounds/ios-2.png"></img>
+                                </div>
+                                <div class="quick-background" data-background="ios-3">
+                                    <img src="../html/img/backgrounds/ios-3.png"></img>
+                                </div>
+                                <div class="quick-background" data-background="vlast">
+                                    <img src="../html/img/backgrounds/vlast.png"></img>
+                                </div>
+                            </div>
+
+                            <!-- <div class="background-buttons">
+                                <div class="background-button" id="accept-background">
+                                    <p>Kaydet</p>
+                                </div>
+                                <div class="background-button" id="cancel-settings-submenu">
+                                    <p>İptal</p>
+                                </div>
+                            </div> -->
+
+                            <div class="background-custom">
+                                <div class="background-custom-title">Özel arkaplan</div>
+                                <div class="background-custom-input-fields">
+                                    <input type="text" class="custom-background-input" placeholder="URL (jpg/png)" spellcheck="false">
+                                </div>
+                                <div class="background-custom-buttons">
+                                    <div class="custom-background-button" id="cancel-custom-background"><p>İptal</p></div>
+                                    <div class="custom-background-button" id="accept-custom-background"><p>Kaydet</p></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-profilepicture-tab">
+                            <div class="global-app-header">
+                                <p id="cancel-settings-submenu" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p>
+                                <p>Profil Fotoğrafı</p>
+                                <!-- <p id="cancel-settings-submenu" class="blue-text">Kaydet</p> -->
+                            </div>
+
+                            <div class="phone-add-contact-image">
+                                <img class="phone-settings-image-source" src="img/default.png"></img>
+                            </div>
+
+                            <!-- <div class="profilepicture-options">
+                                <div class="profilepicture-option" data-profilepicture="default">
+                                    <div class="profilepicture-option-title">Varsayılan</div>
+                                    <div class="profilepicture-option-description">Varsayılan profil fotoğrafını kullanın</div>
+                                    <div class="profilepicture-option-current"><i class="fas fa-check-circle"></i></div>
+                                </div>
+                                <div class="profilepicture-option" data-profilepicture="custom-profilepicture">
+                                    <div class="profilepicture-option-title">Özel</div>
+                                    <div class="profilepicture-option-description">URL ile profil fotoğrafınızı kullanın</div>
+                                </div>
+                            </div> -->
+                            <div class="settings-app-tab nomargin profilepicture-option" data-profilepicture="default" style="border-top: 1px-solid var(--border-gray)">
+                                <div class="settings-tab-title">Varsayılan</div>
+                            </div>
+                            <div class="settings-app-tab nomargin profilepicture-option" data-profilepicture="custom-profilepicture" style="border-bottom: 1px-solid var(--border-gray)">
+                                <div class="settings-tab-title">URL Kullan</div>
+                            </div>
+                            <div class="settings-app-tab profilepicture-option" data-profilepicture="custom-camera" style="border-bottom: 1px-solid var(--border-gray)">
+                                <div class="settings-tab-title">Fotoğraf Çek</div>
+                            </div>
+
+                            <!-- <div class="profilepicture-buttons">
+                                <div class="profilepicture-button" id="accept-profilepicture">
+                                    <p>Kaydet</p>
+                                </div>
+                                <div class="profilepicture-button" id="cancel-settings-submenu">
+                                    <p>İptal</p>
+                                </div>
+                            </div> -->
+
+                            <div class="profilepicture-custom">
+                                <div class="profilepicture-custom-title">Özel profil fotoğrafı</div>
+                                <div class="profilepicture-custom-input-fields">
+                                    <input type="text" class="custom-profilepicture-input" placeholder="URL (jpg/png)" spellcheck="false">
+                                    <!-- <i id="take-profile-photo" class="fas fa-camera take-profile-photo"></i> -->
+                                </div>
+                                <div class="profilepicture-custom-buttons">
+                                    <div class="custom-profilepicture-button" id="cancel-custom-profilepicture"><p>İptal</p></div>
+                                    <div class="custom-profilepicture-button" id="accept-custom-profilepicture"><p>Kaydet</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="phone-call-app">
+                        <div class="phone-call-incoming">
+                            <div class="phone-call-incoming-title">Gelen Arama</div>
+                            <div class="phone-call-incoming-caller"></div>
+                            <div class="phone-call-incoming-picture"></div>
+
+                            <i class="fas fa-phone" id="incoming-answer"></i>
+                            <i class="fas fa-phone" id="incoming-deny"></i>
+                        </div>
+
+                        <div class="phone-call-outgoing">
+                            <div class="phone-call-outgoing-title">Aranıyor...</div>
+                            <div class="phone-call-outgoing-caller"></div>
+                            <div class="phone-call-outgoing-picture"></div>
+
+                            <i class="fas fa-phone" id="outgoing-cancel"></i>
+                        </div>
+
+                        <div class="phone-call-ongoing">
+                            <div class="phone-call-ongoing-title">Konuşmada</div>
+                            <div class="phone-call-ongoing-caller"></div>
+                            <div class="phone-call-ongoing-picture"></div>
+                            <div class="phone-call-ongoing-time"></div>
+
+                            <i class="fas fa-phone" id="ongoing-cancel"></i>
+                        </div>
+                    </div>
+
+                    <div class="phone-app">
+                        <div class="phone-app-header">
+                            <div class="phone-app-header-top">
+                                <p>Kişiler</p>
+                                <!-- <span id="total-contacts">0 Kişi</span> -->
+                                <i id="phone-plus-icon" class="fas fa-plus"></i>
+                            </div>
+
+                            <input type="text" id="contact-search" class="global-search-box" placeholder="&#xF002; Ara" spellcheck="false">
+                        </div>
+
+                        <div class="phone-contacts">
+                            <div class="phone-contact-list">
+                                <!-- <div class="phone-contact" data-contactid="1">
+                                    <div class="phone-contact-firstletter">P</div>
+                                    <div class="phone-contact-name">Pieter Post</div>
+                                    <div class="phone-contact-actions"><i class="fas fa-sort-down"></i></div>
+
+                                    <div class="phone-contact-action-buttons">
+                                        <i class="fas fa-phone-volume"></i>
+                                        <i class="fas fa-comment"></i>
+                                        <i class="fas fa-user-edit"></i>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>
+
+                        <div class="phone-recent">
+                            <div class="phone-recent-cover">
+                                <div class="phone-recent-header"><p>Son Çağrılar</p></div>
+                                <div class="phone-recent-calls">
+                                    <!-- <div class="phone-recent-call" id="recent-1">
+                                        <div class="phone-recent-call-type">
+                                            <i class="fas fa-minus-circle" style="color: red; font-size: 24px; margin-right: 8px;"></i>
+                                            <i class="fas fa-phone-volume" style="color: #2ecc71; font-size: 16px;"></i>
+                                        </div>
+                                        <div class="phone-recent-call-name-details">
+                                            <div class="phone-recent-call-name">Levent DÜZBASAN</div>
+                                            <div class="phone-recent-call-type-text">mobil</div>
+                                        </div>
+                                        <span class="phone-recent-call-time-text">12:00</span>
+                                    </div> -->
+                                    <!-- <div class="phone-recent-call"> <div class="phone-recent-call-image">P</div> <div class="phone-recent-call-name">Pieter Post</div> <div class="phone-recent-call-type"><i class="fas fa-phone-slash"></i></div> <div class="phone-recent-call-time">12:05</div> </div> -->
+                                </div>        
+                            </div>                    
+                        </div>
+
+                        <div class="phone-suggestedcontacts">
+                            <div class="phone-suggestedcontacts-cover">
+                                <div class="phone-suggestedcontacts-header">
+                                    <span>Önerilenler</span>
+                                    <p class="amount-of-suggested-contacts">0 Önerilen kişi</p>
+                                </div>
+
+                                <div class="suggested-contacts">
+                                    <!-- <div class="suggested-contact"> <i class="fas fa-exclamation-circle"></i> <span class="suggested-name">Jay Nandes &middot; <span class="suggested-number">0612345678</span></span> </div> -->
+                                    <!-- <div class="suggested-contact">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <span class="suggested-name">Jay Nandes &middot; <span class="suggested-number">0612345678</span></span>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="phone-keypad noselect">
+                            <div class="phone-keypad-cover">
+                                <div id="phone-keypad-input"></div>
+
+                                <div class="phone-keypad-keys">
+                                    <div class="phone-keypad-key" data-keypadvalue="1">
+                                        <span class="phone-keypad-key-numeric">1</span>
+                                    </div>
+                                    <div class="phone-keypad-key" data-keypadvalue="2">
+                                        <span class="phone-keypad-key-numeric">2</span>
+                                        <span class="phone-keypad-key-letters">ABC</span>
+                                    </div>
+                                    <div class="phone-keypad-key" data-keypadvalue="3">
+                                        <span class="phone-keypad-key-numeric">3</span>
+                                        <span class="phone-keypad-key-letters">DEF</span>
+                                    </div>
+                                    <div class="phone-keypad-key" data-keypadvalue="4">
+                                        <span class="phone-keypad-key-numeric">4</span>
+                                        <span class="phone-keypad-key-letters">GHI</span>
+                                    </div>
+                                    <div class="phone-keypad-key" data-keypadvalue="5">
+                                        <span class="phone-keypad-key-numeric">5</span>
+                                        <span class="phone-keypad-key-letters">JKL</span>
+                                    </div>
+                                    <div class="phone-keypad-key" data-keypadvalue="6">
+                                        <span class="phone-keypad-key-numeric">6</span>
+                                        <span class="phone-keypad-key-letters">MNO</span>
+                                    </div>
+                                    <div class="phone-keypad-key" data-keypadvalue="7">
+                                        <span class="phone-keypad-key-numeric">7</span>
+                                        <span class="phone-keypad-key-letters">PQRS</span>
+                                    </div>
+                                    <div class="phone-keypad-key" data-keypadvalue="8">
+                                        <span class="phone-keypad-key-numeric">8</span>
+                                        <span class="phone-keypad-key-letters">TUV</span>
+                                    </div>
+                                    <div class="phone-keypad-key" data-keypadvalue="9">
+                                        <span class="phone-keypad-key-numeric">9</span>
+                                        <span class="phone-keypad-key-letters">WXYZ</span>
+                                    </div>
+                                    <div class="phone-keypad-key" data-keypadvalue="*">
+                                        <span class="phone-keypad-key-numeric">*</span>
+                                    </div>
+                                    <div class="phone-keypad-key" data-keypadvalue="0">
+                                        <span class="phone-keypad-key-numeric">0</span>
+                                        <span class="phone-keypad-key-letters">+</span>
+                                    </div>
+                                    <div class="phone-keypad-key" data-keypadvalue="#">
+                                        <span class="phone-keypad-key-numeric">#</span>
+                                    </div>
+                                    <div class="phone-keypad-key-call">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="phone-add-contact">
+                            <div class="phone-add-contact-header">
+                                <p id="add-contact-cancel" class="blue-text-button"><i class="fas fa-chevron-left"></i> Geri</p>
+                                <p style="font-weight: bold;">Kişi Ekle</p>
+                                <p id="add-contact-save" class="blue-text-button">Bitti</p>
+                            </div>
+
+                            <div class="phone-add-contact-image">
+                                <img class="phone-add-contact-image-source" src="img/default.png"></img>
+                                <p id="phone-add-contact-take-image" class="blue-text-button">Fotoğraf Ekle</p>
+                            </div>
+
+                            <div class="phone-add-contact-fields">
+                                <input type="text" class="phone-add-contact-name" placeholder="Kişi ismi" required spellcheck="false">
+                                <input type="number" class="phone-add-contact-number" placeholder="Telefon numarası" required spellcheck="false">
+                                <input type="text" class="phone-add-contact-iban" placeholder="iban" required spellcheck="false">
+                            </div>
+                        </div>
+
+                        <div class="phone-contact-details">
+                            <div class="phone-contact-details-cover">
+                                <div class="phone-contact-details-header">
+                                    <p id="contact-details-cancel" class="blue-text-button"><i class="fas fa-chevron-left"></i> Kişiler</p>
+                                    <div class="phone-contact-user-details">
+                                        <img src="./img/default.png" class="phone-contact-details-user-image"></img>
+                                        <span class="phone-contact-details-user-name">Contact Name</span>
+                                    </div>
+                                    <p id="edit-contact" class="blue-text-button" style="position: absolute; right: 22px;">Düzenle</p>
+                                </div>
+                                <div class="phone-contact-details-body">
+                                    <div class="phone-contact-details-user-buttons">
+                                        <div id="phone-contact-message" class="phone-contact-details-user-button">
+                                            <i class="phone-action-button fas fa-comment"></i>
+                                            <span>mesaj</span>
+                                        </div>
+                                        <div id="phone-contact-call" class="phone-contact-details-user-button">
+                                            <i class="phone-action-button fas fa-phone"></i>
+                                            <span>ara</span>
+                                        </div>
+                                        <div id="phone-contact-video" class="phone-contact-details-user-button">
+                                            <i class="phone-action-button fas fa-dollar-sign"></i>
+                                            <span>para gönder</span>
+                                        </div>
+                                        <div id="phone-contact-mail" class="phone-contact-details-user-button">
+                                            <i class="phone-action-button fas fa-video"></i>
+                                            <span>görüntülü</span>
+                                        </div>
+                                    </div>
+                                    <div class="phone-contact-details-fields">
+                                        <div class="phone-contact-details-fields-groups">
+                                            <i class="phone-contact-details-fields-icon fas fa-users"></i>
+                                            <div class="phone-contact-details-fields-field">
+                                                <span class="phone-contact-details-fields-field-title">gruplar</span>
+                                                <span class="phone-contact-details-fields-field-value phone-contact-details-groups-text">Yok</span>
+                                            </div>
+                                        </div>
+                                        <div class="phone-contact-details-fields-groups">
+                                            <i class="phone-contact-details-fields-icon fas fa-phone"></i>
+                                            <div class="phone-contact-details-fields-field">
+                                                <span class="phone-contact-details-fields-field-title">mobil</span>
+                                                <span class="phone-contact-details-fields-field-value phone-contact-details-phone-text">123 456</span>
+                                            </div>
+                                        </div>
+                                        <div class="phone-contact-details-fields-groups">
+                                            <i class="phone-contact-details-fields-icon fas fa-credit-card"></i>
+                                            <div class="phone-contact-details-fields-field">
+                                                <span class="phone-contact-details-fields-field-title">iban</span>
+                                                <span class="phone-contact-details-fields-field-value phone-contact-details-iban-text">VL000000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="phone-contact-details-notes">
+                                        <div class="border"></div>
+                                        <div class="phone-contact-details-notes-field">
+                                            <textarea id="phone-contact-details-note-field" placeholder="Notlar..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="phone-edit-contact">
+                            <div class="phone-edit-contact-header">
+                                <p id="edit-contact-cancel" class="blue-text-button"><i class="fas fa-chevron-left"></i> Geri</p>
+                                <p style="font-weight: bold;">Kişi Düzenle</p>
+                                <p id="edit-contact-save" class="blue-text-button">Bitti</p>
+                            </div>
+
+                            <div class="phone-edit-contact-image">
+                                <img class="phone-edit-contact-image-source" src="img/default.png"></img>
+                                <p id="phone-edit-contact-take-image" class="blue-text-button">Fotoğraf Ekle</p>
+                            </div>
+
+                            <div class="phone-edit-contact-fields">
+                                <input type="text" class="phone-edit-contact-name" placeholder="Kişi ismi" required spellcheck="false">
+                                <input type="number" class="phone-edit-contact-number" placeholder="Telefon numarası" required spellcheck="false">
+                                <input type="text" class="phone-edit-contact-iban" placeholder="iban" required spellcheck="false">
+                            </div>
+
+                            <div class="phone-edit-contact-buttons">
+                                <p id="phone-delete-contact" class="phone-edit-contact-button">Kişiyi sil</p>
+                            </div>
+
+                            <!-- <div class="phone-edit-contact-header"><p>Kişi Düzenle</p></div>
+
+                            <i id="phone-edit-contact-name-icon" class="fas fa-user"></i>
+                            <input type="text" class="phone-edit-contact-name" placeholder="Contact Name" required spellcheck="false">
+
+                            <i id="phone-edit-contact-number-icon" class="fas fa-phone-alt"></i>
+                            <input type="number" class="phone-edit-contact-number" placeholder="Phone Number" required spellcheck="false">
+
+                            <i id="phone-edit-contact-iban-icon" class="fas fa-money-check"></i>
+                            <input type="text" class="phone-edit-contact-iban" placeholder="Bank Number" required spellcheck="false">
+
+                            <div class="phone-edit-contact-buttons">
+                                <div class="phone-edit-contact-button" id="edit-contact-save"><p>Kaydet</p></div>
+                                <div class="phone-edit-contact-button" id="edit-contact-delete"><p>Sil</p></div>
+                                <div class="phone-edit-contact-button" id="edit-contact-cancel"><p>İptal</p></div>
+                            </div> -->
+                        </div>
+
+                        <div class="phone-app-footer">
+                            <div class="phone-app-footer-button" data-phonefootertab="suggestedcontacts">
+                                <!-- <p>Önerilen</p> -->
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="phone-app-footer-button" data-phonefootertab="keypad">
+                                <!-- <p>Tuş Takımı</p> -->
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="phone-app-footer-button" data-phonefootertab="recent">
+                                <!-- <p>Son Çağrılar</p> -->
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="phone-app-footer-button phone-selected-footer-tab" data-phonefootertab="contacts">
+                                <!-- <p>Kişiler</p> -->
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="houses-app">
+                        <div class="houses-app-header">
+                            <div class="houses-app-header-tab houses-app-header-tab-selected" data-housetab="myhouses"><p>Evlerim</p></div>
+                            <div class="houses-app-header-tab" data-housetab="cars"><p>Araçlarım</p></div>
+                        </div>
+
+                        <div class="house-app-myhouses-container">
+                            <div class="myhouses-house">
+                                <div class="myhouse-house-icon"><i class="fas fa-home"></i></div>
+                                <div class="myhouse-house-titel">Mülkiyet</div>
+                                <div class="myhouse-house-details"><i class="fas fa-key"></i>5</div>
+                            </div>
+                        </div>
+
+                        <div class="house-app-cars-container">
+                            <!-- <div class="myhouses-house">
+                            </div> -->
+                        </div>  
+
+                        <div class="myhouses-options-container">
+                        </div>
+
+                    </div>
+
+                    <div class="garage-app">
+                        <div class="garage-app-header">
+                            Aracımı Bul
+                        </div>
+                        <div class="garage-homescreen">
+                            <div class="garage-vehicles">
+                                <!-- <div class="garage-vehicle">
+                                    <span class="garage-vehicle-firstletter">B</span>
+                                    <span class="garage-vehicle-name">BMW M5</span>
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <div class="garage-detailscreen">
+                            <div class="garage-cardetails">
+                                <div class="vehicle-brand"><span class="vehicle-detail">Marka</span><span class="vehicle-answer">BMW M5</span></div>
+                                <div class="vehicle-model"><span class="vehicle-detail">Model</span><span class="vehicle-answer">BMW M5</span></div>
+                                <div class="vehicle-plate"><span class="vehicle-detail">Plaka</span><span class="vehicle-answer">BMW M5</span></div>
+                                <div class="vehicle-garage"><span class="vehicle-detail">Garaj</span><span class="vehicle-answer">BMW M5</span></div>
+                                <div class="vehicle-status"><span class="vehicle-detail">Durum</span><span class="vehicle-answer">BMW M5</span></div>
+                                &nbsp;
+                                <div class="vehicle-fuel"><span class="vehicle-detail">Yakıt</span><span class="vehicle-answer">BMW M5</span></div>
+                                <div class="vehicle-engine"><span class="vehicle-detail">Motor</span><span class="vehicle-answer">BMW M5</span></div>
+                                <div class="vehicle-body"><span class="vehicle-detail">Gövde</span><span class="vehicle-answer">BMW M5</span></div>
+    
+                                <div class="garage-cardetails-footer">
+                                    Geri Git
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trucker-app">
+                        <div class="trucker-header">
+                            <span class="trucker-header-name"><span style="font-size: 1vh; color: rgba(255, 255, 255, 0.6);">Welcome</span><br><span id="trucker-name">Jay Yay</span></span>
+                            <div class="trucker-header-progress">
+                                <div class="trucker-header-progress-fill"></div>
+                                <span class="trucker-header-progress-text" id="trucker-header-progress-current" style="float: left;">Current: 100 REP</span>
+                                <span class="trucker-header-progress-text" id="trucker-header-progress-next" style="float: right;">Next: 200 REP</span>
+                            </div>
+                            <!-- <div class="trucker-header-currentlevel">1</div> -->
+                            <span class="trucker-header-description">Progression<br><span id="trucker-header-tier">Tier 1</span></span>
+                        </div>
+
+                        <div class="trucker-jobinfo">
+                            <div class="trucker-jobinfo-nojob">
+                                <i class="fas fa-ban"></i>
+                                <span id="trucker-jobinfo-nojob-text">Şuanda çalışmıyorsun</span>
+                            </div>
+                        </div>
+                    </div>
+					
+					<div class="taxis-app">
+                        <div class="taxis-header">
+                            <p>Taksi</p>
+                            <span>Bir Taksi Gönder</span>
+                        </div>
+
+                        <div class="taxis-list">
+                        </div>
+                    </div>
+					
+                    <div class="arrests-app">
+                        <div class="arrests-header">
+                            <p>LSPD</p>
+                            <span>Güncel Arananlar Listesi</span>
+                        </div>
+    
+                        <div class="arrests2-list">
+
+                        </div>
+                    </div>
+					
+					<div class="emergencys-app">
+                        <div class="emergencys-header">
+                            <p>Hizmet Kitapçığı</p>
+                            <span>Çağrı Merkezleri</span>
+                        </div>
+
+                        <div class="emergencys-list">
+                        </div>
+                    </div>
+					
+                    <div class="food-app">
+                        <div class="food-header">
+                            <p style="color: white;">subzFoods</p>
+                            <span style="color: white;">Karnın acıktıysa her zaman yanında</span>
+                        </div>
+
+                        <div class="food2-list">
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="vprime-app">
+                        <div class="vprime-app-loading">
+                            <img src="../html/img/apps/V_Prime.png" class="vprime-logo">
+                            <span id="vprime-text"></span>
+                        </div>
+                        <div class="vprime-header">
+                            <img src="../html/img/apps/V_Prime.png" class="vprime-header-logo">
+                            <p></p>
+                        </div>
+                        <div class="vprime2-list">
+    
+                        </div>
+                    </div> -->
+
+                    <div class="calculator-app">
+                        <div class="calculator-cover">
+                            <form class="calculator-input" name="form" action="">
+                                <input class="calculator-text" name="text" type="text" onkeypress="CalculatorCorrect(event)" value="0"/>
+                            </form>
+                    
+                            <div class="calculator-buttons">
+                                <div class="calculator-button calculator-operator-others" onclick="CalculatorClearAll()"><span>AC</span></div>
+                                <div class="calculator-button calculator-operator-others" onclick="CalculatorAddKey('±')"><span>±</span></div>
+                                <div class="calculator-button calculator-operator-others" onclick="CalculatorAddKey('%')"><span>%</span></div>
+                                <div class="calculator-button calculator-operator" onclick="CalculatorAddKey('/')"><span>÷</span></div>
+
+                                <div class="calculator-button" onclick="CalculatorAddKey('7')"><span>7</span></div>
+                                <div class="calculator-button" onclick="CalculatorAddKey('8')"><span>8</span></div>
+                                <div class="calculator-button" onclick="CalculatorAddKey('9')"><span>9</span></div>
+                                <div class="calculator-button calculator-operator" onclick="CalculatorAddKey('*')"><span>X</span></div>
+                                
+                                <div class="calculator-button" onclick="CalculatorAddKey('4')"><span>4</span></div>
+                                <div class="calculator-button" onclick="CalculatorAddKey('5')"><span>5</span></div>
+                                <div class="calculator-button" onclick="CalculatorAddKey('6')"><span>6</span></div>
+                                <div class="calculator-button calculator-operator" onclick="CalculatorAddKey('-')"><span>-</span></div>
+                                
+                                <div class="calculator-button" onclick="CalculatorAddKey('1')"><span>1</span></div>
+                                <div class="calculator-button" onclick="CalculatorAddKey('2')"><span>2</span></div>
+                                <div class="calculator-button" onclick="CalculatorAddKey('3')"><span>3</span></div>
+                                <div class="calculator-button calculator-operator" onclick="CalculatorAddKey('+')"><span>+</span></div>
+
+                                <div class="calculator-double-button" onclick="CalculatorAddKey('0')"><span>0</span></div>
+                                <div class="calculator-button" onclick="CalculatorAddKey('.')"><span>.</span></div>
+                                <div class="calculator-button calculator-operator" onclick="CalculatorCalculate()"><span>=</span></div>
+                            </div>
+                            <!-- <table>
+                                <tr>
+                                    <td><input class="calculator-button" type="button" value="C" onclick="hepsiniSil()"></td>
+                                    <td><input class="calculator-button" type="button" value="*" onclick="sayiekle('*')"></td>
+                                    <td><input class="calculator-button" type="button" value="/" onclick="sayiekle('/')"></td>
+                                    <td><input class="calculator-button" type="button" value="<" onclick="sil()"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="calculator-button" type="button" value="7" onclick="sayiekle(7)"></td>
+                                    <td><input class="calculator-button" type="button" value="8" onclick="sayiekle(8)"></td>
+                                    <td><input class="calculator-button" type="button" value="9" onclick="sayiekle(9)"></td>
+                                    <td><input class="calculator-button" type="button" value="-" onclick="sayiekle('-')"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="calculator-button" type="button" value="4" onclick="sayiekle(4)"></td>
+                                    <td><input class="calculator-button" type="button" value="5" onclick="sayiekle(5)"></td>
+                                    <td><input class="calculator-button" type="button" value="6" onclick="sayiekle(6)"></td>
+                                    <td><input class="calculator-button" type="button" value="+" onclick="sayiekle('+')"></td>
+                                </tr>
+                                <tr>
+                                    <td> <input class="calculator-button" type="button" value="1" onclick="sayiekle(1)"> </td>
+                                    <td> <input class="calculator-button" type="button" value="2" onclick="sayiekle(2)"> </td>
+                                    <td> <input class="calculator-button" type="button" value="3" onclick="sayiekle(3)"></td>
+                                    <td rowspan="2"> <input class="calculator-button" style="height: 106px" type="button" value="=" onclick="sonuc('=')"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"> <input class="calculator-button" style="width: 106px" type="button" value="0" onclick="sayiekle(0)"> </td>
+                                    <td> <input class="calculator-button" type="button" value="." onclick="sayiekle('.')"> </td>
+                                </tr>
+                            </table> -->
+                        </div>
+                    </div>
+
+                    <div class="clock-app">
+                        <div class="clock-app-loaded">
+
+                            <div class="clock-app-accounts">
+                                <div class="clock-app-transactions">
+                                    <div class="clock-app-header">
+                                        <p style="display: inline-block;">Alarmlar</p>
+                                        <i id="new-alarm" onclick="SetClock()" class="fas fa-plus"></i>
+                                    </div>
+                                    <div class="clock-transactions-item-div">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clock-app-transfer">
+                                <!-- DOING -->
+                                <div class="global-app-header">
+                                    <p id="cancel-alarm" class="alarm-cancel-button blue-text"><i class="fas fa-chevron-left"></i> Geri</p>
+                                    <p>Alarm</p>
+                                    <p id="accept-alarm" class="alarm-cancel-button blue-text">Kaydet</p>
+                                </div>
+    
+                                <!-- <input type="time" id="clock-transfer-iban" class="clock-transfer-input" required spellcheck="false"> -->
+                                <div class="group-01">
+                                    <div id="hour" class="simple-wheel">
+                                        <ul>
+                                            <li>1</li>
+                                            <li>2</li>
+                                            <li>3</li>
+                                            <li>4</li>
+                                            <li>5</li>
+                                            <li>6</li>
+                                            <li>7</li>
+                                            <li>8</li>
+                                            <li>9</li>
+                                            <li class="selected">10</li>
+                                            <li>11</li>
+                                            <li>12</li>
+                                            <li>13</li>
+                                            <li>14</li>
+                                            <li>15</li>
+                                            <li>16</li>
+                                            <li>17</li>
+                                            <li>18</li>
+                                            <li>19</li>
+                                            <li>20</li>
+                                            <li>21</li>
+                                            <li>22</li>
+                                            <li>23</li>
+                                        </ul>
+                                    </div>
+                                    <div id="seperator" class="simple-wheel-seperator">:</div>
+                                    <div id="minute" class="simple-wheel">
+                                        <ul>
+                                            <li>1</li>
+                                            <li>2</li>
+                                            <li>3</li>
+                                            <li>4</li>
+                                            <li>5</li>
+                                            <li>6</li>
+                                            <li>7</li>
+                                            <li>8</li>
+                                            <li>9</li>
+                                            <li>10</li>
+                                            <li>11</li>
+                                            <li>12</li>
+                                            <li>13</li>
+                                            <li>14</li>
+                                            <li>15</li>
+                                            <li>16</li>
+                                            <li>17</li>
+                                            <li>18</li>
+                                            <li>19</li>
+                                            <li>20</li>
+                                            <li>21</li>
+                                            <li>22</li>
+                                            <li>23</li>
+                                            <li>24</li>
+                                            <li>25</li>
+                                            <li>26</li>
+                                            <li>27</li>
+                                            <li>28</li>
+                                            <li>29</li>
+                                            <li class="selected">30</li>
+                                            <li>31</li>
+                                            <li>32</li>
+                                            <li>33</li>
+                                            <li>34</li>
+                                            <li>35</li>
+                                            <li>36</li>
+                                            <li>37</li>
+                                            <li>38</li>
+                                            <li>39</li>
+                                            <li>40</li>
+                                            <li>41</li>
+                                            <li>42</li>
+                                            <li>43</li>
+                                            <li>44</li>
+                                            <li>45</li>
+                                            <li>46</li>
+                                            <li>47</li>
+                                            <li>48</li>
+                                            <li>49</li>
+                                            <li>50</li>
+                                            <li>51</li>
+                                            <li>52</li>
+                                            <li>53</li>
+                                            <li>54</li>
+                                            <li>55</li>
+                                            <li>56</li>
+                                            <li>57</li>
+                                            <li>58</li>
+                                            <li>59</li>
+                                            <li>60</li>
+                                        </ul>
+                                    </div>
+                                    <div id="seperator" class="simple-wheel-seperator">:</div>
+                                    <div id="meridian" class="simple-wheel">
+                                        <ul>
+                                            <li>AM</li>
+                                            <li>PM</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clock-app-invoices">
+                                <p id="cronometer">00:00,00</p>
+                                <div class="cronometer-buttons reset-tur">Tur</div>
+                                <div class="cronometer-buttons start-stop">Başlat</div>
+                                <div class="clock-app-invoices-list">
+                                </div>
+                            </div>
+                            <div class="clock-app-footer">
+                                <div data-headertype="accounts" class="clock-app-footer-button clock-app-footer-button-selected" id="clock-accounts-button"> <i class="fas fa-bell"></i><p>Alarm</p></div>
+                                <div data-headertype="invoices" class="clock-app-footer-button"> <i class="fas fa-stopwatch"></i><p>Kronometre</p></div>
+                            </div>
+                        </div>
+                    </div>
+
+					<div class="tows-app">
+                        <div class="tows-header">
+                            <p>Araç Çekme</p>
+                            <span>Tow shizzle</span>
+                        </div>
+
+                        <div class="tows-list">
+                            <!-- <div class="lawyer-list">
+                                <div class="lawyer-list-firstletter">J</div>
+                                <div class="lawyer-list-fullname">Jay Nandes</div>
+                                <div class="lawyer-list-call"><i class="fas fa-phone"></i></div>
+                            </div>
+                            <div class="lawyer-list">
+                                <div class="lawyer-list-firstletter">J</div>
+                                <div class="lawyer-list-fullname">Jay Nandes</div>
+                                <div class="lawyer-list-call"><i class="fas fa-phone"></i></div>
+                            </div>
+                            <div class="lawyer-list">
+                                <div class="lawyer-list-firstletter">J</div>
+                                <div class="lawyer-list-fullname">Jay Nandes</div>
+                                <div class="lawyer-list-call"><i class="fas fa-phone"></i></div>
+                            </div> -->
+                        </div>
+                    </div>
+					
+					<div class="mechs-app">
+                        <div class="mechs-header">
+                            <p>Mekanik</p>
+                            <span>Sam Berry is a shitbag</span>
+                        </div>
+
+                        <div class="mechs-list">
+                        </div>
+                    </div>
+
+
+                    <div class="lawyers-app">
+                        <div class="lawyers-header">
+                            <p>Lawyers</p>
+                            <span>Contact a lawyer you nutty boi</span>
+                        </div>
+
+                        <div class="lawyers-list">
+                            <!-- <div class="lawyer-list">
+                                <div class="lawyer-list-firstletter">J</div>
+                                <div class="lawyer-list-fullname">Jay Nandes</div>
+                                <div class="lawyer-list-call"><i class="fas fa-phone"></i></div>
+                            </div>
+                            <div class="lawyer-list">
+                                <div class="lawyer-list-firstletter">J</div>
+                                <div class="lawyer-list-fullname">Jay Nandes</div>
+                                <div class="lawyer-list-call"><i class="fas fa-phone"></i></div>
+                            </div>
+                            <div class="lawyer-list">
+                                <div class="lawyer-list-firstletter">J</div>
+                                <div class="lawyer-list-fullname">Jay Nandes</div>
+                                <div class="lawyer-list-call"><i class="fas fa-phone"></i></div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <div class="crypto-app">
+                        <div class="crypto-header">
+
+                            <img src="./img/qbit.png" class="crypto-header-picture">
+
+                            <div class="crypto-header-values">
+                                <div class="crypto-header-value crypto-portofolio">
+                                    <span>Portfolyo</span>
+                                    <p>0.2555</p>
+                                </div>
+                                <div class="crypto-header-value crypto-course">
+                                    <span>Seyir</span>
+                                    <p>$9000</p>
+                                </div>
+                                <div class="crypto-header-value crypto-volume">
+                                    <span>Yoğunluk</span>
+                                    <p>$2299.5‬</p>
+                                </div>
+                            </div>
+
+                            <div class="crypto-header-footer">
+                                <div class="crypto-header-footer-item" data-cryptotab="general">
+                                    Genel
+                                </div>
+                                <div class="crypto-header-footer-item" data-cryptotab="transactions">
+                                    İşlemler
+                                </div>
+                                <div class="crypto-header-footer-item" data-cryptotab="course">
+                                    Seyir
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="crypto-action-page">
+                            <div class="crypto-action-page-buy-crypto">
+
+                                <div class="crypto-action-page-header">Moonbits Satın Al</div>
+
+                                <div class="crypto-action-page-wallet">Portfolyo: 1.000500 Moonbit</div>
+
+                                <i class="crypto-action-page-buy-crypto-input-coins-icon fas fa-coins"></i>
+                                <input type="number" class="crypto-action-page-buy-crypto-input-coins" required spellcheck="false" placeholder="1.000000" step="0.000001" min="0">
+
+                                <i class="crypto-action-page-buy-crypto-input-money-icon fas fa-euro-sign"></i>
+                                <input type="number" class="crypto-action-page-buy-crypto-input-money" required spellcheck="false" placeholder="1000" step="1.0" min="0">
+
+                                <div class="crypto-action-page-buy-crypto-footer">
+                                    <div class="crypto-action-page-buy-crypto-footer-button" id="buy-crypto">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="crypto-action-page-buy-crypto-footer-button" id="cancel-crypto">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="crypto-action-page-sell-crypto">
+
+                                <div class="crypto-action-page-header">Moonbits Sat</div>
+
+                                <div class="crypto-action-page-wallet">Portfolyo: 1.000500 Moonbit</div>
+
+                                <i class="crypto-action-page-sell-crypto-input-coins-icon fas fa-coins"></i>
+                                <input type="number" class="crypto-action-page-sell-crypto-input-coins" required spellcheck="false" placeholder="1.000000" step="0.000001" min="0">
+
+                                <i class="crypto-action-page-sell-crypto-input-money-icon fas fa-euro-sign"></i>
+                                <input type="number" class="crypto-action-page-sell-crypto-input-money" required spellcheck="false" placeholder="1000" step="1.0" min="0">
+
+                                <div class="crypto-action-page-buy-crypto-footer">
+                                    <div class="crypto-action-page-buy-crypto-footer-button" id="sell-crypto">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="crypto-action-page-buy-crypto-footer-button" id="cancel-crypto">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="crypto-action-page-transfer-crypto">
+
+                                <div class="crypto-action-page-header">Moonbit Gönder</div>
+
+                                <div class="crypto-action-page-wallet">Portfolyo: 0 Moonbit</div>
+
+                                <i class="crypto-action-page-transfer-crypto-input-coins-icon fas fa-coins"></i>
+                                <input type="number" class="crypto-action-page-transfer-crypto-input-coins" required spellcheck="false" placeholder="1.000000" step="0.000001" min="0">
+
+                                <i class="crypto-action-page-transfer-crypto-input-money-icon fas fa-address-book"></i>
+                                <input type="texts" class="crypto-action-page-transfer-crypto-input-walletid" required spellcheck="false" placeholder="QB-12345678">
+
+                                <div class="crypto-action-page-buy-crypto-footer">
+                                    <div class="crypto-action-page-buy-crypto-footer-button" id="transfer-crypto">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="crypto-action-page-buy-crypto-footer-button" id="cancel-crypto">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="crypto-page">
+                            <div class="cryptotab-general">
+                                <div class="cryptotab-general-actions">
+                                    <div class="cryptotab-general-action" data-action="buy-crypto">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        <span class="cryptotab-general-action-title">Satın Al</span>
+                                        <span class="cryptotab-general-action-description">Burada kripto para satın alabilirsin</span>
+                                    </div>
+                                    <div class="cryptotab-general-action" data-action="sell-crypto">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        <span class="cryptotab-general-action-title">Sat</span>
+                                        <span class="cryptotab-general-action-description">Burada kripto para satabilirsin</span>
+                                    </div>
+                                    <div class="cryptotab-general-action" data-action="transfer-crypto">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        <span class="cryptotab-general-action-title">Transfer</span>
+                                        <span class="cryptotab-general-action-description">Burada kripto para transferi yapabilirsin</span>
+                                    </div>
+                                </div>
+                                <span class="crypto-walletid">Cüzdanım: QB-12345678</span>
+                            </div>
+                        
+                            <div class="cryptotab-transactions">
+                                <div class="cryptotab-transactions-list">
+                                    <!-- <div class="cryptotab-transactions-block">
+                                        <i class="fas fa-exchange-alt"></i>
+                                        <span class="cryptotab-transactions-block-title" style="color: green !important;">Bijschrijving</span>
+                                        <span class="cryptotab-transactions-block-happening">Er is &euro;1000,- bijgeschreven</span>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                            <div class="cryptotab-course">
+                                <div class="cryptotab-course-list">
+                                    <!-- <div class="cryptotab-course-block">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span class="cryptotab-course-block-title">Koers verandering</span>
+                                        <span class="cryptotab-course-block-happening"><span style="font-size: 1.3vh;">€1000</span> naar <span style="font-size: 1.3vh;">€2000</span><span style="color: green;" class="crypto-percentage-change"><i style="color: green;" class="fas fa-arrow-right"></i> +(100%)</span></span>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="meos-app">
+                        <input type="text" id="testerino">
+                        <div class="meos-app-header">
+                            <span id="meos-app-title">POLIS</span>
+                            <span id="meos-app-name">Hoşgeldin</span>
+                        </div>
+
+                        <div class="meos-homescreen">
+                            <div class="meos-blocks">
+                                <div class="meos-block" data-meosblock="person">
+                                    <i class="fas fa-user"></i>
+                                    <p>Vatandaşlar</p>
+                                </div>
+                                <div class="meos-block" data-meosblock="vehicle">
+                                    <i class="fas fa-car"></i>
+                                    <p>Araçlar</p>
+                                </div>
+                                <div class="meos-block" data-meosblock="houses">
+                                    <i class="fas fa-house-user"></i>
+                                    <p>Evler</p>
+                                </div>
+                                <div class="meos-block" data-meosblock="alerts">
+                                    <i class="fas fa-bell"></i>
+                                    <p>Bildirimler</p>
+                                </div>
+                            </div>
+
+                            <span class="meos-recent-header">Son Rapor</span>
+                            <div class="meos-recent-alerts">
+                                <div class="meos-recent-alert"> <span class="meos-recent-alert-title">Henüz bir bildirim yok</span></div>
+                            </div>
+                        </div>
+
+                        <div class="meos-tabs">
+                            <div class="meos-person-page">
+                                <input class="person-search-input" type="text" spellcheck="false" required>
+                                <div class="confirm-search-person-test" id="search-pers">
+                                    <i class="fas fa-search"></i>
+                                </div>
+
+                                <div class="person-search-results">
+                                </div>
+                            </div>
+
+                            <div class="meos-houses-page">
+                                <input class="person-search-input-house" type="text" spellcheck="false" required>
+                                <div class="confirm-search-person-house">
+                                    <i class="fas fa-search"></i>
+                                </div>
+
+                                <div class="person-search-results">
+
+                                </div>
+                            </div>
+
+                            <div class="meos-vehicle-page">
+                                <input class="vehicle-search-input" type="text" spellcheck="false" required>
+                                <div class="confirm-search-vehicle">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="scan-search-vehicle">
+                                    <i class="fas fa-barcode"></i>
+                                </div>
+
+                                <div class="vehicle-search-results">
+                                    <!-- <div class="vehicle-search-result"> <div class="vehicle-search-result-name">T20</div> <div class="vehicle-search-result-plate">Kenteken: NL123456</div> <div class="vehicle-opensplit"></div> &nbsp; <div class="vehicle-search-result-owner">Eigenaar: Jay Nandes</div> &nbsp; <div class="vehicle-search-result-apk">APK: Ja</div> <div class="vehicle-search-result-warrant">Gesignaleerd: Ja</div> </div> -->
+                                </div>
+                            </div>
+
+                            <div class="meos-alerts-page">
+                                <div class="meos-clear-alerts">TEMİZLE</div>
+                                <div class="meos-alerts">
+                                    <!-- <div class="meos-alert"> <span class="meos-alert-new" style="margin-bottom: 1vh;">NIEUW</span>
+                                        <p class="meos-alert-type">Melding: Test</p>
+                                        <p class="meos-alert-description">Melding: Test</p>
+                                        <hr>
+                                        <div class="meos-location-button">LOCATIE</div>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                            <div class="meos-tabs-footer">
+                                <i class="fas fa-undo-alt" id="back-meos"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="advert-app">
+                        <div class="advert-home">
+                            <div class="advert-header">
+                                <span id="advert-header-text">Sarı Sayfalar</span>
+                                <span id="advert-header-name"></span>
+                            </div>
+    
+                            <div class="advert-list">
+                                <!-- <div class="advert">
+                                    <span class="advert-sender">@JayNandes | 0612345678</span>
+                                    <p>Dit is een test advert Dit is een test advert Dit is een test advert Dit is een test advert Dit is een test advert</p>
+                                </div> -->
+                            </div>
+    
+                            <div class="test-slet">
+                                <i class="fas fa-plus test-icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="new-advert">
+                            <div class="new-advert-header">
+                                <span id="new-advert-header-text">Yeni İlan</span>
+                            </div>
+
+                            <i id="new-advert-image-btn" class="fas fa-camera new-advert-image-btn"></i>
+                            <textarea class="new-advert-textarea" spellcheck="false" required></textarea>
+                            <img id="new-advert-image" class="new-advert-image"></img>
+
+                            <div class="new-advert-footer">
+                                <div class="new-advert-footer-item" id="new-advert-submit">
+                                    <i class="fas fa-check-circle new-advert-icon"></i>
+                                </div>
+                                <div class="new-advert-footer-item" id="new-advert-back">
+                                    <i class="fas fa-arrow-circle-left new-advert-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mail-app">
+
+                        <div class="mail-home">
+                            
+                            <div class="mail-header">
+                                <span id="mail-header-text">E-Posta</span>
+                                <span id="mail-header-mail">iamjay@qbcore.mail</span>
+    
+                                <!-- <div class="mail-home-pages">
+                                    <p>Gelen Kutusu</p>
+                                    <p>Kurumsal</p>
+                                </div> -->
+                            </div>
+    
+                            <div class="mail-list">
+                                <!-- <div class="mail">
+                                    <span class="mail-sender">Instagram</span>
+                                    <div class="mail-text"><p>Dit is een test mail en wordt dus niet volledig weergeven want dat is het gene wat ik aan het testen ben</p></div>
+                                    <div class="mail-time">18:31</div>
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <div class="opened-mail">
+                            <div class="opened-mail-header">
+                                <div class="mail-back"><i class="fas fa-chevron-left" id="mail-back"></i></div>
+                                <div class="mail-subject"><p>Konu</p></div>
+                                <div class="mail-date"><p>19 Feb 2019 &nbsp; 08:19</p></div>
+                                <div class="mail-spacing"></div>
+                                <div class="mail-content"><p>
+                                    Bu bir test postası ve bu nedenle tam olarak görüntülenmiyor çünkü test ettiğim şey bu.
+                                </p></div>
+                            </div>
+                            <div class="opened-mail-footer">
+                                <div class="opened-mail-footer-item">
+                                    <i class="fas fa-check-circle" id="accept-mail"></i>
+                                </div>
+                                <div class="opened-mail-footer-item">
+                                    <i class="fas fa-trash-alt" id="remove-mail"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="store-app">
+                        <div class="store-header">
+                            <p>App Store</p>
+                        </div>
+                        <div class="store-apps">
+                            <div class="storeapp" data-app="territory">
+                                <div class="storeapp-icon">
+                                    <i class="fas fa-globe-dollarpe"></i>
+                                </div>
+                                <div class="storeapp-title">
+                                    Bölge
+                                </div>
+                                <div class="storeapp-creator">
+                                    Powerland
+                                </div>
+                                <div class="storeapp-download">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="download-password-container">
+                            <div class="download-password">
+                                <span id="download-password-title">Şifre</span>
+                                <span id="download-password-disclaimer">Bu uygulamayı indirebilmek için şifre girmelisiniz.</span>
+                                <input type="text" class="download-password-input" spellcheck="false" required>
+
+                                <div class="download-password-buttons">
+                                    <div class="download-password-accept"><i class="fas fa-check"></i></div>
+                                    <div class="download-password-deny"><i class="fas fa-times"></i></div>
+                                </div>
+
+                                <div class="download-progressbar">
+                                    <div class="download-progressbar-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="download-password-containerx">
+                            <div class="download-password">
+                                <span id="download-password-title">İndiriliyor</span>
+                                <span id="download-password-disclaimer">Lütfen bekleyin..</span>
+                               <input type="text" class="download-password-input" spellcheck="false" required>
+
+                                <div class="download-password-buttons">
+                                    <div class="download-password-accept"><i class="fas fa-check"></i></div>
+                                    <div class="download-password-deny"><i class="fas fa-times"></i></div>
+                                </div>
+
+                                <div class="download-progressbar">
+                                    <div class="download-progressbar-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="racing-app">
+                        <div class="racing-overview">
+                            <div class="racing-app-header">
+                                Düzenlenen Yarışlar
+                            </div>
+
+                            <div class="racing-races">
+                                <!-- <div class="racing-race">
+                                    <span class="race-name"><i class="fas fa-flag-checkered"></i> Prison</span>
+                                    <span class="race-track"><i class="fas fa-unlock"></i> Joinable</span>
+                                    <div class="race-infomation">
+                                        <div class="race-infomation-tab" id="race-information-laps">0 Laps</div>
+                                        <div class="race-infomation-tab" id="race-information-distance">0 m</div>
+                                        <div class="race-infomation-tab" id="race-information-player"><i class="fas fa-user"></i> 0</div>
+                                    </div>
+                                    <div class="race-buttons">
+                                        <div class="race-button" id="join-race" data-toggle="tooltip" data-placement="left" title="Join"><i class="fas fa-sign-in-alt"></i></div>
+                                        <div class="race-button" id="quit-race" data-toggle="tooltip" data-placement="right" title="Quit"><i class="fas fa-sign-out-alt"></i></div>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="racing-race"> <span class="race-name"><i class="fas fa-flag-checkered"></i> Prison</span> <span class="race-track"><i class="fas fa-unlock"></i> Joinable</span> <div class="race-infomation"> <div class="race-infomation-tab" id="race-information-laps">0 Laps</div> <div class="race-infomation-tab" id="race-information-distance">0 m</div> <div class="race-infomation-tab" id="race-information-player"><i class="fas fa-user"></i> 0</div> </div> <div class="race-buttons"> <div class="race-button" id="join-race" data-toggle="tooltip" data-placement="left" title="Join"><i class="fas fa-sign-in-alt"></i></div> <div class="race-button" id="quit-race" data-toggle="tooltip" data-placement="right" title="Quit"><i class="fas fa-sign-out-alt"></i></div> </div> </div> -->
+                            </div>
+
+                            <div class="racing-buttons">
+                                <div class="racing-button" id="setup-race">
+                                    <i class="fas fa-flag-checkered"></i> Oluştur
+                                </div>
+                                <div class="racing-button" id="leaderboards-race">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="racing-button" id="create-race">
+                                    <i class="fas fa-plus"></i> Düzenle
+                                </div>
+                            </div>
+                                
+                        </div>
+
+                        <div class="racing-setup">
+                            <div class="racing-app-header">
+                                Yarış - Oluştur
+                            </div>
+
+                            <span id="racing-setup-trackheader">Yarış Listesi</span>
+                            <div class="dropdown">
+                                <div class="select">
+                                  <span>Bir Yarış Seçin</span>
+                                  <i class="fa fa-chevron-left"></i>
+                                </div>
+                                <input type="hidden" name="gender">
+                                <ul class="dropdown-menu"></ul>
+                            </div>
+
+                            <span id="racing-setup-lapsheader">Tur Sayısı</span>
+                            <input type="number" class="racing-setup-laps" required spellcheck="false" placeholder="Kaç tur olacağını girin.(Sprint = 0)">
+
+                            <span id="racing-setup-informationheader">Yarış Bilgileri</span>
+                            <div class="racing-setup-information-distance">Bir Yarış Seçin</div>
+                            <div class="racing-setup-information-creator">Bir Yarış Seçin</div>
+                            <div class="racing-setup-information-wr">Bir Yarış Seçin</div>
+
+                            <div class="racing-setup-buttons">
+                                <div class="racing-setup-button" id="setup-race-accept" data-toggle="race-setup" data-placement="bottom" title="Kabul Et">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="racing-setup-button" id="setup-race-cancel" data-toggle="race-setup" data-placement="bottom" title="İptal Et">
+                                    <i class="fas fa-times-circle"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="racing-create">
+                            <div class="racing-create-block">
+                                <span id="racing-create-tracknameheader">Yarış İsmi</span>
+                                <input type="text" class="racing-create-trackname" required spellcheck="false" placeholder="Gözükmesini istediğiniz ismi girin.">
+
+                                <div class="racing-create-buttons">
+                                    <div class="racing-create-button" id="racing-create-accept">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="racing-create-button" id="racing-create-cancel">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="racing-leaderboard">
+                            <div class="racing-app-header">
+                                Yarış - Lider Tablosu
+                            </div>
+
+                            <span id="racing-leaderboards-header">Son Yarışlar</span>
+                            <div class="racing-leaderboards">
+                                <!-- <div class="racing-leaderboard-item">
+                                    <span class="racing-leaderboard-item-name"><i class="fas fa-flag-checkered"></i> Prison</span>
+                                    <span class="racing-leaderboard-item-info">Klik voor meer details</span>
+                                </div> -->
+                                <!-- <div class="racing-leaderboard-item"> <span class="racing-leaderboard-item-name"><i class="fas fa-flag-checkered"></i> Prison</span> <span class="racing-leaderboard-item-info">Klik voor meer details</span> </div> -->
+                            </div>
+
+                            <div class="racing-leaderboard-details">
+                                <div class="racing-leaderboard-details-block">
+                                    <div class="racing-leaderboard-details-back"><i class="fas fa-times-circle"></i></div>
+                                    <div class="racing-leaderboard-details-block-trackname"><i class="fas fa-flag-checkered"></i> Prison</div>
+                                    <span id="leaderboard-list-header"><span style="float: left;">Racer</span><span style="margin-left: 5.55vh;"><i class="fas fa-stopwatch"></i></span><span style="float: right; margin-right: 2vh;">#</span></span>
+                                    <div class="racing-leaderboard-details-block-list">
+                                        <!-- <div class="row"> <div class="name">Jay Nandes</div><div class="time">00:04:55</div><div class="score">1</div> </div> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="racing-leaderboards-button">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="twitter-app">
+
+                        <div class="twitter-home-tab">
+                            <!-- <div class="twitter-tweet" data-twthandler="@'+TwitterHandle.replace(" ", "_")+'">
+                                <div class="tweet-reply"><i class="fas fa-reply"></i></div>
+                                <div class="tweet-tweeter">'+Tweet.firstName+' '+Tweet.lastName+' &nbsp;<span>@'+TwitterHandle.replace(" ", "_")+' &middot; '+TimeAgo+'</span></div>
+                                <div class="tweet-message">@JAY</div>
+                                <div class="twt-img" style="top: 1vh;"><img src="'+PictureUrl+'" class="tweeter-image"></div>
+                            </div> -->
+                             <div class="twitter-no-tweets"><p>Henüz bir tweet paylaşılmamış</p></div>
+                        </div>
+
+                        <div class="twitter-mentions-tab">
+                            <!-- <div class="twitter-mentioned-tweet"> 
+                                <div class="tweet-tweeter">Test &nbsp;<span>@Test &middot; 2 m</span></div>
+                                <div class="tweet-message">Dit is test tweet yeey. :) ggggggggggggggggggggggggggg gggggggggggggggggg</div>
+                                <div class="twt-img" style="top: 1vh;"><img src="'+PictureUrl+'" class="tweeter-image"></div>
+                            </div> -->
+                            <div class="twitter-no-tweets"><p>Henüz birisi sizden bahsetmemiş</p></div>
+                        </div>
+
+                        <div class="twitter-hashtags-tab">
+                            <div class="twitter-hashtag-tweets">
+                                <div class="twitter-tweet">
+                                    <!-- <div class="tweet-tweeter">Test &nbsp;<span>@Test &middot; 2 m</span></div>
+                                    <div class="tweet-message">Dit is test tweet yeey. :) ggggggggggggggggggggggggggg gggggggggggggggggg</div>
+                                    <div class="twt-img" style="top: 1vh;"><img src="'+PictureUrl+'" class="tweeter-image"></div> -->
+                                </div>
+                            </div>
+                            <div class="twitter-hashtags">
+                                <!-- <div class="twitter-hashtag">
+                                    <div class="twitter-hashtag-status">Niet trending in Qbus</div>
+                                    <div class="twitter-hashtag-tag">#Test</div>
+                                    <div class="twitter-hashtag-messages">5 Tweets</div>
+                                </div> -->
+                                <div class="twitter-no-tweets"><p>Henüz bir hashtag yok</p></div>
+                            </div>
+                        </div>
+
+                        <div class="twitter-new-tweet">
+                            <i class="fas fa-feather-alt"></i>
+                        </div>
+
+                        <div class="twitter-new-tweet-tab">
+                            <div class="twitter-new-tweet-header"><p>Yeni Tweet</p></div>
+                            
+                            <i id="new-tweet-image-btn" class="fas fa-camera new-tweet-image-btn"></i>
+                            <textarea id="tweet-new-message" placeholder="Mesajınızı buraya girin" cols="30" rows="10" spellcheck="false" required></textarea>
+                            <textarea id="tweet-new-image" placeholder="Fotoğraf linki (png/jpg)" cols="30" rows="10" spellcheck="false" required></textarea>
+                            <img id="new-tweet-image" class="new-tweet-image"></img>
+
+                            <div class="twitter-new-tweet-buttons">
+                                <div class="twitter-new-tweet-button" id="send-tweet"><p>Yayımla</p></div>
+                                <div class="twitter-new-tweet-button" id="cancel-tweet"><p>Geri Dön</p></div>
+                            </div>
+                        </div>
+                        
+                        <div class="twitter-header">
+                            <div id="twitter-home" data-twittertab="twitter-home" class="twitter-header-tab selected-twitter-header-tab"><i class="fas fa-home"></i></div>
+                            <div id="twitter-mentions" data-twittertab="twitter-mentions" class="twitter-header-tab"><i class="fas fa-at"></i></div>
+                            <div id="twitter-hashtags" data-twittertab="twitter-hashtags" class="twitter-header-tab"><i class="fas fa-hashtag"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="bank-app">
+                        <div class="bank-app-loading">
+                            <img src="../html/img/apps/bank-logo.png" class="qbank-logo">
+                            <span id="qbank-text">Bank</span>
+                        </div>
+                        <div class="bank-app-loaded">
+                            <div class="bank-app-accounts">
+                                <div class="bank-app-account">
+                                    <!-- <div class="bank-app-account-number" id="iban-account">NL01QBBA012341234123</div> -->
+                                    <input type="text" class="bank-app-account-number" id="iban-account" readonly spellcheck="false">
+                                    <div class="bank-app-account-balance">&dollar; 5000,00</div>
+                                    <!-- <div class="bank-app-account-title">Banka hesabı</div> -->
+                                </div>
+                                <div class="bank-app-history">
+                                    <!-- <div class="bank-app-history-item">
+                                        <div class="bank-app-history-header">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            <div>
+                                                <i class="fas fa-plus"></i>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        <div class="bank-app-history-item-description">
+                                            <span></span>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <!-- <div class="bank-app-account-actions">
+                                    <i id="transfer-money" class="fas fa-exchange-alt bank-app-account-action-transfer"></i>
+                                </div> -->
+                            </div>
+
+                            <div class="bank-app-transfer">
+                                <div class="bank-app-transfer-header">Para Transferi</div>
+                                <div>
+                                    <i class="bank-transfer-iban-icon fas fa-credit-card"></i>
+                                    <input type="text" id="bank-transfer-iban" class="bank-transfer-input" required spellcheck="false" placeholder="İban">
+                                    <!-- <i class="bank-transfer-mycontacts-icon fas fa-address-book"></i> -->
+                                </div>
+                                <div>
+                                    <i class="bank-transfer-amount-icon fas fa-euro-sign"></i>
+                                    <input type="number" id="bank-transfer-amount" class="bank-transfer-input" required spellcheck="false" placeholder="0">
+                                </div>
+                                <div class="bank-app-transfer-buttons">
+                                    <div class="bank-app-transfer-button" id="accept-transfer">Onayla</div>
+                                    <!-- <div class="bank-app-transfer-button" id="cancel-transfer">Cancel</div> -->
+                                </div>
+                            </div>
+
+                            <div class="bank-app-header">
+                                <div data-headertype="accounts" class="bank-app-header-button bank-app-header-button-selected"> <i class="fas fa-align-left"></i></div>
+                                <div data-headertype="invoices" class="bank-app-header-button"> <i class="fas fa-file-invoice"></i></div>
+                                <div data-headertype="transfer" class="bank-app-header-button bank-app-account-actions"> <i class="fas fa-exchange-alt"></i></div>
+                            </div>
+
+                            <div class="bank-app-invoices">
+                                <div class="bank-app-invoices-header">Faturalar</div>
+                                <div class="bank-app-invoices-list">
+                                    <!-- <div class="bank-app-invoice"> <div class="bank-app-invoice-title">Betaalverzoek <span style="font-size: 1vh; color: gray;">(Afzender: 0612345678)</span></div> <div class="bank-app-invoice-amount">&euro; 5000,-</div> <div class="bank-app-invoice-buttons"> <i class="fas fa-check-circle pay-invoice"></i> <i class="fas fa-times-circle decline-invoice"></i> </div> </div> -->
+                                </div>
+                                <div class="bank-app-invoices-footer">
+                                    <div id="total-fine-amount">0$</div>
+                                    <div id="pay-all">Hepsini Öde</div>
+                                    <!-- <div class="bank-app-transfer-button" id="cancel-transfer">Cancel</div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bank-app-my-contacts">
+                            <div class="bank-app-my-contacts-header">Kişilerim</div>
+                            <div class="bank-app-my-contacts-list-header">
+                                <input type="text" id="bank-app-my-contact-search" placeholder="Contact name" spellcheck="false">
+                            </div>
+                            <div class="bank-app-my-contacts-list">
+                                <!-- <div class="bank-app-my-contact"> <div class="bank-app-my-contact-firstletter">P</div> <div class="bank-app-my-contact-name">Pieter Post</div> </div> -->
+                            </div>
+                            <div class="bank-app-my-contacts-list-back">Geri Git</div>
+                        </div>
+                    </div>
+
+                    <div class="whatsapp-app">
+                        <div class="whatsapp-header">
+                            <div class="whatsapp-header-top"></div>
+                            <div class="whatsapp-header-footer">
+                                <div class="whatsapp-header-footer-header">
+                                    <p style="flex: 1;">Mesajlar</p>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                                <!-- <i id="whatsapp-search-chats" class="fas fa-search"></i> -->
+                                <input type="text" id="whatsapp-search-input" placeholder="&#xF002; Ara" spellcheck="false">
+                            </div>
+                        </div>
+                        <div class="whatsapp-chats">
+                            <!-- <div class="whatsapp-chat">
+                                <div class="whatsapp-chat-picture"></div>
+                                <div class="whatsapp-chat-name"><p>Testt</p></div>
+                                <div class="whatsapp-chat-lastmessage"><p>This is a hardcoded test message! 1111111111111111111111111111111111111</p></div>
+                                <div class="whatsapp-chat-lastmessagetime"><p>07:53</p></div>
+                            </div> -->
+                        </div>
+                        <div class="whatsapp-openedchat">
+                            <div class="whatsapp-header-openedchat">
+                                <div class="whatsapp-header-top-openedchat"></div>
+                                <div class="whatsapp-header-footer-openedchat">
+                                    <div class="whatsapp-openedchat-picture"></div>
+                                    <div class="whatsapp-openedchat-name"><p></p></div>
+                                    <i id="whatsapp-openedchat-back" class="fas fa-chevron-left"></i>
+                                </div>
+                            </div>
+                            <div class="whatsapp-openedchat-messages">
+
+                            </div>
+                            <div class="whatsapp-openedchat-input">
+                                <!-- <div class="whatsapp-extra-buttons"> -->
+                                    <!-- <div class="whatsapp-extra-button" id="send-location"><i class="fas fa-map-marker-alt"></i></div> -->
+                                    <!-- <div class="whatsapp-extra-button" id="send-image"><i class="fas fa-image"></i></div> -->
+                                    <!-- <div class="whatsapp-extra-button" id="send-image"><i class="fas fa-map-marker-alt"></i></div> -->
+                                    <!-- <div class="whatsapp-extra-button" id="send-location"><i class="fas fa-money-bill"></i></div> -->
+                                <!-- </div> -->
+                                    <div class="whatsapp-openedchat-input-icons">
+                                        <i id="send-location" class="fas fa-map-marker-alt"></i>
+                                        <i id="send-image" class="fas fa-image"></i>
+                                    </div>
+                                    <textarea id="whatsapp-openedchat-message" placeholder="Mesaj" spellcheck="false" oninput="AutoGrow()"></textarea>
+                                    <i class="fas fa-paper-plane" id="whatsapp-openedchat-send"></i>
+                                <!-- <i class="fas fa-ellipsis-v" id="whatsapp-openedchat-message-extras"></i> -->
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phone-currentcall-container">
+                    <div class="phone-currentcall-icon"><i class="fas fa-phone"></i></div>
+                    <div class="phone-currentcall-title">Giden Arama</div>
+                    <div class="phone-currentcall-contact">0612345678</div>
+                </div>
+
+                <!-- Phone Home Button -->
+                <div id="phone-footer" class="phone-footer">
+                    <div class="phone-home-container">
+                        <div class="phone-home-button"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen-notifications-container">
+            <div class="screen-notification-icon"><i class="twitter"></i></div>
+            <div class="screen-notification-title"><p>Yeni bir Tweet Paylaşıldı!</p></div>
+            <div class="screen-notification-content"><p>Dit is a test notification JOINK 222222222222222222222222222222</p></div>
+        </div>
+
+        <div class="call-notifications">
+            <div class="call-notifications-icon"><i class="fas fa-phone"></i></div>
+            <div class="call-notifications-title"><p>Gelen Arama</p></div>
+            <div class="call-notifications-content"><p>You have an incoming call from Test</p></div>
+        </div>
+ 
+        <!-- <div class="emergency-button">
+            <div class="emergency-button-header">
+                <img src="./img/politie-2.png" class="police-logo-2">
+            </div>
+            <div class="emergency-button-footer">
+                <img src="./img/politie-3.png" class="police-logo-3">
+            </div>
+        </div> -->
+        
+        <!-- JavaScript File's -->
+        <script src="./js/config.js"></script>
+        <script src="./js/app.js"></script>
+        <script src="./js/zoom.js"></script>
+        <script src="./js/settings.js"></script>
+        <script src="./js/phone.js"></script>
+        <script src="./js/twitter.js"></script>
+        <script src="./js/bank.js"></script>
+        <script src="./js/whatsapp.js"></script>
+        <script src="./js/garage.js"></script>
+        <script src="./js/mail.js"></script>
+        <script src="./js/meos.js"></script>
+        <script src="./js/crypto.js"></script>
+        <script src="./js/racing.js"></script>
+        <script src="./js/houses.js"></script>
+        <script src="./js/lawyers.js"></script>
+        <script src="./js/tow.js"></script>
+        <script src="./js/mechanic.js"></script>
+        <script src="./js/emergency.js"></script>
+        <script src="./js/taxi.js"></script>
+        <script src="./js/arrests.js"></script>
+        <script src="./js/qstore.js"></script>
+        <script src="./js/trucker.js"></script>
+        <script src="./js/calculator.js"></script>
+        <script src="./js/clock.js"></script>
+        <script src="./js/vprime.js"></script>
+        <script src="./js/food.js"></script>
+    </body>
+</html>

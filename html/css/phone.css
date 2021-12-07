@@ -1,0 +1,1250 @@
+.phone-app {
+    display: none;
+    height: 100%;
+    width: 100%;
+    background: white;
+    overflow: hidden;
+}
+
+.phone-app-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: 'SF Pro Display Regular';
+    font-size: 3.2vh;
+    top: 3vh;
+    height: 20vh;
+    font-weight: bold;
+    text-align: left;
+    padding: 16px 20px;
+}
+
+.phone-app-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.phone-app-header-top p {
+    margin: 0;
+}
+
+.phone-app-header-top i {
+    font-size: 2vh;
+}
+
+#total-contacts {
+    position: relative;
+    font-size: 1.1vh;
+    font-family: 'SF Pro Display Regular';
+    top: -3vh;
+    color: rgba(0, 0, 0, 0.75);
+}
+
+.phone-app-footer {
+    border-top: 1px solid var(--border-gray);
+    position: absolute;
+    height: 5vh;
+    width: 100%;
+    bottom: 1vh;
+    z-index: 101;
+}
+
+.phone-app-footer-button {
+    position: relative;
+    height: 100%;
+    width: 25%;
+    text-align: center;
+    line-height: 5vh;
+    float: left;
+    font-family: 'SF Pro Display Regular';
+    font-size: 1.5vh;
+    color: black;
+    border-bottom: .4vh solid #686de000;
+    transition: all ease-in-out 100ms;
+}
+
+.phone-app-footer-button:hover {
+    transition: all ease-in-out 100ms;
+    background-color: rgb(202, 202, 202);
+}
+
+.phone-selected-footer-tab {
+    color: #087FFF;
+    /* border-bottom: .4vh solid #27ae60;    */
+}
+
+.phone-contacts {
+    display: block;
+    position: absolute;
+    height: 72.5%;
+    width: 100%;
+    top: 13.5vh;
+}
+
+.phone-keypad-header {
+    padding-top: 6vh;
+    padding-left: 3vh;
+    font-family: 'SF Pro Display Regular';
+    font-size: 1.8vh;
+}
+
+#phone-keypad-input {
+    height: 45px;
+    border: none;
+    background: none;
+    outline: none;
+    font-family: 'SF Pro Display Regular';
+    text-align: center;
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 32px;
+    width: 100%;
+}
+
+.phone-keypad {
+    position: absolute;
+    display: none;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background: white;
+}
+.phone-keypad-cover {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 64px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.phone-keypad-key-letters {
+    /* position: absolute;
+    width: 100%; */
+    line-height: normal;
+    /* left: 0; */
+    /* top: 60%; */
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+    line-height: 1;
+}
+.phone-keypad-key-numeric {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.phone-recent {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background: white;
+}
+
+.phone-recent-cover {
+    width: 100%;
+    height: 100%;
+}
+
+.phone-recent-header {
+    font-weight: bold;
+    font-family: 'SF Pro Display Regular';
+    font-size: 30px;
+    margin: 40px 16px 16px 16px;
+}
+.phone-recent-calls::-webkit-scrollbar {
+    display: none;
+}
+.phone-recent-calls {
+    width: 100%;
+    background-color: rgba(245, 245, 245, 0.788);
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 12vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.phone-recent-call {
+    display: flex;
+    position: relative;
+    height: 5vh;
+    width: 100%;
+    background-color: var(--main-background-color);
+    /* border-top: 1px solid var(--border-gray); */
+    transition: 100ms all ease-in-out;
+}
+.phone-recent-call:hover {
+    background-color: var(--main-darker-background-color);
+}
+.phone-recent-call-image {
+    color: white;
+    border-radius: 50%;
+    font-family: 'SF Pro Display Regular';
+    background: #4e54c8;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.phone-recent-call-name-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-top: 1px solid var(--border-gray);
+    justify-content: center;
+    font-family: "SF Pro Display Regular";
+}
+.phone-recent-call-name {
+    font-family: 'SF Pro Display Regular';
+    font-weight: bold;
+}
+.phone-recent-call-type-text {
+    color: var(--main-dark-gray);
+}
+.phone-recent-call-type {
+    grid-row-start: 1;display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    justify-content: space-between;
+    font-size: 1.2vh;
+    color: rgba(54, 54, 54, 0.808);
+}
+.phone-recent-call-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    width: 100%;
+    font-family: 'SF Pro Display Regular';
+    color: rgba(54, 54, 54, 0.808);
+}
+.phone-recent-call-time-text {
+    padding: 16px;
+    font-size: 16px;
+    border-top: 1px solid var(--border-gray);
+    font-family: 'SF Pro Display Regular';
+}
+
+.phone-keypad-keys {
+    display: grid;
+    grid-gap: 6px 16px;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    width: 100%;
+    padding: 32px;
+}
+
+.phone-keypad-key-call {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5vh;
+    height: 5.5vh;
+    width: 5.5vh;
+    background-color: #34C956;
+    color: white;
+    border-radius: 50%;
+    transition: .1s;
+    grid-column: 2;
+    margin-top: 8px;
+}
+
+.phone-keypad-key-call:hover {
+    background-color: #40f36a;
+}
+
+.phone-keypad-key {
+    flex-direction: column;
+    display: flex;
+    flex: 1 0 25%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-family: 'SF Pro Display Regular';
+    font-size: 2vh;
+    color: black;
+    background: #E5E5E5;
+    border-radius: 50%;
+    transition: .1s;
+    width: 5.5vh;
+    height: 5.5vh;
+}
+
+.phone-keypad-key:hover {
+    background: #999999;
+}
+
+.phone-contacts-header {
+    position: absolute;
+    top: 0;
+    height: 4vh;
+    width: 100%;
+}
+
+.phone-contacts-header > i {
+    float: right;
+    line-height: 4vh;
+    font-size: 1.8vh;
+    padding-right: 2vh;
+    margin-left: 0.2vh;
+    transition: .1s;
+    color: #000000;
+    z-index: 150;
+}
+
+.phone-contacts-header > i:hover {
+    color: #686de0;
+}
+
+/* #phone-search-icon {
+    position: relative;
+}
+
+#phone-plus-icon {
+    position: relative;
+} */
+
+#contact-search {
+    margin-top: 10px;
+    /* display: none;
+    position: absolute;
+    background: none;
+    border: none;
+    background: rgb(226, 226, 226);
+    top: .7vh;
+    width: 17vh;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    opacity: 0.0;
+    height: 2.5vh;
+    border-radius: 1vh;
+    box-shadow: 0 0 .2vh 0 rgba(0, 0, 0, 0.281);
+    font-family: 'SF Pro Display Regular';
+    outline: none;
+    text-indent: 1vh;
+    z-index: 100; */
+}
+/* 
+#contact-search::placeholder{
+    font-family: 'SF Pro Display Regular';
+} */
+
+.phone-contact-list::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgb(240, 240, 240);
+}
+
+.phone-contact-list::-webkit-scrollbar-thumb {
+    background-color: rgb(240, 240, 240);
+}
+
+.phone-contact-list::-webkit-scrollbar-track {
+    background-color: rgb(240, 240, 240);
+}
+
+.phone-contact-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    height: 92%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.phone-contact {
+    position: relative;
+    display: flex;
+    width: 90%;
+    margin-top: .6vh;
+    background-color: rgb(240, 240, 240);
+    border: none;
+    border-radius: 2vh;
+    align-items: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.phone-contact-firstletter {
+    height: 3.4vh;
+    width: 3.4vh;
+    margin: .5vh;
+    margin: 12px;
+    text-align: center;
+    line-height: 3.5vh;
+    border-radius: 50%;
+    font-family: 'SF Pro Display Regular';
+    color: white;
+}
+
+.phone-contact-name {
+    flex: 1;
+    line-height: 4.5vh;
+    font-family: 'SF Pro Display Regular';
+    font-size: 1.4vh;
+}
+
+.phone-contact-actions {
+    margin: 12px;
+    font-size: 2.2vh;
+    transition: .1s;
+}
+
+.phone-contact-actions:hover {
+    color: #e74c3c;
+}
+
+.phone-letter-hr {
+    width: 90%;
+    margin-left: 16px;
+    font-weight: bold;
+    margin-top: 1vh;
+}
+.phone-letter-hr:first-child {
+    margin-top: 0;
+}
+
+.phone-contact-action-buttons {
+    display: none;
+    position: absolute;
+    bottom: 1.2vh;
+    height: 5vh;
+    width: 95%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+.phone-contact-action-buttons > i {
+    position: relative;
+    float: left;
+    margin-left: 5vh;
+    left: -.2vh;
+    top: 1vh;
+    font-size: 2.3vh;
+    color: rgb(44, 44, 44);
+    transition: .1s;
+}
+
+.phone-contact-action-buttons > i:hover {
+    color: #eb4d4b;
+}
+.phone-add-contact {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: -100%;
+    background: white;
+    z-index: 102;
+}
+
+.phone-add-contact-header {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    white-space: nowrap;
+    top: 3.2vh;
+    position: relative;
+    padding: 0px 24px;
+    margin-bottom: 24px;
+    font-size: 1.5vh;
+    text-align: center;
+    font-family: 'SF Pro Display Regular';
+}
+
+.phone-add-contact-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    justify-content: center;
+}
+.phone-add-contact-image-source {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+}
+
+.phone-add-contact-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    border: 1px solid lightgray;
+    border-left: none;
+    border-right: none;
+    padding: 0px 16px;
+}
+.phone-add-contact-fields input {
+    background: white;
+    border: none;
+    border-bottom: 1px solid lightgray;
+    padding: 4px 0px;
+    font-size: 1.5vh;
+}
+.phone-add-contact-fields input[type="number"]::placeholder,
+.phone-add-contact-fields input[type="text"]::placeholder {
+    font-weight: unset;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.phone-add-contact-fields input:last-child {
+    border-bottom: none;
+}
+
+.phone-add-contact-name {
+    /* position: absolute;
+    top: 12vh;
+    left: 6vh;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.555);
+    font-family: 'SF Pro Display Regular';
+    height: 3.5vh;
+    width: 20vh;
+    text-indent: .4vh;
+    border-radius: .5vh .5vh 0 0;
+    transition: .1s;
+    font-size: 1.5vh; */
+}
+
+#phone-add-contact-name-icon {
+    position: absolute;
+    top: 13.1vh;
+    left: 2.1vh;
+    font-size: 2.4vh;
+}
+
+.phone-add-contact-name:focus {
+    /* border-bottom: 2px solid #30336b; */
+}
+
+.phone-add-contact-name:valid {
+    /* border-bottom: 2px solid #6ab04c; */
+}
+
+.phone-add-contact-number {
+    /* position: absolute;
+    top: 19vh;
+    left: 6vh;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.555);
+    font-family: 'SF Pro Display Regular';
+    height: 3.5vh;
+    width: 20vh;
+    text-indent: .4vh;
+    border-radius: .5vh .5vh 0 0;
+    transition: .1s;
+    font-size: 1.5vh; */
+}
+
+.phone-add-contact-number::-webkit-inner-spin-button {
+    display: none;
+}
+
+.phone-add-contact-number:focus {
+    /* border-bottom: 2px solid #30336b; */
+}
+
+.phone-add-contact-number:valid {
+    /* border-bottom: 2px solid #6ab04c; */
+}
+
+.phone-add-contact-iban {
+    /* position: absolute;
+    top: 26vh;
+    left: 6vh;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.555);
+    font-family: 'SF Pro Display Regular';
+    height: 3.5vh;
+    width: 20vh;
+    text-indent: .4vh;
+    border-radius: .5vh .5vh 0 0;
+    transition: .1s;
+    font-size: 1.5vh; */
+}
+
+.phone-add-contact-iban::-webkit-inner-spin-button {
+    /* display: none; */
+}
+
+.phone-add-contact-iban:focus {
+    /* border-bottom: 2px solid #30336b; */
+}
+
+.phone-add-contact-iban:valid {
+    /* border-bottom: 2px solid #6ab04c; */
+}
+
+#phone-add-contact-number-icon {
+    position: absolute;
+    top: 20.1vh;
+    left: 2.1vh;
+    font-size: 2.4vh;
+}
+
+#phone-add-contact-iban-icon {
+    position: absolute;
+    top: 27.1vh;
+    left: 2.1vh;
+    font-size: 2.4vh;
+}
+
+.phone-add-contact-buttons {
+    position: absolute;
+    bottom: 0;
+    height: 5vh;
+    width: 100%;
+}
+
+.phone-add-contact-button {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: 5vh;
+    text-align: center;
+    line-height: 4.3vh;
+    font-family: 'SF Pro Display Regular';
+    border-top: 2px solid #30336b00;
+    transition: .1s;
+    font-size: 1.4vh;
+}
+
+.phone-add-contact-button:hover {
+    border-top: 2px solid #eb4d4b;
+}
+
+.blue-text-button {
+    color: #087FFF;
+}
+
+/* CONTACT DETAILS */
+.phone-contact-details-cover {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.phone-contact-details {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: -100%;
+    background: white;
+    z-index: 103;
+}
+.phone-contact-details-header {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    white-space: nowrap;
+    top: 3.2vh;
+    position: relative;
+    padding: 0px 24px;
+    margin-bottom: 24px;
+    font-size: 1.5vh;
+    text-align: center;
+    font-family: 'SF Pro Display Regular';
+}
+.phone-contact-user-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.phone-contact-details-user-image {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+.phone-contact-details-user-name {
+    font-weight: bold;
+    color: black;
+}
+
+.phone-contact-details-body {
+    height: 48%;
+    margin: 24px 0px;
+    font-family: 'SF Pro Display Regular';
+}
+.phone-contact-details-user-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.phone-contact-details-user-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.phone-action-button {
+    color: white !important;
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 50%;
+    width: 30px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+#phone-contact-message i, #phone-contact-call i {
+    background: #0B93F6;
+}
+#phone-contact-message span, #phone-contact-call span {
+    color: #0B93F6;
+}
+#phone-contact-video i, #phone-contact-mail i {
+    background: #1FC93C;
+}
+#phone-contact-video span, #phone-contact-mail span {
+    color: #1FC93C;
+}
+.phone-contact-details-fields {
+    display: flex;
+    flex-direction: column;
+    margin: 16px;
+}
+.phone-contact-details-fields-groups {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+.phone-contact-details-fields-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.phone-contact-details-fields-field span:last-child {
+    border-bottom: 1px solid lightgray;
+}
+.phone-contact-details-fields-groups:last-child span:last-child {
+    border-bottom: none;
+}
+.phone-contact-details-fields-icon {
+    margin: 4px 8px 4px 4px;
+}
+.phone-contact-details-fields-field-title {
+    font-weight: bold;
+    color: gray;
+}
+.phone-contact-details-fields-field-value {
+    font-weight: bold;
+    font-size: 16px;
+}
+.border {
+    height: 6px;
+    width: 48px;
+    background: gray;
+    margin: 8px;
+    border-radius: 16px;
+}
+.phone-contact-details-notes {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    background: #FFF8CC;
+}
+.phone-contact-details-notes-field {
+    width: 100%;
+    height: 100%;
+    background: #FFF8CC;
+    padding-bottom: 16px;
+}
+#phone-contact-details-note-field {
+    margin: 0px;
+    width: 100%;
+    padding: 0px 16px;
+    height: 100%;
+    resize: none;
+    border: none;
+    background: #FFF8CC;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#phone-contact-details-note-field:focus {
+    outline: none !important;
+    border: none;
+}
+
+
+/* }DIT CONTACT YEEY */
+
+.phone-edit-contact {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: -100%;
+    background: white;
+    z-index: 104;
+}
+
+.phone-edit-contact-header {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    white-space: nowrap;
+    top: 3.2vh;
+    position: relative;
+    padding: 0px 24px;
+    margin-bottom: 24px;
+    font-size: 1.5vh;
+    text-align: center;
+    font-family: 'SF Pro Display Regular';
+}
+
+.phone-edit-contact-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    justify-content: center;
+}
+.phone-edit-contact-image-source {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+}
+
+.phone-edit-contact-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    border: 1px solid lightgray;
+    border-left: none;
+    border-right: none;
+    padding: 0px 16px;
+}
+.phone-edit-contact-fields input {
+    background: white;
+    border: none;
+    border-bottom: 1px solid lightgray;
+    padding: 4px 0px;
+    font-size: 1.5vh;
+}
+.phone-edit-contact-fields input[type="number"]::placeholder,
+.phone-edit-contact-fields input[type="text"]::placeholder {
+    font-weight: unset;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.phone-edit-contact-fields input:last-child {
+    border-bottom: none;
+}
+
+.phone-edit-contact-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    border: 1px solid lightgray;
+    border-left: none;
+    border-right: none;
+    margin-top: 32px;
+}
+.phone-edit-contact-buttons .phone-edit-contact-button {
+    background: white;
+    border: none;
+    border-bottom: 1px solid lightgray;
+    font-size: 1.5vh;
+    padding: 8px 16px;
+    margin: 0;
+    color: var(--main-red);
+    transition: 100ms all ease-in-out;
+}
+.phone-edit-contact-buttons .phone-edit-contact-button:hover {
+    transition: 100ms all ease-in-out;
+    background: var(--border-gray);
+}
+.phone-edit-contact-buttons .phone-edit-contact-button:last-child {
+    border-bottom: none;
+}
+
+
+/* Phone Call App */
+
+.phone-call-app {
+    display: none;
+    height: 100%;
+    width: 100%;
+    background: #de6262  ;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #de6262 , #ffb88c);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #de6262 , #ffb88c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    background-size: 400% 400%;
+    
+    -webkit-animation: AnimationName 35s ease infinite;
+    -moz-animation: AnimationName 35s ease infinite;
+    animation: AnimationName 35s ease infinite;  
+    overflow: hidden;
+}
+
+.phone-call-incoming {
+    display: none;
+    height: 100%;
+    width: 100%;
+}
+.phone-call-incoming-title {
+    position: relative;
+    text-align: center;
+    top: 7.5vh;
+    font-family: 'SF Pro Display Regular';
+    color: white;
+    font-size: 1.1vh;
+    text-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);
+}
+.phone-call-incoming-caller {
+    position: relative;
+    text-align: center;
+    top: 10vh;
+    font-family: 'SF Pro Display Regular';
+    color: white;
+    font-size: 2.5vh;
+    text-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);
+}
+.phone-call-incoming-picture {
+    position: absolute;
+    margin: 0 auto;
+    width: 12vh;
+    height: 12vh;
+    left: 0;
+    right: 0;
+    top: 18vh;
+    border-radius: 50%;
+    border: .2vh solid #ffffff6c;
+    background: rgba(27, 27, 27, 0.25);
+    box-shadow: 0 0 .5vh 0 rgba(0, 0, 0, 0.5);
+    animation: pulse 2s infinite;
+}
+#incoming-answer {
+    position: absolute;
+    bottom: 8vh;
+    left: 5vh;
+    transform: rotate(90deg);
+    color: #2ecc70e5;
+    background-color: white;
+    padding: 1.5vh;
+    font-size: 2.2vh;
+    border-radius: 50%;
+    transition: .1s;
+    animation: pulse 2s infinite;
+}
+#incoming-answer:hover {
+    color: #2ecc71;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: .1s;
+}
+#incoming-deny {
+    position: absolute;
+    bottom: 8vh;
+    right: 5vh;
+    transform: rotate(-135deg);
+    color: #e74d3ce0;
+    background-color: white;
+    padding: 1.5vh;
+    font-size: 2.2vh;
+    border-radius: 50%;
+    transition: .1s;
+    animation: pulse 2s infinite;
+}
+#incoming-deny:hover {
+    color: #e74c3c;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: .1s;
+}
+
+/* Outgoing */
+
+.phone-call-outgoing {
+    display: none;
+    height: 100%;
+    width: 100%;
+}
+.phone-call-outgoing-title {
+    position: relative;
+    text-align: center;
+    top: 7.5vh;
+    font-family: 'SF Pro Display Regular';
+    color: white;
+    font-size: 1.1vh;
+    text-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);
+}
+.phone-call-outgoing-caller {
+    position: relative;
+    text-align: center;
+    top: 10vh;
+    font-family: 'SF Pro Display Regular';
+    color: white;
+    font-size: 2.5vh;
+    text-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);
+}
+.phone-call-outgoing-picture {
+    position: absolute;
+    margin: 0 auto;
+    width: 12vh;
+    height: 12vh;
+    left: 0;
+    right: 0;
+    top: 18vh;
+    border-radius: 50%;
+    border: .2vh solid #ffffff6c;
+    background: rgba(27, 27, 27, 0.25);
+    box-shadow: 0 0 .5vh 0 rgba(0, 0, 0, 0.5);
+    animation: pulse 2s infinite;
+}
+#outgoing-cancel {
+    position: absolute;
+    bottom: 8vh;
+    margin: 0 auto;
+    left: 40.8%;
+    transform: rotate(-135deg);
+    color: #e74c3c;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1.5vh;
+    font-size: 2.5vh;
+    border-radius: 50%;
+    transition: background-color .1s ease-in-out;
+    animation: pulse 2s infinite;
+}
+#outgoing-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+    transition: .2s;
+}
+@-webkit-keyframes pulse {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }
+  @keyframes pulse {
+    0% {
+      -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* Ongoing */
+
+.phone-call-ongoing {
+    display: none;
+    height: 100%;
+    width: 100%;
+}
+.phone-call-ongoing-title {
+    position: relative;
+    text-align: center;
+    top: 7.5vh;
+    font-family: 'SF Pro Display Regular';
+    color: white;
+    font-size: 1.1vh;
+    text-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);
+}
+.phone-call-ongoing-caller {
+    position: relative;
+    text-align: center;
+    top: 10vh;
+    font-family: 'SF Pro Display Regular';
+    color: white;
+    font-size: 2.5vh;
+    text-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);
+}
+.phone-call-ongoing-picture {
+    position: absolute;
+    margin: 0 auto;
+    width: 12vh;
+    height: 12vh;
+    left: 0;
+    right: 0;
+    top: 18vh;
+    border-radius: 50%;
+    border: .2vh solid #ffffff6c;
+    background: rgba(27, 27, 27, 0.25);
+    box-shadow: 0 0 .5vh 0 rgba(0, 0, 0, 0.5);
+    animation: pulse 2s infinite;
+}
+.phone-call-ongoing-time {
+    position: relative;
+    text-align: center;
+    top: 28vh;
+    font-family: 'SF Pro Display Regular';
+    color: white;
+    font-size: 1.2vh;
+    text-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);
+}
+#ongoing-cancel {
+    position: absolute;
+    bottom: 8vh;
+    margin: 0 auto;
+    left: 40.8%;
+    transform: rotate(-135deg);
+    color: #e74c3c;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1.5vh;
+    font-size: 2.5vh;
+    border-radius: 50%;
+    transition: background-color .1s ease-in-out;
+    animation: pulse 2s infinite;
+}
+#ongoing-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+    transition: .2s;
+}
+
+.phone-suggestedcontacts {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background: white;
+}
+.phone-suggestedcontacts-cover {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 0px 64px 0px;
+}
+
+.phone-suggestedcontacts-header {
+    width: 100%;
+    height: 8vh;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: left;
+    padding: 0px 32px;
+    font-family: 'SF Pro Display Regular';
+    color: var(--main-color);
+}
+
+.phone-suggestedcontacts-header p {
+    font-size: 16px;
+}
+
+.suggested-contacts {
+    width: 100%;
+    flex: 1;
+    background-color: var(--main-background-color);
+    /* box-shadow: 0 0 .3vh 0vh rgba(0, 0, 0, 0.3); */
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.suggested-contacts::-webkit-scrollbar {
+    display: none;
+}
+
+.suggested-contact {
+    position: relative;
+    height: 6vh;
+    width: 100%;
+    border-top: 1px solid var(--border-gray);
+    background-color: var(--main-background-color);
+    /* background-color: rgb(44, 44, 44); */
+    transition: 100ms all ease-in-out;
+}
+
+.suggested-contact:hover {
+    transition: 100ms all ease-in-out;
+    background-color: rgb(221, 221, 221);
+}
+
+.suggested-contact > i:first-child {
+    position: absolute;
+    top: 1.7vh;
+    left: 1.5vh;
+    font-size: 2.5vh;
+    color: rgb(255, 164, 44);
+}
+
+.suggested-contact > i:last-child {
+    position: absolute;
+    top: 1.4vh;
+    right: 1.5vh;
+    font-size: 1.5vh;
+    color: var(--main-color);
+}
+
+.suggested-name {
+    position: absolute;
+    left: 5vh;
+    top: 2.1vh;
+    font-family: 'SF Pro Display Regular';
+    color: black;
+    font-size: 1.3vh;
+}
+
+.suggested-number {
+    font-family: 'SF Pro Display Regular';
+    color: rgb(31, 31, 31);
+    font-size: 1.2vh;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Opera and Firefox */
+}
+
+.global-search-box {
+    background: none;
+    border: none;
+    background: rgb(226, 226, 226);
+    width: 100%;
+    border-radius: 1vh;
+    padding: 8px;
+    font-size: 14px;
+    padding: 4px 10px;
+    box-shadow: 0 0 .2vh 0 rgba(0, 0, 0, 0.281);
+    font-family: 'SF Pro Display Regular';
+    outline: none;
+}

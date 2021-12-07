@@ -1,0 +1,582 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap');
+
+.bank-app {
+    display: none;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient( 90deg, rgb(204, 58, 98) 0%, rgb(150, 11, 149) 100%);
+    overflow: hidden;
+}
+
+.bank-app-header {
+    position: absolute;
+    width: 100%;
+    height: 6vh;
+    background: linear-gradient(90deg, rgb(204, 58, 98) 0%, rgb(150, 11, 149) 100%);
+    /* top: 6vh; */
+    bottom: 0;
+}
+
+.bank-app-header-button {
+    position: relative;
+    float: left;
+    width: 33%;
+    height: 100%;
+    text-align: center;
+    line-height: 6vh;
+    /* background: #404040; */
+    border-bottom: .3vh solid rgba(0, 0, 0, 0);
+    font-family: 'Lato';
+    color: white;
+    transition: .08s;
+}
+.bank-app-header-button:hover {
+    background: gray;
+}
+.bank-app-header-button-selected {
+    border-bottom: .3vh solid white;
+}
+.bank-app-header-button > i {
+    /* position: absolute; */
+    /* margin: 0 auto; */
+    /* left: 0;
+    right: 0;
+    top: .9vh; */
+    font-size: 2vh;
+}
+.bank-app-header-button > p {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 1.4vh;
+    font-size: 1.25vh;
+}
+
+.bank-app-accounts {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    /* top: 13vh; */
+    left: 30vh;
+}
+.bank-app-invoices {
+    position: absolute;
+    width: 100%;
+    height: 45vh;
+    /* display: flex; */
+    flex-direction: column;
+    background-color: white;
+    /* background-color: #080808; */
+    top: 6vh;
+    left: 30vh;
+}
+.bank-app-invoices-list {
+    /* position: absolute; */
+    top: 0;
+    height: 100%;
+    width: 100%;
+    /* background-color: rgba(0, 0, 0, 0.226); */
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.bank-app-invoices-list::-webkit-scrollbar {
+    width: .5vh;
+    background-color: white;
+}
+.bank-app-invoice {
+    position: relative;
+    height: 6vh;
+    width: 100%;
+    letter-spacing: .05vh;
+    border-bottom: .3vh solid #797979;
+}
+.bank-app-invoice-title {
+    position: absolute;
+    top: 1vh;
+    left: 2vh;
+    color: black;
+    font-family: 'Samsung Sans Medium';
+    font-size: 1.3vh;
+}
+.bank-app-invoice-amount {
+    position: absolute;
+    font-weight: 700;
+    bottom: 1vh;
+    left: 2vh;
+    color: black;
+    /* color: rgba(255, 255, 255, 0.781); */
+    font-family: 'SF Pro Display Regular';
+    font-size: 1.22vh;
+}
+.bank-app-invoice-buttons {
+    position: absolute;
+    right: 1vh;
+    bottom: .1vh;
+    height: 3vh;
+    width: 7vh;
+    text-align: right;
+    line-height: 3.5vh;
+}
+.bank-app-invoice-buttons > i {
+    margin-left: .5vh;
+    margin-right: .5vh;
+    font-size: 2vh;
+}
+.pay-invoice {
+    color: #404040;
+    transition: .1s;
+}
+.pay-invoice:hover {
+    color: #404040;
+}
+.decline-invoice {
+    color: #e84118;
+    transition: .1s;
+}
+.decline-invoice:hover {
+    color: #404040;
+}
+.bank-app-transfer {
+    display: none;
+    /* position: absolute; */
+    /* display: flex; */
+    flex-direction: column;
+    left: 0vh;
+    height: 45vh;
+    position: absolute;
+    top: 6vh;
+    padding: 16px;
+    width: 100%;
+    /* height: 100%; */
+    background-color: white;
+    /* top: -100%; */
+    z-index: 500;
+}
+.bank-app-account {
+    /* position: absolute; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(204,58,98,1) 0%, rgba(150,11,149,1) 100%);
+    height: 9.5vh;
+    /* width: 80%; */
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 0vh;
+    border-radius: .3vh .3vh 0 0;
+    border-bottom: .2vh solid #2a2f38;
+    transition: .1s;
+    padding: 8vh;
+}
+.bank-app-account:hover{
+    background-color: #404040;
+}
+.bank-app-account-title {
+    /* position: absolute; */
+    /* top: 1vh;
+    left: 1vh; */
+    font-family: 'Samsung Sans Medium';
+    letter-spacing: .1vh;
+    color: white;
+    font-size: 1.1vh;
+}
+.bank-app-account-number {
+    /* position: absolute; */
+    /* top: 3vh;
+    left: 1vh; */
+    text-align: center;
+    font-family: 'Samsung Sans Medium';
+    letter-spacing: .1vh;
+    width: 100%;
+    color: white;
+    font-size: 1vh;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+.bank-app-account-number::selection {
+    background: transparent;
+    outline: none;
+    border: none;
+    color: white;
+}
+.bank-app-account-balance {
+    /* position: absolute; */
+    /* top: 6.5vh;
+    left: 1vh; */
+    font-family: 'Samsung Sans Medium';
+    letter-spacing: .1vh;
+    color: white;
+    font-size: 2.5vh;
+}
+/*.bank-app-account-actions {
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+    bottom: 2.5vh;
+    height: 5vh;
+    width: 80%;
+    right: 0;
+    left: 0;
+    line-height: 5vh;
+    font-size: 2.5vh;
+    border-radius: .3vh;
+    position: absolute;
+    background-color: #2e2e2e;
+    border-radius: .3vh .3vh 0 0;
+    border-bottom: .2vh solid #2a2f38;
+    transition: .1s;
+} */
+.bank-app-account-actions:hover {
+    background-color: #404040;
+}
+.bank-app-loaded {
+    display: none;
+    padding-left: 30vh;
+}
+.bank-app-loading {
+    position: absolute;
+    top: 0;
+    left: 0vh;
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.qbank-logo {
+    position: absolute;
+    width: 10vh;
+    margin: 0 auto;
+    left: 0vh;
+    right: 0;
+    top: 22vh;
+    z-index: 101;
+}
+#qbank-text {
+    position: absolute;
+    top: 24vh;
+    left: 9vh;
+    font-size: 4.5vh;
+    color: white;
+    font-family: 'Samsung Sans Bold';
+    z-index: 100;
+    opacity: 0;
+}
+
+.bank-app-transfer-header {
+    /* position: absolute; */
+    top: 5.5vh;
+    left: 3vh;
+    color: black;
+    font-family: 'Samsung Sans Bold';
+    font-size: 2vh;
+}
+
+.bank-app-transfer div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#bank-transfer-iban {
+    /* position: absolute; */
+    /* top: 12vh;
+    left: 8vh; */
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #f5f6fa;
+    font-family: 'SF Pro Display Regular';
+    /* background: rgb(33,36,43); */
+    /* background: linear-gradient(0deg, rgba(33,36,43,0.5) 0%, rgba(178,132,254,0) 100%); */
+    height: 3.5vh;
+    width: 18vh;
+    text-indent: .4vh;
+    transition: .1s;
+    font-size: 1.3vh;
+    color: black;
+}
+#bank-transfer-iban::-webkit-inner-spin-button {
+    display: none;
+}
+#bank-transfer-iban:focus {
+    border-bottom: 2px solid #fbc531;
+}
+#bank-transfer-iban:valid {
+    border-bottom: 2px solid #6ab04c;
+}
+#bank-transfer-amount {
+    /* position: absolute; */
+    /* top: 18vh;
+    left: 8vh; */
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #f5f6fa;
+    font-family: 'SF Pro Display Regular';
+    /* background: rgb(33,36,43); */
+    /* background: linear-gradient(0deg, rgba(33,36,43,0.5) 0%, rgba(178,132,254,0) 100%); */
+    height: 3.5vh;
+    width: 18vh;
+    text-indent: .4vh;
+    transition: .1s;
+    font-size: 1.3vh;
+    color: black;
+}
+#bank-transfer-amount::-webkit-inner-spin-button {
+    display: none;
+}
+
+#bank-transfer-amount:focus {
+    border-bottom: 2px solid #fbc531;
+}
+
+#bank-transfer-amount:valid {
+    border-bottom: 2px solid #6ab04c;
+}
+.bank-transfer-iban-icon  {
+    /* position: absolute; */
+    /* top: 13.5vh;
+    left: 3.4vh; */
+    font-size: 2.1vh;
+    color: black
+}
+.bank-transfer-amount-icon  {
+    /* position: absolute; */
+    /* top: 19.2vh;
+    left: 3.5vh; */
+    font-size: 2.4vh;
+    color: black
+}
+.bank-transfer-mycontacts-icon  {
+    /* position: absolute; */
+    /* top: 25.5vh;
+    left: 3.5vh; */
+    font-size: 2.2vh;
+    color: black
+}
+.bank-transfer-mycontacts-icon:hover {
+    color: #404040;
+}
+.bank-app-transfer-buttons {
+    position: absolute;
+    bottom: 0;
+    height: 5vh;
+    width: 100%;
+}
+.bank-app-transfer-button {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+    justify-content: center !important;
+    margin: 0px -16px;
+    line-height: 4.5vh;
+    font-family: 'SF Pro Display Regular';
+    color: black;
+    font-size: 1.4vh;
+    border-top: .2vh solid #fbc53100;
+    transition: .1s;
+}
+.bank-app-transfer-button:hover {
+    border-top: .2vh solid #404040;
+}
+.bank-app-my-contacts {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: -100%;
+    background: #080808;
+    z-index: 500;
+}
+
+.bank-app-my-contacts::-webkit-scrollbar {
+    display: none;
+}
+
+.bank-app-my-contacts-list::-webkit-scrollbar {
+    display: none;
+}
+
+.bank-app-my-contacts-header {
+    position: relative;
+    padding: 5vh 0 0 1.85vh;
+    font-family: 'Samsung Sans Medium';
+    font-size: 2vh;
+    color: white;
+}
+.bank-app-my-contacts-list {
+    position: absolute;
+    height: 65%;
+    width: 75%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 14vh;
+    overflow-y: scroll;
+}
+.bank-app-my-contact {
+    position: relative;
+    width: 100%;
+    height: 4.5vh;
+    margin-top: .1vh;
+    background-color: #626c80;
+    border: .1vh solid #454d5a;
+    border-radius: 2vh;
+    transition: .1s;
+}
+.bank-app-my-contact:hover {
+    background-color: #404040;
+}
+.bank-app-my-contact-firstletter {
+    position: absolute;
+    background-color: #eb4d4b;
+    height: 3.5vh;
+    width: 3.5vh;
+    margin: .4vh;
+    margin-left: .35vh;
+    text-align: center;
+    line-height: 3.6vh;
+    border-radius: 50%;
+    font-family: 'Samsung Sans Bold';
+    color: white;
+}
+.bank-app-my-contact-name {
+    position: absolute;
+    left: 5vh;
+    line-height: 4.5vh;
+    font-family: 'SF Pro Display Regular';
+    font-size: 1.4vh;
+    color: white;
+}
+.bank-app-my-contacts-list-header {
+    position: absolute;
+    top: 8.5vh;
+    height: 5vh;
+    width: 100%;
+}
+#bank-app-my-contact-search {
+    position: absolute;
+    background: none;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    top: 1.2vh;
+    width: 17vh;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    opacity: 1.0;
+    height: 2.5vh;
+    border-radius: 1vh;
+    box-shadow: 0 0 .2vh 0 rgba(0, 0, 0, 0.281);
+    font-family: 'SF Pro Display Regular';
+    outline: none;
+    text-indent: 1vh;
+    z-index: 100;
+}
+#bank-app-my-contact-search::placeholder{
+    font-family: 'SF Pro Display Regular';
+    color: rgba(39, 39, 39, 0.9);
+}
+.bank-app-my-contacts-list-back {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 5vh;
+    text-align: center;
+    line-height: 5vh;
+    text-transform: uppercase;
+    color: white;
+    font-family: 'SF Pro Display Regular';
+    font-size: 1.4vh;
+    background: #404040;
+    transition: .1s;
+}
+.bank-app-my-contacts-list-back:hover {
+    background-color: #404040;
+}
+
+.bank-app-history {
+    display: flex;
+    flex-direction: column;
+    overflow: auto !important;
+    height: 35vh;
+}
+
+.bank-app-history-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: .3vh solid #797979;
+}
+
+.bank-app-history-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.bank-app-history-header i:last-child {
+    margin-right: 8px;
+}
+
+.bank-app-history-header span {
+    font-weight: 700;
+}
+
+.bank-app-history-description span {
+    word-break: break-word;
+}
+
+*::-webkit-scrollbar-thumb {
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background: #333333 !important;
+}
+
+*::-webkit-scrollbar {
+    width: 6px;
+}
+
+.bank-app-invoices-footer {
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     padding: 16px;
+     font-size: 18px;
+     border-top: 0.3vh solid #797979;
+     transition: all 0.1s ease-in-out;
+}
+
+.bank-app-invoices-footer:hover {
+    background: gray;
+}
+
+.bank-app-invoices-footer div {
+    color: black;
+}
+
+.bank-app-invoices-footer div:first-child {
+    font-weight: 700;
+}
+
+.bank-app-invoices-header {
+    margin: 16px;
+    top: 5.5vh;
+    left: 3vh;
+    color: black;
+    font-family: "Samsung Sans Bold";
+    font-size: 2vh;
+}

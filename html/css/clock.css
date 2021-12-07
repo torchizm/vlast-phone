@@ -1,0 +1,730 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap');
+
+.clock-app *::selection {
+    background-color: transparent;
+  }
+
+.clock-app {
+    display: none;
+    height: 107.5%;
+    width: 100%;
+    background: #0f0f0f;
+    overflow: hidden;
+}
+
+.clock-app-header {
+    position: absolute;
+    width: 100%;
+    height: 7vh;
+    top: 50vh;
+    z-index: 99;
+}
+
+.clock-app-header-button {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: 80%;
+    text-align: center;
+    line-height: 6vh;
+    background: #0f0f0f;
+    border-bottom: .3vh solid rgba(0, 0, 0, 0);
+    font-family: 'Heebo', sans-serif;
+    color: white;
+    transition: .08s;
+}
+.clock-app-header-button:hover {
+    background: #252525;
+}
+.clock-app-header-button-selected p {
+    color: #ff7c14;
+}
+
+.clock-app-header-button-selected i {
+    color: #ff7c14;
+}
+.clock-app-header-button > i {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: .9vh;
+    font-size: 2vh;
+}
+.clock-app-header-button > p {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 1.4vh;
+    font-size: 1.25vh;
+}
+
+.alarm-item {
+    width: 100%;
+    height: 4.5vh;
+    padding-left: 1.5vh;
+    margin-top: 1vh;
+    color: white;
+    padding-bottom: 5vh;
+    border-bottom: 1px solid rgb(34, 34, 34);
+}
+
+.alarm-item i {
+    margin-top: -2vh;
+    margin-right: 2vh;
+    float: right;
+    transition: color .25s;
+}
+
+.alarm-item i:hover {
+    color: #ff7c14;
+
+}
+
+#new-alarm {
+    color: #ff7c14;
+    float: right;
+    margin-right: 2.5vh;
+    font-size: 1.7vh;
+}
+
+#new-alarm:active {
+    opacity: 0.3;
+}
+
+.alarm-clock {
+    font-size: 2.5vh;
+    font-weight: 400;
+}
+
+.clock-app-accounts {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    background-color: #0f0f0f;
+    top: 6vh;
+    left: 30vh;
+}
+.clock-app-invoices {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 37vh;
+    background-color: #0f0f0f;
+    top: 13vh;
+    left: 30vh;
+}
+.clock-app-invoices-list {
+    position: absolute;
+    top: 17.5vh;
+    height: 50%;
+    width: 100%;
+    background-color: transparent;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.clock-app-invoices-list::-webkit-scrollbar {
+    width: .5vh;
+    background-color: white;
+}
+.clock-app-invoice {
+    position: relative;
+    height: 4.5vh;
+    width: 95%;
+    margin-left: 1.5vh;
+    letter-spacing: .05vh;
+    font-size: 1.5vh;
+    border-bottom: 1px solid rgb(46, 46, 46);
+    color: white;
+    font-family: 'Samsung Sans Thin';
+    font-weight: 100;
+    /* border-bottom: .2vh solid #363d4b; */
+}
+
+.clock-app-invoice p {
+    margin-left: 1.5vh;
+    margin-top: 1vh;
+    display: inline-block;
+}
+
+.clock-app-invoice span {
+    float: right;
+    margin-right: 1.5vh;
+    margin-top: 1vh;
+    display: inline-block;
+}
+
+.clock-app-invoice-title {
+    position: absolute;
+    top: 5vh;
+    left: 2vh;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.3vh;
+}
+.clock-app-invoice-amount {
+    position: absolute;
+    bottom: 1vh;
+    left: 2vh;
+    color: rgba(255, 255, 255, 0.781);
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.22vh;
+}
+.clock-app-invoice-buttons {
+    position: absolute;
+    right: 1.2vh;
+    bottom: .1vh;
+    height: 3vh;
+    width: 7vh;
+    text-align: center;
+    line-height: 3.5vh;
+}
+.clock-app-invoice-buttons > i {
+    margin-left: .5vh;
+    margin-right: .5vh;
+    font-size: 2vh;
+}
+.pay-invoice {
+    color: #4cd137;
+    transition: .1s;
+}
+.pay-invoice:hover {
+    color: #70f75b;
+}
+.decline-invoice {
+    color: #e84118;
+    transition: .1s;
+}
+.decline-invoice:hover {
+    color: #ff5f38;
+}
+.clock-app-transfer {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #0f0f0f;
+    top: -100%;
+    z-index: 500;
+}
+.clock-app-account, .clock-app-transactions {
+    position: absolute;
+    background-color: #0f0f0f;
+    height: 9.5vh;
+    width: 80%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 5vh;
+    border-radius: .3vh .3vh 0 0;
+    /* border-bottom: .2vh solid #2a2f38; */
+    transition: .1s;
+}
+
+.clock-app-transactions {
+    /* display: none; */
+    top: 5vh;
+    height: 37.5vh;
+    padding-top: 4.5vh;
+    /* z-index: 99; */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.clock-app-transactions::-webkit-scrollbar {
+    display: none;
+}
+
+/* .clock-app-transactions::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0);
+}
+
+.clock-app-transactions::-webkit-scrollbar-track {
+    background-color: #ebebeb00;
+} */
+
+.transactions-item {
+    width: 100%;
+    height: 7.5vh;
+    padding-top: .75vh;
+    padding-bottom: .5vh;
+    padding-left: .5vh;
+    background-color: #383d45;
+}
+
+.transactions-item i {
+    color: rgb(160, 208, 126);
+    margin-top: -2vh;
+    margin-right: 2vh;
+    font-size: large !important;
+    /* top: 1.5vh; */
+    float: right;
+}
+
+#clear-transactions {
+    display: inline-block;
+    /* margin-left: 2.5%; */
+    background-color: white;
+    border-radius: 10px;
+    color: black
+}
+
+.transactions-name, .transactions-iban, .transactions-amount, .transactions-description {
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    font-size: small;
+    margin: .15vh;
+    display: inline-block;
+}
+
+.transactions-amount {
+    font-size: smaller;
+} 
+
+.transactions-description {
+    font-size: x-small;
+    color: #989898;
+}
+
+.transactions-item:nth-child(even) {
+    background-color: #535b6a;
+
+}
+
+.clock-app-account:hover{
+    background-color: #596275;
+    border-bottom: .2vh solid #424957;
+}
+.clock-app-account-title {
+    position: absolute;
+    top: 1vh;
+    left: 1vh;
+    font-family: 'Heebo', sans-serif;
+    letter-spacing: .1vh;
+    color: white;
+    font-size: 1.7vh;
+}
+.clock-app-account-number {
+    position: absolute;
+    top: 3vh;
+    left: 1vh;
+    font-family: 'Heebo', sans-serif;
+    letter-spacing: .1vh;
+    width: 100%;
+    color: white;
+    font-size: 1.1vh;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+.clock-app-account-number::selection {
+    background: transparent;
+    outline: none;
+    border: none;
+    color: white;
+}
+.clock-app-account-balance {
+    position: absolute;
+    top: 6.5vh;
+    left: 1vh;
+    font-family: 'Heebo', sans-serif;
+    letter-spacing: .1vh;
+    color: white;
+    font-size: 1.5vh;
+}
+.clock-app-account-actions {
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+    bottom: 3.4vh;
+    height: 5vh;
+    width: 80%;
+    right: 0;
+    left: 0;
+    line-height: 5vh;
+    font-size: 2.5vh;
+    border-radius: .3vh;
+    position: absolute;
+    background-color: #444c5c;
+    border-radius: .3vh .3vh 0 0;
+    border-bottom: .2vh solid #2a2f38;
+    transition: .1s;
+    top: 92.5%;
+}
+.clock-app-account-actions:hover {
+    background-color: #596275;
+    border-bottom: .2vh solid #424957;
+}
+.clock-app-loaded {
+    display: none;
+    padding-left: 30vh;
+}
+.clock-app-loading {
+    position: absolute;
+    top: 0;
+    left: 0vh;
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.clock-logo {
+    position: absolute;
+    width: 10vh;
+    margin: 0 auto;
+    left: 0vh;
+    right: 0;
+    top: 22vh;
+    z-index: 101;
+}
+
+#clock-text {
+    position: absolute;
+    top: 24.5vh;
+    left: 9vh;
+    font-size: 3.5vh;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    z-index: 100;
+    opacity: 0;
+}
+
+.clock-app-transfer-header {
+    position: absolute;
+    top: 25vh;
+    left: 10.75vh;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.7vh;
+}
+
+#clock-transfer-iban {
+    position: absolute;
+    top: 32.5vh;
+    left: 9.5vh;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #f5f6fa;
+    font-family: 'Heebo', sans-serif;
+    text-align: center;
+    /* background: rgb(33,36,43); */
+    /* background: linear-gradient(0deg, rgba(33,36,43,0.5) 0%, rgba(178,132,254,0) 100%); */
+    height: 3.5vh;
+    width: 11.5vh;
+    text-indent: .4vh;
+    transition: .1s;
+    font-size: 1.3vh;
+    color: white;
+    z-index: 1000;
+    padding-right: 1.7vh;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+#clock-transfer-iban::-webkit-inner-spin-button {
+    display: none;
+}
+
+#clock-transfer-iban:focus {
+    border-bottom: 2px solid #ff7c14;
+}
+
+#clock-transfer-iban:valid {
+    border-bottom: 2px solid #ff7c14;
+}
+
+#clock-transfer-amount {
+    position: absolute;
+    top: 18vh;
+    left: 8vh;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #f5f6fa;
+    font-family: 'Heebo', sans-serif;
+    height: 3.5vh;
+    width: 18vh;
+    text-indent: .4vh;
+    transition: .1s;
+    font-size: 1.3vh;
+    color: white;
+}
+
+#clock-transfer-amount::-webkit-inner-spin-button {
+    display: none;
+}
+
+#clock-transfer-amount:focus {
+    border-bottom: 2px solid #fbc531;
+}
+
+#clock-transfer-amount:valid {
+    border-bottom: 2px solid #6ab04c;
+}
+
+#clock-transfer-description {
+    position: absolute;
+    top: 24vh;
+    left: 8vh;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #f5f6fa;
+    font-family: 'Heebo', sans-serif;
+    height: 3.5vh;
+    width: 18vh;
+    text-indent: .4vh;
+    transition: .1s;
+    font-size: 1.3vh;
+    color: white;
+}
+
+#clock-transfer-description::-webkit-inner-spin-button {
+    display: none;
+}
+
+#clock-transfer-description:focus {
+    border-bottom: 2px solid #ff9640;
+}
+
+#clock-transfer-description:valid {
+    border-bottom: 2px solid #ff9640;
+}
+
+.clock-transfer-iban-icon  {
+    position: absolute;
+    top: 33.5vh;
+    left: 5vh;
+    font-size: 2.5vh;
+    color: white;
+}
+
+.clock-transfer-amount-icon  {
+    position: absolute;
+    top: 19.2vh;
+    left: 3.5vh;
+    font-size: 2.4vh;
+    color: white
+}
+
+.clock-transfer-description-icon {
+    position: absolute;
+    top: 25.2vh;
+    left: 3.5vh;
+    font-size: 2.4vh;
+    color: white
+}
+
+.clock-transfer-mycontacts-icon  {
+    position: absolute;
+    top: 31.5vh;
+    left: 3.5vh;
+    font-size: 2.2vh;
+    color: white
+}
+
+.clock-transfer-mycontacts-icon:hover {
+    color: #fbc531;
+}
+
+.clock-app-transfer-buttons {
+    position: absolute;
+    top: 31vh;
+    height: 5vh;
+    width: 100%;
+}
+
+.clock-app-transfer-button {
+    color: #ff9640;
+    position: relative;
+    float: left;
+    width: 30%;
+    height: 100%;
+    text-align: center;
+    line-height: 5vh;
+    font-family: 'Samsung Sans Medium';
+    margin-left: 1.5vh;
+    border-radius: 8px;
+    font-size: 1.2vh;
+    /* background-color: lightslategray; */
+    font-weight: 100;
+    transition: .2s;
+    margin-top: -25%;
+}
+
+#cancel-alarm {
+    margin-left: 19.25vh;
+}
+
+.clock-app-transfer-button:hover {
+    opacity: 0.7;
+}
+
+.clock-app-my-contacts {
+    display: none;
+    position: absolute;
+    height: 107.5%;
+    width: 100%;
+    top: -100%;
+    background: #2f3640;
+    z-index: 500;
+}
+
+.clock-app-my-contacts::-webkit-scrollbar {
+    display: none;
+}
+
+.clock-app-my-contacts-list::-webkit-scrollbar {
+    display: none;
+}
+
+.clock-app-my-contacts-header {
+    position: relative;
+    left: 1vh;
+    padding: 8vh 0 0 1.85vh;
+    font-family: 'Heebo', sans-serif;
+    font-size: 2vh;
+    color: white;
+
+}
+
+.clock-app-my-contacts-list {
+    position: absolute;
+    height: 60%;
+    width: 75%;
+    margin: 0 auto;
+    left: -2.5vh;
+    right: 0;
+    top: 17.5vh;
+    overflow-y: scroll;
+}
+
+.clock-app-my-contact {
+    position: relative;
+    width: 100%;
+    height: 4.5vh;
+    margin-top: .1vh;
+    background-color: #626c80;
+    border: .1vh solid #454d5a;
+    border-radius: 2vh;
+    transition: .1s;
+}
+
+.clock-app-my-contact:hover {
+    background-color: #727e94;
+}
+
+.clock-app-my-contact-firstletter {
+    position: absolute;
+    background-color: #eb4d4b;
+    height: 3.5vh;
+    width: 3.5vh;
+    margin: .4vh;
+    margin-left: .35vh;
+    text-align: center;
+    line-height: 3.6vh;
+    border-radius: 50%;
+    font-family: 'Heebo', sans-serif;
+    color: white;
+}
+
+.clock-app-my-contact-name {
+    position: absolute;
+    left: 5vh;
+    line-height: 4.5vh;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.4vh;
+    color: white;
+}
+
+.clock-app-my-contacts-list-header {
+    position: absolute;
+    top: 12vh;
+    height: 5vh;
+    width: 100%;
+}
+
+#clock-app-my-contact-search {
+    position: absolute;
+    background: none;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    top: 1.2vh;
+    width: 17vh;
+    margin: 0 auto;
+    left: -7.0vh;
+    right: 0;
+    opacity: 1.0;
+    height: 2.5vh;
+    border-radius: 1vh;
+    box-shadow: 0 0 .2vh 0 rgba(0, 0, 0, 0.281);
+    font-family: 'Heebo', sans-serif;
+    outline: none;
+    text-indent: 1vh;
+    z-index: 100;
+}
+
+#clock-app-my-contact-search::placeholder{
+    font-family: 'Heebo', sans-serif;
+    color: rgba(39, 39, 39, 0.9);
+}
+
+.clock-app-my-contacts-list-back {
+    position: absolute;
+    bottom: 0;
+    width: 1.5vh;
+    left: 2.5vh;
+    border-radius: 5vh;
+    height: 3.5vh;
+    text-align: center;
+    line-height: 2.5vh;
+    text-transform: uppercase;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.7vh;
+    background: transparent;
+    transition: .1s;
+    top: 5vh;
+}
+
+.clock-app-my-contacts-list-back:hover {
+    color: rgb(185, 185, 185);
+}
+
+#cronometer {
+    color: white;
+    margin-left: 2.5vh;
+    font-size: 6vh;
+    margin-top: -2.5vh;
+    margin-bottom: 0;
+}
+
+.cronometer-buttons {
+    color: white;
+    width: 6vh;
+    height: 6vh;
+    border-radius: 100%;
+    background-color: rgb(70, 70, 70);
+    text-align: center;
+    line-height: 6vh;
+    float: left;
+    margin-top: 2.5vh;
+    margin-left: 2.5vh;
+    /* color: #701729 */
+}
+
+.cronometer-buttons:hover {
+    opacity: 0.7;
+}
+
+.start-stop {
+    margin-left: 12.5vh;
+    background-color: rgb(21, 87, 37);
+    color:rgb(39, 184, 75);
+    
+}

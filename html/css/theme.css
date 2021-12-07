@@ -1,0 +1,33 @@
+/* Light theme */
+:root {
+    --main-background-color: #ffffff;
+    --second-background-color: rgb(230, 230, 230);
+    --main-darker-background-color: #DFDFDF;
+    --main-color: #000000;
+    --main-black: #000000;
+    --main-yellow: #FFCE00;
+    --main-orange: #FFC14E;
+    --main-dark-gray: #808080;
+    --main-light-gray: #E5E5E5;
+    --main-blue: #087FFF;
+    --main-light-green: #1FC93C;;
+    --main-paper: #FFF8CC;
+    --main-red: #FD3B2F;
+    --main-full-red: #ff0000;
+
+    --border-gray: #d3d3d3;
+
+    --calculator-button: #333333;
+    --calculator-button-hover: #464646;
+    --calculator-operator: #FF9E0A;
+    --calculator-operator-hover: #FFBB00;
+}
+
+/* Dark theme */
+/* :root {
+    --main-background-color: black;
+    --main-color: white;
+    --main-yellow: #ffce00;
+    --main-blue: 
+    --main-green:
+} */

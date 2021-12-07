@@ -1,0 +1,104 @@
+.calculator-app {
+    display: none;
+    background: black;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.calculator-cover {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 32px;
+}
+
+.calculator-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator-text{
+    font-family: 'Samsung Sans Thin';
+    font-size: 42px;
+    width: 90%;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    text-align: right;
+}
+
+.calculator-buttons {
+    display: flex;
+    padding: 16px;
+    height: 60%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.calculator-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 58px;
+    max-height: 58px;
+    flex: 1 0 20%;
+    margin: 6px;
+    cursor: pointer;
+    background-color: #333333;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    transition: 200ms all;
+}
+.calculator-double-button{
+    display: flex;
+    padding-left: 26px;
+    align-items: center;
+    max-height: 58px;
+    flex: 1 0 40%;
+    margin: 4px;
+    cursor: pointer;
+    background-color: #333333;
+    border: none;
+    color: white;
+    border-radius: 40px;
+    transition: 200ms all;
+}
+
+.calculator-button, .calculator-double-button > span {
+    font-family: 'SF Pro Display Regular';
+    font-size: 24px;
+}
+
+.calculator-button:hover {
+  background-color: #464646;  
+}
+
+input:focus {
+    outline: none;
+}
+
+.calculator-operator-others {
+    color: black;
+    background-color: #A5A5A5;
+}
+.calculator-operator-others:hover {
+    background-color: #c3c3c3;
+}
+
+.calculator-operator {
+    background-color: #FF9E0A;
+}
+.calculator-operator:hover {
+    background-color: #ffbb00;
+}
