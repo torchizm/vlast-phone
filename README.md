@@ -68,7 +68,7 @@
 ![Wanteds](/readme/wanteds.png)
 -----
 ### Yellow Pages
-![Yellow Pages](/readme/yelllow_pages.png)
+![Yellow Pages](/readme/yellow_pages_1.png)
 -----
 ### Zoom
 ![Zoom](/readme/zoom_1.png)
