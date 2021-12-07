@@ -18,6 +18,10 @@
 ![Main Menu](/readme/1.png)
 -----
 ### Bank (Developing rn)
+> Dependencies
+> * [vlast-bank](https://github.com/torchizm/vlast-bank)
+
+
 ![Bank](/readme/2.png)
 -----
 ### Calculator with all functions
