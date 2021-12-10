@@ -74,7 +74,7 @@ $(document).on('click', '.stopwatch-button[data-type="lap"]', function(e){
 $(document).on('click', '.stopwatch-button[data-type="clear"]', function(e){
     e.preventDefault();
     $(`.stopwatch-timer-text[data-type="second"]`).html('00');
-    $(`.stopwatch-timer-text[data-type="minue"]`).html('00');
+    $(`.stopwatch-timer-text[data-type="minute"]`).html('00');
     $(`.stopwatch-timer-text[data-type="hour"]`).html('00');
     $(`.stopwatch-lap-list`).empty();
 });
