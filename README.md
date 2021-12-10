@@ -88,3 +88,6 @@ PlayerData.metadata["phonedata"] = PlayerData.metadata["phonedata"] ~= nil and P
 ![Zoom](/readme/zoom_1.png)
 ![Zoom](/readme/zoom_2.png)
 -----
+### Clock
+![Stopwatch](/readme/clock_1.png)
+-----
