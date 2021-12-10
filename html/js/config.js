@@ -46,8 +46,8 @@ Config.HeaderColors = {
         "bottom": "black"
     },
     "clock": {
-        "top": "white",
-        "bottom": "white"
+        "top": "black",
+        "bottom": "black"
     },
     "calculator": {
         "top": "white",
@@ -65,10 +65,6 @@ Config.HeaderColors = {
         "top": "black",
         "bottom": "black"
     },
-    "vprime": {
-        "top": "white",
-        "bottom": "white"
-    }
 }
 
 Config.HeaderDisabledApps = [

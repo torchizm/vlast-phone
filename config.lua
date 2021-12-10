@@ -9,12 +9,6 @@ Config.FoodCompany = {
     [2] = { name =  'Hotdog', setjob = 'hotdog'}
 }
 
-Config.VPrime = {   
-    [1] = { item = 'koli1', label = 'Küçük Koli'},
-    [2] = { item = 'koli2', label = 'Orta Boy Koli'},
-    [3] = { item = 'koli3', label = 'Büyük Boy Koli'},
-}
-
 Config.PhoneApplications = {
     ["phone"] = {
         app = "phone",
@@ -96,7 +90,7 @@ Config.PhoneApplications = {
         Alerts = 0,
 		style = "",
 		password = false,
-        creator = "İsmail Koç",
+        creator = "TORCHIZM",
         title = "Banka"
     },
 
@@ -113,7 +107,7 @@ Config.PhoneApplications = {
         slot = 6,
         Alerts = 0,
         password = false,
-        creator = "İsmail Koç",
+        creator = "TORCHIZM",
         title = "Twitter"
     },
 
@@ -130,7 +124,7 @@ Config.PhoneApplications = {
         Alerts = 0,
 		style = "",
 		password = false,
-        creator = "İsmail Koç",
+        creator = "TORCHIZM",
         title = "Mail"
     },
     
@@ -147,7 +141,7 @@ Config.PhoneApplications = {
         Alerts = 0,
 		style = "",
 		password = false,
-        creator = "almez",
+        creator = "TORCHIZM",
         title = "Sarı Sayfalar"
     },
 
@@ -168,7 +162,7 @@ Config.PhoneApplications = {
     --     Alerts = 0,
 	-- 	style = "",
 	-- 	password = false,
-    --     creator = "İsmail Koç",
+    --     creator = "TORCHIZM",
     --     title = "Borsa"
     -- },
 
@@ -187,7 +181,7 @@ Config.PhoneApplications = {
         Alerts = 0,
 		style = "",
 		password = false,
-        creator = "almez",
+        creator = "TORCHIZM",
         title = "Yarışlar"
     },
     ["houses"] = {
@@ -203,7 +197,7 @@ Config.PhoneApplications = {
         Alerts = 0,
 		style = "",
 		password = false,
-        creator = "İsmail Koç",
+        creator = "TORCHIZM",
         title = "Mülkiyet"
     },
     -- ["food"] = {
@@ -219,7 +213,7 @@ Config.PhoneApplications = {
     --     Alerts = 0,
 	-- 	style = "",
 	-- 	password = false,
-    --     creator = "almez",
+    --     creator = "TORCHIZM",
     --     title = "İşletmeler"
     -- },
     ["clock"] = {
@@ -235,7 +229,7 @@ Config.PhoneApplications = {
         Alerts = 0,
 		style = "",
 		password = false,
-        creator = "almez",
+        creator = "TORCHIZM",
         title = "Saat"
     },
     ["calculator"] = {
@@ -251,24 +245,8 @@ Config.PhoneApplications = {
         Alerts = 0,
 		style = "",
 		password = false,
-        creator = "almez",
+        creator = "TORCHIZM",
         title = "Hesap Maki..."
-    },
-    ["vprime"] = {
-        app = "vprime",
-        image = "vlastprime",
-        color = "#ff6a00",
-        icon = "fas fa-mask",
-        tooltipText = "V Prime",
-		tooltipPos = "bottom",
-        job = false,
-        blockedjobs = {},
-        slot = 13,
-        Alerts = 0,
-		style = "",
-		password = false,
-        creator = "almez",
-        title = "V Prime"
     },
     ["arrests"] = {
         app = "arrests",
@@ -283,7 +261,7 @@ Config.PhoneApplications = {
         Alerts = 0,
 		style = "",
 		password = false,
-        creator = "almez",
+        creator = "TORCHIZM",
         title = "Arananlar"
     },
 

@@ -4,6 +4,16 @@
 > Requirements
 * [screenshot-basic](https://github.com/citizenfx/screenshot-basic)
 
+### Instaliation:
+* If not exists, add this code to qb-core/server/player.lua > CheckPlayerDataFunctions
+```lua
+PlayerData.metadata["phonedata"] = PlayerData.metadata["phonedata"] ~= nil and PlayerData.metadata["phonedata"] or {
+        SerialNumber = QBCore.Player.CreateSerialNumber(),
+        InstalledApps = {},
+    }
+```
+
+
 ### Todo List:
 * Clock (Currently Working On)
 * Remake Bank

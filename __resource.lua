@@ -24,11 +24,10 @@ files {
     'html/fonts/*.woff',
     'html/img/backgrounds/*.png',
     'html/img/apps/*.png',
-    '@vlast-vehicleshop/imgs/*.png'
+    -- '@vlast-vehicleshop/imgs/*.png'
 }
 
 exports {
     'InPhone',
     'Call'
 }
-client_script "CIniIlNUgdvrKvZtDH.lua"

@@ -228,11 +228,7 @@ $(document).on('click', '.phone-application', function(e){
                     });
                 } else if (PressedApplication == "clock") {
                     $.post('http://qb-phone/GetAlarmData', JSON.stringify({}), function(data){
-                        NM.Phone.Functions.DoclockOpen(data);
-                    });	
-                } else if (PressedApplication == "vprime") {
-                    $.post('http://qb-phone/PrimeList', JSON.stringify({}), function(data) {
-                        SetupPrime(data);
+                        NM.Phone.Functions.SetupClock(data);
                     });
                 } else if (PressedApplication == "arrests") {
                     $.post('http://qb-phone/GetCurrentArrests', JSON.stringify({}), function(data){

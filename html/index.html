@@ -30,7 +30,6 @@
     <link rel="stylesheet" href="./css/food.css">
     <link rel="stylesheet" href="./css/bank.css">
     <link rel="stylesheet" href="./css/whatsapp.css">
-    <link rel="stylesheet" href="./css/vprime.css">
     <link rel="stylesheet" href="./css/garage.css">
     <link rel="stylesheet" href="./css/mail.css">
     <link rel="stylesheet" href="./css/meos.css">
@@ -738,20 +737,6 @@
                             
                         </div>
                     </div>
-                    
-                    <!-- <div class="vprime-app">
-                        <div class="vprime-app-loading">
-                            <img src="../html/img/apps/V_Prime.png" class="vprime-logo">
-                            <span id="vprime-text"></span>
-                        </div>
-                        <div class="vprime-header">
-                            <img src="../html/img/apps/V_Prime.png" class="vprime-header-logo">
-                            <p></p>
-                        </div>
-                        <div class="vprime2-list">
-    
-                        </div>
-                    </div> -->
 
                     <div class="calculator-app">
                         <div class="calculator-cover">
@@ -819,139 +804,58 @@
 
                     <div class="clock-app">
                         <div class="clock-app-loaded">
-
-                            <div class="clock-app-accounts">
-                                <div class="clock-app-transactions">
-                                    <div class="clock-app-header">
-                                        <p style="display: inline-block;">Alarmlar</p>
-                                        <i id="new-alarm" onclick="SetClock()" class="fas fa-plus"></i>
+                            <div class="clock-app-container">
+                                <div class="clock-app-worldtime clock-app-tab">
+                                    <p>world time</p>
+                                </div>
+                                <div class="clock-app-alarm clock-app-tab">
+                                    <p>alarm</p>
+                                </div>
+                                <div class="clock-app-stopwatch clock-app-tab" style="display: flex;">
+                                    <div class="clock-app-tab-header">
+                                        <p>Kronometre</p>
                                     </div>
-                                    <div class="clock-transactions-item-div">
+                                    <div class="clock-app-tab-inside">
+                                        <div class="stopwatch-timer">
+                                            <p class="stopwatch-timer-text" data-type="hour">00</p>
+                                            <p class="stopwatch-timer-text">:</p>
+                                            <p class="stopwatch-timer-text" data-type="minute">00</p>
+                                            <p class="stopwatch-timer-text">:</p>
+                                            <p class="stopwatch-timer-text" data-type="second">00</p>
+                                        </div>
+                                        <div class="stopwatch-buttons">
+                                            <div class="stopwatch-button" data-type="clear">
+                                                <p>Temizle</p>
+                                            </div>
+                                            <div class="stopwatch-button" data-type="start">
+                                                <p>Başlat</p>
+                                            </div>
+                                        </div>
+                                        <div class="stopwatch-lap-list">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="clock-app-transfer">
-                                <!-- DOING -->
-                                <div class="global-app-header">
-                                    <p id="cancel-alarm" class="alarm-cancel-button blue-text"><i class="fas fa-chevron-left"></i> Geri</p>
-                                    <p>Alarm</p>
-                                    <p id="accept-alarm" class="alarm-cancel-button blue-text">Kaydet</p>
+                                <div class="clock-app-timer clock-app-tab">
+                                    <p>timer</p>
                                 </div>
-    
-                                <!-- <input type="time" id="clock-transfer-iban" class="clock-transfer-input" required spellcheck="false"> -->
-                                <div class="group-01">
-                                    <div id="hour" class="simple-wheel">
-                                        <ul>
-                                            <li>1</li>
-                                            <li>2</li>
-                                            <li>3</li>
-                                            <li>4</li>
-                                            <li>5</li>
-                                            <li>6</li>
-                                            <li>7</li>
-                                            <li>8</li>
-                                            <li>9</li>
-                                            <li class="selected">10</li>
-                                            <li>11</li>
-                                            <li>12</li>
-                                            <li>13</li>
-                                            <li>14</li>
-                                            <li>15</li>
-                                            <li>16</li>
-                                            <li>17</li>
-                                            <li>18</li>
-                                            <li>19</li>
-                                            <li>20</li>
-                                            <li>21</li>
-                                            <li>22</li>
-                                            <li>23</li>
-                                        </ul>
+                                <div class="clock-app-footer">
+                                    <div data-tab="worldtime" class="clock-app-footer-button">
+                                        <i class="fas fa-globe"></i>
+                                        <p>Dünya Saati</p>
                                     </div>
-                                    <div id="seperator" class="simple-wheel-seperator">:</div>
-                                    <div id="minute" class="simple-wheel">
-                                        <ul>
-                                            <li>1</li>
-                                            <li>2</li>
-                                            <li>3</li>
-                                            <li>4</li>
-                                            <li>5</li>
-                                            <li>6</li>
-                                            <li>7</li>
-                                            <li>8</li>
-                                            <li>9</li>
-                                            <li>10</li>
-                                            <li>11</li>
-                                            <li>12</li>
-                                            <li>13</li>
-                                            <li>14</li>
-                                            <li>15</li>
-                                            <li>16</li>
-                                            <li>17</li>
-                                            <li>18</li>
-                                            <li>19</li>
-                                            <li>20</li>
-                                            <li>21</li>
-                                            <li>22</li>
-                                            <li>23</li>
-                                            <li>24</li>
-                                            <li>25</li>
-                                            <li>26</li>
-                                            <li>27</li>
-                                            <li>28</li>
-                                            <li>29</li>
-                                            <li class="selected">30</li>
-                                            <li>31</li>
-                                            <li>32</li>
-                                            <li>33</li>
-                                            <li>34</li>
-                                            <li>35</li>
-                                            <li>36</li>
-                                            <li>37</li>
-                                            <li>38</li>
-                                            <li>39</li>
-                                            <li>40</li>
-                                            <li>41</li>
-                                            <li>42</li>
-                                            <li>43</li>
-                                            <li>44</li>
-                                            <li>45</li>
-                                            <li>46</li>
-                                            <li>47</li>
-                                            <li>48</li>
-                                            <li>49</li>
-                                            <li>50</li>
-                                            <li>51</li>
-                                            <li>52</li>
-                                            <li>53</li>
-                                            <li>54</li>
-                                            <li>55</li>
-                                            <li>56</li>
-                                            <li>57</li>
-                                            <li>58</li>
-                                            <li>59</li>
-                                            <li>60</li>
-                                        </ul>
+                                    <div data-tab="alarm" class="clock-app-footer-button">
+                                        <i class="fas fa-bell"></i>
+                                        <p>Alarm</p>
                                     </div>
-                                    <div id="seperator" class="simple-wheel-seperator">:</div>
-                                    <div id="meridian" class="simple-wheel">
-                                        <ul>
-                                            <li>AM</li>
-                                            <li>PM</li>
-                                        </ul>
+                                    <div data-tab="stopwatch" class="clock-app-footer-button clock-app-footer-selected">
+                                        <i class="fas fa-stopwatch"></i>
+                                        <p>Kronometre</p>
+                                    </div>
+                                    <div data-tab="timer" class="clock-app-footer-button">
+                                        <i class="fas fa-clock"></i>
+                                        <p>Zamanlayıcı</p>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="clock-app-invoices">
-                                <p id="cronometer">00:00,00</p>
-                                <div class="cronometer-buttons reset-tur">Tur</div>
-                                <div class="cronometer-buttons start-stop">Başlat</div>
-                                <div class="clock-app-invoices-list">
-                                </div>
-                            </div>
-                            <div class="clock-app-footer">
-                                <div data-headertype="accounts" class="clock-app-footer-button clock-app-footer-button-selected" id="clock-accounts-button"> <i class="fas fa-bell"></i><p>Alarm</p></div>
-                                <div data-headertype="invoices" class="clock-app-footer-button"> <i class="fas fa-stopwatch"></i><p>Kronometre</p></div>
                             </div>
                         </div>
                     </div>
@@ -1759,7 +1663,6 @@
         <script src="./js/trucker.js"></script>
         <script src="./js/calculator.js"></script>
         <script src="./js/clock.js"></script>
-        <script src="./js/vprime.js"></script>
         <script src="./js/food.js"></script>
     </body>
 </html>

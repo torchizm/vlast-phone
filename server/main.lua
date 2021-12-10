@@ -58,7 +58,7 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetPhoneData', function(source,
             Adverts = {},
             CryptoTransactions = {},
             Tweets = {},
-            InstalledApps = Player.PlayerData.metadata["phonedata"].InstalledApps,
+            -- InstalledApps = Player.PlayerData.metadata["phonedata"].InstalledApps,
         }
 
         PhoneData.Adverts = Adverts

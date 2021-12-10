@@ -1,14 +1,8 @@
 var Foccusedclock = null;
-
-$(document).on('click', '.clock-app-account', function(e){
-    var copyText = document.getElementById("iban-account");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    document.execCommand("copy");
-
-    NM.Phone.Notifications.Add("fas fa-university", "Saat", "IBAN Kopyalandı!", "#badc58", 1750);
-});
-
+var Stopwatch = {
+    "Enabled": false,
+}
+Stopwatch.Interval = undefined;
 
 $(document).on('click', '#clear-clock', function(event){
     $(".transactions-item-div").remove()
@@ -16,103 +10,39 @@ $(document).on('click', '#clear-clock', function(event){
     $.post("http://qb-phone/ClearclockData");
 })
 
-var CurrentTab = "accounts";
+var CurrentTab = "stopwatch";
 
 $(document).on('click', '#new-alarm', function(e){
     e.preventDefault();
     NM.Phone.Animations.TopSlideDown(".clock-app-transfer", 400, 0);
 });
 
-$(document).on('click', '.alarm-item > i', function(e){
-    e.preventDefault();
-    var id = $(this).data("id")
-    $.post("http://qb-phone/DeleteAlarm", JSON.stringify({id: id}));
-    $("#alarm-item-"+ id).animate({
-        "margin-left": -50+"vh"
-    }, 350, function(){
-        $("#alarm-item-"+id).remove();
-        NM.Phone.Notifications.Add("far fa-clock", "Saat", "Alarm kaldırıldı!", "#ff7e1496", 1750); 
-    });
-});
-
-$(document).on('click', '.clock-app-header-button', function(e){
+$(document).on('click', '.clock-app-footer-button', function(e){
     e.preventDefault();
 
     var PressedObject = this;
-    var PressedTab = $(PressedObject).data('headertype');
-    // console.log(PressedObject)
+    var PressedTab = $(PressedObject).data('tab');
+
     if (CurrentTab != PressedTab) {
-        var PreviousObject = $(".clock-app-header").find('[data-headertype="'+CurrentTab+'"]');
+        var PreviousObject = $(".clock-app-footer").find('[data-tab="'+CurrentTab+'"]');
 
-        // if (PressedTab == "invoices") {
-        //     $(".clock-app-"+CurrentTab).animate({
-        //         left: -30+"vh"
-        //     }, 250, function(){
-        //         $(".clock-app-"+CurrentTab).css({"display":"none"})
-        //     });
-        //     $(".clock-app-"+PressedTab).css({"display":"block"}).animate({
-        //         left: 0+"vh"
-        //     }, 250);
-        // } else if (PressedTab == "accounts") {
-        //     $(".clock-app-"+CurrentTab).animate({
-        //         left: 30+"vh"
-        //     }, 250, function(){
-        //         $(".clock-app-"+CurrentTab).css({"display":"none"})
-        //     });
-        //     $(".clock-app-"+PressedTab).css({"display":"block"}).animate({
-        //         left: 0+"vh"
-        //     }, 250);
-        // } else if (PressedTab == "transfer") {
-            
-        // }
-        $(".clock-app-"+CurrentTab).animate({
-            left: 30+"vh"
-        }, 250, function(){
-            $(".clock-app-"+CurrentTab).css({"display":"none"})
-        });
-        $(".clock-app-"+PressedTab).css({"display":"block"}).animate({
-            left: 0+"vh"
-        }, 250);
+        $(".clock-app-"+CurrentTab).css("display", "none");
+        $(".clock-app-"+PressedTab).css("display", "flex");
 
-        $(PreviousObject).removeClass('clock-app-header-button-selected');
-        $(PressedObject).addClass('clock-app-header-button-selected');
-        setTimeout(function(){ CurrentTab = PressedTab; }, 300)
+        $(PreviousObject).removeClass('clock-app-footer-selected');
+        $(PressedObject).addClass('clock-app-footer-selected');
+        CurrentTab = PressedTab;
     }
 })
 
-NM.Phone.Functions.DoclockOpen = function(data) {
-    // $(".bank-app-account-number").val("IBAN: " + data.iban);
-    // $(".bank-app-account-balance").html("&dollar; "+data.bank.toFixed());
-    // $(".bank-app-account-balance").data('balance', data.bank.toFixed());
+NM.Phone.Functions.SetupClock = function(data) {
     $(".clock-app-loaded").css({"display":"none", "padding-left":"30vh"});
-
-    CurrentTab = "accounts";
     $(".clock-app-loaded").css({"display":"block"}).animate({"padding-left":"0"}, 0);
     $(".clock-app-accounts").animate({left:0+"vh"}, 0);
-    $(".clock-app-alarm").css({"display":"block"}).animate({
-        left: 0+"vh"
-    }, 0);
-    $("#clock-accounts-button").addClass('clock-app-header-button-selected');
-    LoadClock(data)
+    $(".clock-app-stopwatch").css("display", "flex");
 }
 
-function LoadClock(data) {
-    $(".clock-transactions-item-div").html("");
-    // $("#incoming-main-div").html('');
-
-    $.each(data, function (k, v) { 
-        if (v != undefined || v != null) {
-            var content = '<div id="alarm-item-'+ k +'" class="alarm-item"><p class="alarm-clock">'+v+'</p><br><p style="height: 0; margin-top: -3.5vh; margin-left: .25vh; color: rgb(185, 185, 185);">Alarm</p><i data-id="' + k + '" class="fas fa-times-circle"></i></div>'
-            $(".clock-transactions-item-div").append(content);
-        }
-    });
-}
-
-// $(document).on('click', '#transfer', function(e){
-//     NM.Phone.Animations.TopSlideDown(".clock-app-transfer", 400, 0);
-// });
-
-$(document).on('click', '.clock-app-transfer-button', function(e){
+$(document).on('click', '.clock-set-alarm-button', function(e){
     var type = $(this).attr("id")
     if (type == "accept-alarm") {
         var value = $("#clock-transfer-iban").val()
@@ -127,78 +57,85 @@ $(document).on('click', '.clock-app-transfer-button', function(e){
     }, 100);
 })
 
-// $(document).on('click', '#clock-transfer-iban', function(e){
-//     if (document.getElementById("clock-transfer-iban").value == "") {
-//         document.getElementById("clock-transfer-iban").value = "HX"
-//     }
-//     // $("#clock-transfer-iban").val() = "HX"
-// })
-
-var Cronometer = {
-    started: false,
-}
-$(document).on('click', '.start-stop', function(e){
-    if (!Cronometer.started) {
-        $(".start-stop").html("Durdur")
-        $(".reset-tur").html("Tur")
-        $(".start-stop").css({
-            "background-color": "#701729",
-            color: "#fc3158"
-        })
-        // if (Cronometer.tempTimer == 0) {
-        Cronometer.baseTimer = Date.now()
-        // }
-        myFunction()
-    } else {
-        $(".start-stop").html("Başlat")
-        if (tourCount != 1) {
-            $(".reset-tur").html("Sıfırla")
-        }
-
-        $(".start-stop").css({
-            "background-color": "rgb(21, 87, 37)",
-            color: "rgb(39, 184, 75)"
-        })
-        myStopFunction()
-    }
-    Cronometer.started = !Cronometer.started
+$(document).on('click', '.stopwatch-button[data-type="lap"]', function(e){
+    e.preventDefault();
+    var second = $(`.stopwatch-timer-text[data-type="second"]`).html();
+    var minute = $(`.stopwatch-timer-text[data-type="minute"]`).html();
+    var hour = $(`.stopwatch-timer-text[data-type="hour"]`).html();
+    
+    $('<div/>', {
+        class: "stopwatch-lap",
+        html: `
+            <p>${hour}:${minute}:${second}</p>
+        `
+    }).appendTo(".stopwatch-lap-list");
 });
 
-var tourCount = 1
-$(document).on('click', '.reset-tur', function(e){
-    var currentTime = $("#cronometer").html();
-    if (currentTime != "00:00,00") {
-        $(".clock-app-invoices-list").append('<div class="clock-app-invoice"><p>'+tourCount+'.Tur</p><span>'+ currentTime +'</span></div>');
-        tourCount += 1    
-    }
-    if ($(".reset-tur").html() == "Sıfırla") {
-        $("#cronometer").html("00:00,00")
-        $(".reset-tur").html("Tur")
-        $(".clock-app-invoices-list").html("")
-        tourCount = 1
-    }
+$(document).on('click', '.stopwatch-button[data-type="clear"]', function(e){
+    e.preventDefault();
+    $(`.stopwatch-timer-text[data-type="second"]`).html('00');
+    $(`.stopwatch-timer-text[data-type="minue"]`).html('00');
+    $(`.stopwatch-timer-text[data-type="hour"]`).html('00');
+    $(`.stopwatch-lap-list`).empty();
 });
 
-var myVar = 0;
-var count = 0;
-function myFunction() {
-    myVar =  setTimeout(function(){ 
-        myFunction(); 
-        let nowTimer = Date.now()
-        var text = "00:00,00"; 
-        var diffrence = Math.floor((nowTimer - Cronometer.baseTimer) / 10)
-        var salise = diffrence < 100 ? diffrence : diffrence % 100
-        var saniye = saniye < 60 ? Math.floor(diffrence / 100) : Math.floor(diffrence / 100) % 60
-        var dakika = dakika < 60 ? Math.floor(diffrence / 6000) : Math.floor(diffrence / 6000) % 60
-        var saat = Math.floor(dakika / 60)
-        saniye = saniye < 10 ? "0" + saniye : saniye
-        dakika = dakika < 10 ? "0" + dakika : dakika
-        saat = saat < 10 ? "0" + saat : saat
-        text = saat == 0 ? dakika + ":" + saniye + "," + salise : saat + ":" + dakika + ":" + saniye
-        $("#cronometer").html(text)
-    }, 10);
-}
+$(document).on('click', '.stopwatch-button[data-type="start"]', function(e){
+    e.preventDefault();
+    $(this).attr("data-type", "stop");
+    $(this).find('p').html("Durdur");
+    var clearBtn = $('.stopwatch-button[data-type="clear"]');
+    $(clearBtn).attr("data-type", "lap");
+    $(clearBtn).find('p').html("Tur");
+    Stopwatch.Interval = setInterval(StartStopwatch, 1000);
+});
 
-function myStopFunction() {
-    clearTimeout(myVar);
-}
+$(document).on('click', '.stopwatch-button[data-type="stop"]', function(e){
+    e.preventDefault();
+    $(this).attr("data-type", "start");
+    $(this).find('p').html("Başlat");
+    var clearBtn = $('.stopwatch-button[data-type="lap"]');
+    $(clearBtn).attr("data-type", "clear");
+    $(clearBtn).find('p').html("Temizle");
+    clearInterval(Stopwatch.Interval);
+    Stopwatch.Interval = undefined;
+});
+
+function StartStopwatch() {
+    var secondElement = $(`.stopwatch-timer-text[data-type="second"]`);
+    var second = Number(secondElement.html());
+    var minuteElement = $(`.stopwatch-timer-text[data-type="minute"]`);
+    var minute = Number(minuteElement.html());
+    var hourElement = $(`.stopwatch-timer-text[data-type="hour"]`);
+    var hour = Number(hourElement.html());
+    
+    second++;
+    if (second >= 60) {
+        minute++;
+        second = 0;
+    }
+
+    if (minute >= 60) {
+        hour++;
+        minute = 0;
+    }
+
+    if (hour >= 24) {
+        hour = 0;
+        minute = 0;
+        second = 0;
+    }
+
+    if (second < 10) {
+        second = "0" + second.toString();
+    }
+    if (minute < 10) {
+        minute = "0" + minute.toString();
+    }
+    if (hour < 10) {
+        hour = "0" + hour.toString();
+    } 
+
+    secondElement.html(second);
+    minuteElement.html(minute);
+    hourElement.html(hour);
+};
