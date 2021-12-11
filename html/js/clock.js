@@ -4,7 +4,6 @@ var Stopwatch = {
     Interval: undefined
 }
 var Worldtime = {
-    "Showing": false,
     Interval: undefined
 }
 
@@ -52,8 +51,6 @@ $(document).on('click', '.clock-app-footer-button', function(e){
 NM.Phone.Functions.SetupClock = function(data) {
     $(".clock-app-loaded").css({"display":"none", "padding-left":"30vh"});
     $(".clock-app-loaded").css({"display":"block"}).animate({"padding-left":"0"}, 0);
-    $(".clock-app-accounts").animate({left:0+"vh"}, 0);
-    $(".clock-app-stopwatch").css("display", "flex");
 
     $('.clock-app-worldtime').find('.world-time').each(function() {
         var timeZone = $(this).attr("data-time-zone");
