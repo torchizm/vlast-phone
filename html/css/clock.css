@@ -11,6 +11,7 @@
 }
 
 .clock-app-container {
+    position: relative;
     display: flex;
     width: 100%;
     height: 100%;
@@ -34,6 +35,13 @@
     width: 100%;
     margin-top: 32px;
     flex: 1;
+}
+
+.clock-app-tab .global-app-header {
+    top: 8px;
+    height: 33px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid black;
 }
 
 .clock-app-tab-header {
@@ -116,7 +124,7 @@
     font-family: 'SF Pro Display Regular';
 }
 
-.stopwatch-buttons {
+.clock-buttons {
     display: flex;
     align-items: center;
     margin: 0 26px;
@@ -124,7 +132,7 @@
     font-size: 14px;
 }
 
-.stopwatch-button {
+.clock-button {
     display: flex;
     width: 64px;
     height: 64px;
@@ -135,27 +143,27 @@
     color: var(--main-background-color);
 }
 
-.stopwatch-button p {
+.clock-button p {
     font-size: 16px;
     margin: 0 !important;
 }
 
-.stopwatch-button[data-type="lap"] {
+.clock-button[data-type="lap"] {
     background: var(--main-dark-gray);
     border: 2px solid var(--main-darker-gray);
 }
 
-.stopwatch-button[data-type="clear"] {
+.clock-button[data-type="clear"] {
     background: #000000;
     border: 2px solid #313131;
 }
 
-.stopwatch-button[data-type="start"] {
+.clock-button[data-type="start"] {
     background: var(--main-green);
     border: 2px solid var(--main-darker-green);
 }
 
-.stopwatch-button[data-type="stop"] {
+.clock-button[data-type="stop"] {
     background: var(--main-red);
     border: 2px solid var(--main-darker-red);
 }
@@ -171,6 +179,9 @@
 }
 
 .stopwatch-lap {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
     border-bottom: 1px solid black;
     padding: 0 16px;
 }
@@ -249,4 +260,42 @@
 .world-time-clock p:last-child {
     font-size: 22px;
     padding-bottom: 10px;
+}
+
+.clock-timer-setup-container {
+    display: flex;
+}
+
+.clock-app-timer-setup {
+    position: absolute;
+    width: 100%;
+}
+
+.clock-timer-container #clock-timer-minute-picker {
+    text-align: right;
+    direction: rtl;
+    text-indent: 8px;
+}
+.clock-timer-container #clock-timer-second-picker {
+    text-align: left;
+    text-indent: 8px;
+}
+
+.clone-scroller::-webkit-scrollbar {
+    display: none;
+}
+
+.clock-app-timer-show {
+    position: absolute;
+    width: 100%;
+    left: 100%;
+    display: none;
+}
+
+.clock-app-timer-show-container-texts {
+    display: flex;
+    margin-top: 64px;
+    font-size: 64px;
+    align-items: center;
+    justify-content: center;
 }

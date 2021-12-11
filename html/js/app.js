@@ -4,6 +4,7 @@ NM.Screen = {}
 NM.Phone.Functions = {}
 NM.Phone.Animations = {}
 NM.Phone.Notifications = {}
+NM.Phone.PlayingAudio = undefined;
 NM.Phone.ContactColors = {
     0: "#9b59b6",
     1: "#3498db",
@@ -487,6 +488,7 @@ NM.Phone.Functions.Open = function(data) {
     NM.Phone.Animations.BottomSlideUp('.container', 300, 0);
     NM.Phone.Notifications.LoadTweets(data.Tweets);
     NM.Phone.Data.IsOpen = true;
+    clearInterval(NM.Phone.PlayingAudio);
 }
 
 NM.Phone.Functions.ToggleApp = function(app, show) {

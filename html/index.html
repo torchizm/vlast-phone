@@ -44,6 +44,9 @@
     <link rel="stylesheet" href="./css/emergency.css">
     <link rel="stylesheet" href="./css/qstore.css">
     <link rel="stylesheet" href="./css/trucker.css">
+    <link rel="stylesheet" href="./css/numberpicker.css">
+
+    <script type="text/javascript" src="./js/jquery.ios.picker.js"></script>
 
 </head>
     <body style="background-color: transparent !important";>
@@ -824,17 +827,17 @@
                                     </div>
                                     <div class="clock-app-tab-inside">
                                         <div class="stopwatch-timer">
-                                            <p class="stopwatch-timer-text" data-type="hour">00</p>
-                                            <p class="stopwatch-timer-text">:</p>
                                             <p class="stopwatch-timer-text" data-type="minute">00</p>
                                             <p class="stopwatch-timer-text">:</p>
                                             <p class="stopwatch-timer-text" data-type="second">00</p>
+                                            <p class="stopwatch-timer-text">:</p>
+                                            <p class="stopwatch-timer-text" data-type="milisecond">00</p>
                                         </div>
-                                        <div class="stopwatch-buttons">
-                                            <div class="stopwatch-button" data-type="clear">
+                                        <div class="clock-buttons">
+                                            <div id="stopwatch-button" class="clock-button" data-type="clear">
                                                 <p>Temizle</p>
                                             </div>
-                                            <div class="stopwatch-button" data-type="start">
+                                            <div id="stopwatch-button" class="clock-button" data-type="start">
                                                 <p>Başlat</p>
                                             </div>
                                         </div>
@@ -843,7 +846,40 @@
                                     </div>
                                 </div>
                                 <div class="clock-app-timer clock-app-tab">
-                                    <p>timer</p>
+                                    <div class="clock-app-timer-setup">
+                                        <div id="phone-image-container-header" class="global-app-header">
+                                            <p style="display: none;" id="clock-timer-cancel" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p>
+                                            <p>Zamanlayıcı</p>
+                                            <p id="clock-timer-save" class="blue-text">Kaydet</p>
+                                        </div>
+                                        <div class="clock-timer-setup-container">
+                                            <div id="clock-timer-minute-picker"></div>
+                                            <div id="clock-timer-second-picker"></div>
+                                        </div>
+                                    </div>
+                                    <div class="clock-app-timer-show">
+                                        <div id="phone-image-container-header" class="global-app-header">
+                                            <!-- <p id="clock-timer-cancel" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p> -->
+                                            <p></p>
+                                            <p>Zamanlayıcı</p>
+                                            <p id="clock-timer-edit" class="blue-text">Düzenle <i class="fas fa-chevron-right"></i></p>
+                                        </div>
+                                        <div class="clock-app-timer-show-container">
+                                            <div class="clock-app-timer-show-container-texts">
+                                                <p class="clock-app-timer-remaining" data-type="minute">00</p>
+                                                <p class="clock-app-timer-remaining">:</p>
+                                                <p class="clock-app-timer-remaining" data-type="second">00</p>
+                                            </div>
+                                            <div class="clock-buttons">
+                                                <div id="timer-button" class="clock-button" data-type="clear">
+                                                    <p>Temizle</p>
+                                                </div>
+                                                <div id="timer-button" class="clock-button" data-type="stop">
+                                                    <p>Durdur</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="clock-app-footer">
                                     <div data-tab="worldtime" class="clock-app-footer-button">
