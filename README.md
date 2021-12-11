@@ -4,13 +4,33 @@
 > Requirements
 * [screenshot-basic](https://github.com/citizenfx/screenshot-basic)
 
-### Instaliation:
-* If not exists, add this code to qb-core/server/player.lua > CheckPlayerDataFunctions
+### Installation:
+* If not exists, add this codes to qb-core/server/player.lua > CheckPlayerData function
 ```lua
 PlayerData.metadata["phonedata"] = PlayerData.metadata["phonedata"] ~= nil and PlayerData.metadata["phonedata"] or {
         SerialNumber = QBCore.Player.CreateSerialNumber(),
         InstalledApps = {},
     }
+
+PlayerData.metadata["phone"] = PlayerData.metadata["phone"] ~= nil and PlayerData.metadata["phone"] or {}
+```
+
+* If not exists, Add this code as a new function to qb-core/server/player.lua
+```lua
+QBCore.Player.CreateSerialNumber = function()
+    local UniqueFound = false
+    local SerialNumber = nil
+
+    while not UniqueFound do
+        SerialNumber = math.random(11111111, 99999999)
+        QBCore.Functions.ExecuteSql(true, "SELECT COUNT(*) as count FROM `players` WHERE `metadata` LIKE '%"..SerialNumber.."%'", function(result)
+            if result[1].count == 0 then
+                UniqueFound = true
+            end
+        end)
+    end
+    return SerialNumber
+end
 ```
 
 
