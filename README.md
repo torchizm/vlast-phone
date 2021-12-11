@@ -109,6 +109,10 @@ end
 ![Zoom](/readme/zoom_2.png)
 -----
 ### Clock
+> Number picker is edited and fixed version of [jquery.ios.picker.3d.js](https://github.com/ashvin777/jquery.ios.picker.3d.js) by me
+
 ![Stopwatch](/readme/clock_1.png)
-![Stopwatch](/readme/clock_2.png)
+![World Time](/readme/clock_2.png)
+![Timer](/readme/clock_3.png)
+![Timer](/readme/clock_4.png)
 -----
