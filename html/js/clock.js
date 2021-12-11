@@ -1,8 +1,12 @@
 var Foccusedclock = null;
 var Stopwatch = {
     "Enabled": false,
+    Interval: undefined
 }
-Stopwatch.Interval = undefined;
+var Worldtime = {
+    "Showing": false,
+    Interval: undefined
+}
 
 $(document).on('click', '#clear-clock', function(event){
     $(".transactions-item-div").remove()
@@ -31,6 +35,16 @@ $(document).on('click', '.clock-app-footer-button', function(e){
 
         $(PreviousObject).removeClass('clock-app-footer-selected');
         $(PressedObject).addClass('clock-app-footer-selected');
+        
+        if (PressedTab == "worldtime") {
+            Worldtime.Interval = setInterval(UpdateWorldTimes, 5000);
+        } else {
+            if (Worldtime.Interval != undefined) {
+                clearInterval(Worldtime.Interval);
+                Worldtime.Interval = undefined;
+            }
+        }
+        
         CurrentTab = PressedTab;
     }
 })
@@ -40,6 +54,12 @@ NM.Phone.Functions.SetupClock = function(data) {
     $(".clock-app-loaded").css({"display":"block"}).animate({"padding-left":"0"}, 0);
     $(".clock-app-accounts").animate({left:0+"vh"}, 0);
     $(".clock-app-stopwatch").css("display", "flex");
+
+    $('.clock-app-worldtime').find('.world-time').each(function() {
+        var timeZone = $(this).attr("data-time-zone");
+        var timeZoneString = $(this).attr("data-string")
+        SetupClocks(timeZoneString, timeZone, this);
+    });
 }
 
 $(document).on('click', '.clock-set-alarm-button', function(e){
@@ -139,3 +159,35 @@ function StartStopwatch() {
     minuteElement.html(minute);
     hourElement.html(hour);
 };
+
+function SetupClocks(timeZoneString, timeZone, t) {
+    var timeString = new Intl.DateTimeFormat('en-US', {
+        timeZone: timeZone,
+        dateStyle: 'full',
+        timeStyle: 'long'
+    }).format();
+
+    timeString = timeString.split(' ');
+    var time = `${timeString[5].split(':')[0]}:${timeString[5].split(':')[1]}`;
+    var meridian = timeString[6];
+    var offset = timeString[7];
+    
+    $(t).html(`
+        <div class="world-time-info">
+            <p class="world-time-info-clock">${timeZoneString}</p>
+            <p>Bugün, ${offset}</p>
+        </div>
+        <div class="world-time-clock">
+            <p>${time}</p>
+            <p>${meridian}</p>
+        </div>
+    `);
+}
+
+function UpdateWorldTimes() {
+    $('.clock-app-worldtime').find('.world-time').each(function() {
+        var timeZone = $(this).attr("data-time-zone");
+        var timeZoneString = $(this).attr("data-string")
+        SetupClocks(timeZoneString, timeZone, this);
+    });
+}

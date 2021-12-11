@@ -192,3 +192,61 @@
     background-color: rgba(0, 0, 0, 0.664);
     border-radius: 1vh 0 0 1vh;
 }
+
+.world-time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+}
+
+.world-time:last-child {
+    border-bottom: 1px solid var(--main-black);
+}
+
+.world-time::after {
+    content: "";
+    width: 100%;
+    margin-top: 22%;
+    background: var(--main-black);
+    position: absolute;
+    color: black;
+    height: 1px;
+}
+
+.world-time:last-child::after {
+    display: none;
+}
+
+.world-time p {
+    margin: 0;
+}
+
+.world-time-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.world-time-info p:first-child {
+    font-size: 22px;
+}
+
+.world-time-info p:last-child {
+    color: var(--main-dark-gray);
+    font-family: 'SF Pro Display Light';
+    font-size: 12px;
+}
+
+.world-time-clock {
+    display: flex;
+    align-items: flex-end;
+}
+
+.world-time-clock p:first-child {
+    font-size: 48px;
+}
+
+.world-time-clock p:last-child {
+    font-size: 22px;
+    padding-bottom: 10px;
+}

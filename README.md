@@ -110,4 +110,5 @@ end
 -----
 ### Clock
 ![Stopwatch](/readme/clock_1.png)
+![Stopwatch](/readme/clock_2.png)
 -----
