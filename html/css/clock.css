@@ -17,6 +17,7 @@
     height: 100%;
     flex-direction: column;
     color: var(--main-color);
+    background: var(--second-background-color);
 }
 
 .clock-app {
@@ -25,7 +26,7 @@
     height: 107.5%;
     width: 100%;
     color: var(--main-color);
-    background: var(--main-darker-background-color);
+    background: var(--second-background-color);
     overflow: hidden;
 }
 
@@ -41,7 +42,7 @@
     top: 8px;
     height: 33px;
     margin-bottom: 8px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--main-black);
 }
 
 .clock-app-tab-header {
@@ -52,7 +53,7 @@
     font-weight: bold;
     font-size: 16px;
     border-bottom: 1px solid var(--calculator-button-hover);
-    background: var(--main-darker-background-color);
+    background: var(--second-background-color);
 }
 
 .clock-app-active {
@@ -66,7 +67,8 @@
     justify-content: center;
     gap: 16px;
     text-align: center;
-    padding: 0 16px;
+    padding: 8px 16px;
+    border-top: 1px solid var(--main-black)
 }
 
 .clock-app-footer i {
@@ -119,17 +121,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 64px;
+    padding-top: 64px;
     font-size: 64px;
+    background: var(--main-background-color);
     font-family: 'SF Pro Display Regular';
 }
 
 .clock-buttons {
     display: flex;
     align-items: center;
-    margin: 0 26px;
+    background: var(--main-background-color);
+    padding: 0 26px 16px 26px;
     justify-content: space-between;
     font-size: 14px;
+    border-bottom: 1px solid var(--main-black);
 }
 
 .clock-button {
@@ -170,20 +175,23 @@
 
 .stopwatch-lap-list {
     overflow: auto;
-    max-height: 24vh;
-    margin: 32px 0 0 0;
+    max-height: 26vh;
 }
 
-.stopwatch-lap:first-child {
-    border-top: 1px solid var(--main-black);
+.stopwatch-lap:nth-child(even) {
+    background: var(--main-background-color);
 }
 
 .stopwatch-lap {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--main-black);
     padding: 0 16px;
+}
+
+.stopwatch-lap:last-child {
+    border-bottom: none;
 }
 
 .stopwatch-lap p {
@@ -200,7 +208,7 @@
 }
 
 .stopwatch-lap-list::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.664);
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 1vh 0 0 1vh;
 }
 
@@ -209,6 +217,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 32px;
+    background: var(--main-background-color);
 }
 
 .world-time:last-child {
@@ -264,6 +273,7 @@
 
 .clock-timer-setup-container {
     display: flex;
+    border-bottom: 1px solid var(--main-black);
 }
 
 .clock-app-timer-setup {
@@ -294,7 +304,8 @@
 
 .clock-app-timer-show-container-texts {
     display: flex;
-    margin-top: 64px;
+    background: var(--main-background-color);
+    padding-top: 64px;
     font-size: 64px;
     align-items: center;
     justify-content: center;

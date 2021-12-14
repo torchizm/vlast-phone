@@ -87,7 +87,7 @@ $(document).on('click', '#stopwatch-button[data-type="lap"]', function(e){
         class: "stopwatch-lap",
         html: `
             <p>Tur ${lap}</p>
-            <p>${minute}:${second}:${milisecond}</p>
+            <p>${minute}:${second}.${milisecond}</p>
         `
     }).appendTo(".stopwatch-lap-list");
 });
@@ -241,8 +241,12 @@ $('#clock-timer-save').click(function() {
     if (Timer.Minute == undefined) {
         Timer.Minute = 0;
     }
+    if (Timer.Second == undefined) {
+        Timer.Second = 0;
+    }
 
-    if (Timer.Second == 0 || Timer.Second == 1 || Timer.Second == undefined) {
+    console.log(Number(Timer.Minute), Number(Timer.Second), IsTimerValid(Number(Timer.Minute), Number(Timer.Second)))
+    if (IsTimerValid(Number(Timer.Minute), Number(Timer.Second)) === false) {
         NM.Phone.Notifications.Add("clock", "Saat", `Daha sonraki zamanlar için zamanlayıcı kurabilirsiniz`, "color: #ff7e1496;", 1500);
         return;
     }
@@ -250,12 +254,15 @@ $('#clock-timer-save').click(function() {
     $(`#timer-button[data-type="start"] p`).html('Durdur');
     $(`#timer-button[data-type="start"]`).attr('data-type', 'stop');
 
+    NM.Phone.Notifications.Add("clock", "Saat", `${Timer.Minute} dakika ${Timer.Second} saniye sonrası için zamanlayıcı kuruldu`, "color: #ff7e1496;", 1500);
+    
     UpdateTimer();
     Timer.Interval = setInterval(UpdateTimer, 1000);
     
     SwitchTimerPage('.clock-app-timer-setup', '.clock-app-timer-show', 100);
-    NM.Phone.Notifications.Add("clock", "Saat", `${Timer.Minute} dakika ${Timer.Second} saniye sonrası için zamanlayıcı kuruldu`, "color: #ff7e1496;", 1500);
 });
+
+var IsTimerValid = (minute, second) => (minute != 0 || second > 1)
 
 $('#clock-timer-edit').click(function() {
     $('#clock-timer-cancel').css("display", "block");
