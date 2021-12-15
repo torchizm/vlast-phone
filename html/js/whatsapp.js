@@ -197,14 +197,6 @@ $(document).on('click', '#whatsapp-openedchat-send', function(e){
     var Message = $("#whatsapp-openedchat-message").val();
 
     if (Message !== null && Message !== undefined && Message !== "") {
-        var msgdata = JSON.stringify({
-            ChatNumber: OpenedChatData.number,
-            ChatDate: GetCurrentDateKey(),
-            ChatMessage: Message,
-            ChatTime: FormatMessageTime(),
-            ChatType: "message",
-        });
-
         $.post('http://qb-phone/SendMessage', JSON.stringify({
             ChatNumber: OpenedChatData.number,
             ChatDate: GetCurrentDateKey(),

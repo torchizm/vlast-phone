@@ -830,7 +830,6 @@ function ReorganizeChats(key)
     ReorganizedChats[1] = PhoneData.Chats[key]
     for k, chat in pairs(PhoneData.Chats) do
         if k ~= key then
-            print(k, key)
             table.insert(ReorganizedChats, chat)
         end
     end
@@ -840,7 +839,6 @@ end
 
 RegisterNetEvent('qb-phone:client:ReceiveMessage')
 AddEventHandler('qb-phone:client:ReceiveMessage', function(data)
-    print("data", json.encode(data))
     local ChatMessage = data.ChatMessage
     local ChatDate = data.ChatDate
     local ChatNumber = data.ChatNumber
@@ -853,9 +851,7 @@ AddEventHandler('qb-phone:client:ReceiveMessage', function(data)
     local ChatKey = GetKeyByDate(NumberKey, ChatDate)
 
     if PhoneData.Chats[NumberKey] ~= nil then
-        print("here 1")
         if(PhoneData.Chats[NumberKey].messages == nil) then
-            print("here 2")
             PhoneData.Chats[NumberKey].messages = {}
         end
         if PhoneData.Chats[NumberKey].messages[ChatKey] ~= nil then
