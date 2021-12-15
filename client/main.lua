@@ -489,6 +489,8 @@ AddEventHandler("qb-phone:refresh", function()
             PhoneData.CryptoTransactions = pData.CryptoTransactions
         end
 
+        PhoneData.Alarms = PlayerData.metadata["phonealarms"]
+
         SendNUIMessage({ 
             action = "LoadPhoneData", 
             PhoneData = PhoneData, 
@@ -585,6 +587,10 @@ function LoadPhone()
 
         if pData.CryptoTransactions ~= nil and next(pData.CryptoTransactions) ~= nil then
             PhoneData.CryptoTransactions = pData.CryptoTransactions
+        end
+
+        if PhoneData.PlayerData.metadata["phonealarms"] ~= nil then 
+            PhoneData.Alarms = PhoneData.PlayerData.metadata["phonealarms"]
         end
 
         SendNUIMessage({ 
@@ -1708,8 +1714,11 @@ RegisterNUICallback('TransferMoney', function(data, cb)
     end
 end)
 
-RegisterNUICallback("SetAlarm", function(data)
+RegisterNUICallback("AddAlarm", function(data)
+    data.id = #PhoneData.Alarms + 1
     PhoneData.Alarms[#PhoneData.Alarms + 1] = data.clock
+    TriggerServerEvent('qb-phone:server:UpdateAlarms', PhoneData.Alarms)
+    PlayerData.metadata["phonealarms"] = PhoneData.Alarms
 end)
 
 RegisterNUICallback("GetAlarmData", function(data, cb)
@@ -1720,26 +1729,28 @@ RegisterNUICallback("DeleteAlarm", function(data)
     if PhoneData.Alarms[tonumber(data.id) + 1] then
         table.remove(PhoneData.Alarms, tonumber(data.id) + 1)
     end
+    TriggerServerEvent('qb-phone:server:UpdateAlarms', PhoneData.Alarms)
+    PlayerData.metadata["phonealarms"] = PhoneData.Alarms
 end)
 
-Citizen.CreateThread(function()
-    while true do
-        local a, b, c, d, e = GetLocalTime()
-        d = d + 3
-        if d < 10 then
-            d = "0"..d
-        end
-        if e < 10 then
-            e = "0"..e
-        end
-        for i = 1, #PhoneData.Alarms do
-            if PhoneData.Alarms[i] == d..":"..e then
-                TriggerEvent("qb-phone:PlayAlarmSound")
-            end
-        end
-        Citizen.Wait(5000)
-    end
-end)
+-- Citizen.CreateThread(function()
+--     while true do
+--         local a, b, c, d, e = GetLocalTime()
+--         d = d + 3
+--         if d < 10 then
+--             d = "0"..d
+--         end
+--         if e < 10 then
+--             e = "0"..e
+--         end
+--         for i = 1, #PhoneData.Alarms do
+--             if PhoneData.Alarms[i] == d..":"..e then
+--                 TriggerEvent("qb-phone:PlayAlarmSound")
+--             end
+--         end
+--         Citizen.Wait(5000)
+--     end
+-- end)
 
 RegisterNetEvent("qb-phone:PlayAlarmSound")
 AddEventHandler("qb-phone:PlayAlarmSound", function()

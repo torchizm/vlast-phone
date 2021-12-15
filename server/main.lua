@@ -578,6 +578,13 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetPicture', function(source, c
     end)
 end)
 
+
+RegisterServerEvent('qb-phone:server:UpdateAlarms')
+AddEventHandler('qb-phone:server:UpdateAlarms', function(data)
+    local player = QBCore.Functions.GetPlayer(source)
+    player.Functions.SetMetaData("phonealarms", data)
+end)
+
 RegisterServerEvent('qb-phone:server:SetPhoneAlerts')
 AddEventHandler('qb-phone:server:SetPhoneAlerts', function(app, alerts)
     local src = source

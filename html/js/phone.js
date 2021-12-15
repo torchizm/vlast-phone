@@ -229,7 +229,7 @@ NM.Phone.Functions.LoadContacts = function(Contacts) {
             if (contact.status) {
                 ContactElement = '<div class="phone-contact" data-contactid="'+i+'">'+letterTag+'<div class="phone-contact-name">'+contact.name+'</div></div>'
             }
-            
+
             $(ContactsObject).append(ContactElement);
             $("[data-contactid='"+i+"']").data('contactData', contact);
         });

@@ -357,7 +357,7 @@ NM.Phone.Functions.SetupChatMessages = function(cData, NewChatData) {
 
         $(".whatsapp-openedchat-name").html("<p>"+cData.name+"</p>");
         $(".whatsapp-openedchat-messages").html("");
-        
+
         if (isNumeric(cData.number) && cData.number == cData.name) {
             let addContactElement = `<div class="add-contact-container">
                                         <span>Bu kullanıcı kişi listenizde yok</span>

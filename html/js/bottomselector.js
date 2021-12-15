@@ -18,14 +18,13 @@ function OpenSelector(title, items, cb) {
     }).appendTo(itemsElement);
 
     items.forEach(item => {
-        console.log("item", item)
         var itemElement = $('<div/>', {
             class: "phone-bottom-selector-item",
-            html: item
-        }).attr("data-value", item);
+            html: item.value
+        }).attr("data-value", item.key);
 
         $(itemElement).click(function() {
-            cb(item);
+            cb(item.key);
 
             $('.gray-background').fadeOut(200);
             $('.phone-bottom-selector').animate({'bottom': '-100%'}, 200, function() {

@@ -801,9 +801,19 @@
                                         <div class="global-app-header">
                                             <p id="clock-alarm-edit" class="blue-text">Düzenle</p>
                                             <p style="grid-column: 2;">Alarm</p>
-                                            <p id="clock-alarm-add" class="blue-text">Ekle <i class="fas fa-chevron-right"></i></p>
+                                            <p id="clock-alarm-add" class="blue-text"><i class="fas fa-chevron-right"></i></p>
                                         </div>
                                         <div class="clock-app-alarm-lists">
+                                            <div class="clock-app-alarm-list-item">
+                                                <div class="clock-app-alarm-list-item-description">
+                                                    <span>19:45</span>
+                                                    <div class="switch__container">
+                                                        <input id="switch-shadow" class="switch switch--shadow" type="checkbox">
+                                                        <label for="switch-shadow"></label>
+                                                    </div>
+                                                </div>
+                                                <span class="alarm-cycle-text">Alarm, Her gün</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="clock-app-alarm-page clock-app-alarm-add">
@@ -813,18 +823,28 @@
                                             <p id="clock-alarm-save" class="blue-text">Kaydet</p>
                                         </div>
                                         <div class="clock-timer-setup-container">
+                                            <div id="clock-alarm-hour-picker"></div>
                                             <div id="clock-alarm-minute-picker"></div>
-                                            <div id="clock-alarm-second-picker"></div>
                                         </div>
                                         <div class="clock-add-alarm-settings">
-                                            <div id="clock-alarm-repeat-option" class="settings-app-tab secondTab nomargin" style="border-top: 1px solid var(--border-gray);">
+                                            <div id="clock-alarm-repeat-option" data-value="everyday" class="settings-app-tab secondTab nomargin" style="border-top: 1px solid var(--border-gray);">
                                                 <div class="settings-tab-title"><p>Tekrarla</p></div>
                                                 <div class="settings-tab-description"><p>Her Gün </p> <i class="fas fa-chevron-right"></i></div>
                                             </div>
-                                            <div class="settings-app-tab secondTab nomargin" style="border-bottom: 1px solid var(--border-gray);">
+                                            <div id="clock-alarm-label-option" data-value="Alarm" class="settings-app-tab secondTab nomargin" style="border-bottom: 1px solid var(--border-gray);">
                                                 <div class="settings-tab-title"><p>Etiket</p></div>
-                                                <div class="settings-tab-description"><p>Sabah Alarmı </p> <i class="fas fa-chevron-right"></i></div>
+                                                <div class="settings-tab-description"><p>Alarm </p> <i class="fas fa-chevron-right"></i></div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="clock-app-alarm-page clock-app-alarm-add-label">
+                                        <div id="phone-image-container-header" class="global-app-header">
+                                            <p id="clock-alarm-add-label-cancel" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p>
+                                            <p>Alarm Etiketi</p>
+                                            <p id="clock-alarm-add-label-save" class="blue-text">Kaydet</p>
+                                        </div>
+                                        <div class="clock-app-alarm-add-label-container">
+                                            <input id="clock-alarm-label-option-input" type="text" placeholder="Alarm"></input>
                                         </div>
                                     </div>
                                 </div>

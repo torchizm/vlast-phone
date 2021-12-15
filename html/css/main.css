@@ -723,6 +723,7 @@ body {
 .phone-bottom-selector-item {
     padding: 12px;
     width: 100%;
+    border-top: 1px solid var(--second-background-color);
 }
 
 .phone-bottom-selector-item:last-child {
