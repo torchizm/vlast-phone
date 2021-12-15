@@ -192,7 +192,7 @@ function UpdateWorldTimes() {
 }
 
 $(document).ready(function () {
-    var pickers = ["#clock-timer-minute-picker", "#clock-timer-second-picker"];
+    var pickers = ["#clock-timer-minute-picker", "#clock-timer-second-picker", "#clock-alarm-minute-picker", "#clock-alarm-second-picker"];
     var numbers = [];
     for (var i = 0; i < 60; i++) {
         numbers.push(i);
@@ -346,5 +346,25 @@ $(document).on('click', '#timer-button[data-type="clear"]', function(e){
     $(`.clock-app-timer-remaining[data-type="minute"],
        .clock-app-timer-remaining[data-type="second"]`).each(function() {
         $(this).html('00');     
+    });
+});
+
+$("#clock-alarm-add").click(function() {
+    SwitchTimerPage(".clock-app-alarm-show", ".clock-app-alarm-add", -100);
+});
+
+$("#clock-alarm-cancel").click(function() {
+    SwitchTimerPage(".clock-app-alarm-add", ".clock-app-alarm-show", 100);
+});
+$("#clock-alarm-save").click(function() {
+    SwitchTimerPage(".clock-app-alarm-add", ".clock-app-alarm-show", 100);
+});
+
+$('#clock-alarm-repeat-option').click(function() {
+    var Options = ["Her Gün", "Hafta Sonu", "Hafta İçi"];
+
+    OpenSelector("Alarm Tekrarı", Options, function(val) {
+        $('#clock-alarm-repeat-option').attr("data-selected", val);
+        $('#clock-alarm-repeat-option .settings-tab-description p').html(val);
     });
 });

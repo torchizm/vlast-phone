@@ -675,3 +675,75 @@ body {
 }
 
 /* Phone Image Zoom END */
+
+/* Bottom Selector START */
+
+.phone-bottom-selector {
+    position: absolute;
+    height: fit-content;
+    width: 90%;
+    left: 5%;
+    bottom: -100%;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    color: cornflowerblue;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'SF Pro Display Regular';
+    z-index: 5100;
+}
+
+.phone-bottom-selector div {
+    text-align: center;
+    background: var(--main-background-color);
+}
+
+.phone-bottom-selector-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 8px 0;
+    border-radius: 12px / 16px;
+    transition: all 100ms ease-in-out;
+}
+
+.phone-bottom-selector-item:hover, .phone-bottom-selector-close-button:hover {
+    background: var(--second-background-color);
+    transition: all 100ms ease-in-out;
+}
+
+.phone-bottom-selector-title {
+    color: darkslategray;
+    font-size: 12px;
+    padding: 8px;
+}
+
+.phone-bottom-selector-item {
+    padding: 12px;
+    width: 100%;
+}
+
+.phone-bottom-selector-item:last-child {
+    border-radius: 0 0 16px 16px;
+}
+
+.phone-bottom-selector-close-button {
+    text-align: center;
+    padding: 12px;
+    border-radius: 12px / 16px;
+    transition: all 100ms ease-in-out;
+}
+
+.gray-background {
+    display: none;
+    position: absolute;
+    background: black;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    z-index: 5000;
+}
+
+/* Bottom Selector END */

@@ -357,6 +357,17 @@ NM.Phone.Functions.SetupChatMessages = function(cData, NewChatData) {
 
         $(".whatsapp-openedchat-name").html("<p>"+cData.name+"</p>");
         $(".whatsapp-openedchat-messages").html("");
+        
+        if (isNumeric(cData.number) && cData.number == cData.name) {
+            let addContactElement = `<div class="add-contact-container">
+                                        <span>Bu kullanıcı kişi listenizde yok</span>
+                                        <div id="add-new-contact-button">
+                                            <span>Kişi Ekle</span>
+                                        </div>
+                                    </div>`;
+            
+            $(".whatsapp-openedchat-messages").append(addContactElement);
+        }
 
         $.each(cData.messages, function(i, chat){
 
@@ -409,17 +420,6 @@ NM.Phone.Functions.SetupChatMessages = function(cData, NewChatData) {
         var ChatDiv = '<div class="whatsapp-openedchat-messages-'+DateString+' unique-chat"><div class="whatsapp-openedchat-date">BUGÜN</div></div>';
 
         $(".whatsapp-openedchat-messages").append(ChatDiv);
-    }
-
-    if (isNumeric(cData.number) && cData.number == cData.name) {
-        let addContactElement = `<div class="add-contact-container">
-                                    <span>Bu kullanıcı kişi listenizde yok</span>
-                                    <div id="add-new-contact-button">
-                                        <span>Kişi Ekle</span>
-                                    </div>
-                                </div>`;
-        
-        $(".whatsapp-openedchat-messages").append(addContactElement);
     }
 
     $('.whatsapp-openedchat-messages').animate({scrollTop: 9999}, 1);

@@ -47,6 +47,7 @@
     <link rel="stylesheet" href="./css/numberpicker.css">
 
     <script type="text/javascript" src="./js/jquery.ios.picker.js"></script>
+    <script type="text/javascript" src="./js/bottomselector.js"></script>
 
 </head>
     <body style="background-color: transparent !important";>
@@ -81,8 +82,15 @@
                     <div class="phone-notification-background-blur"></div>
                 </div>
 
+                <div class="phone-bottom-selector">
+                    <div class="phone-bottom-selector-items">
+                        <div class="phone-bototm-selector-title">Something</div>
+                    </div>
+                    <div class="phone-bottom-selector-close-button">Kapat</div>
+                </div>
+                <div class="gray-background"></div>
+
                 <!-- Phone Big Image -->
-                <!-- DOING NOW -->
                 <div class="phone-image-container">
                     <div class="image-rotate-cover"></div>
                     <div id="phone-image-container-header" class="global-app-header" style="margin-bottom: 32px; z-index: 50;">
@@ -772,36 +780,6 @@
                                 <div class="calculator-button" onclick="CalculatorAddKey('.')"><span>.</span></div>
                                 <div class="calculator-button calculator-operator" onclick="CalculatorCalculate()"><span>=</span></div>
                             </div>
-                            <!-- <table>
-                                <tr>
-                                    <td><input class="calculator-button" type="button" value="C" onclick="hepsiniSil()"></td>
-                                    <td><input class="calculator-button" type="button" value="*" onclick="sayiekle('*')"></td>
-                                    <td><input class="calculator-button" type="button" value="/" onclick="sayiekle('/')"></td>
-                                    <td><input class="calculator-button" type="button" value="<" onclick="sil()"></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="calculator-button" type="button" value="7" onclick="sayiekle(7)"></td>
-                                    <td><input class="calculator-button" type="button" value="8" onclick="sayiekle(8)"></td>
-                                    <td><input class="calculator-button" type="button" value="9" onclick="sayiekle(9)"></td>
-                                    <td><input class="calculator-button" type="button" value="-" onclick="sayiekle('-')"></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="calculator-button" type="button" value="4" onclick="sayiekle(4)"></td>
-                                    <td><input class="calculator-button" type="button" value="5" onclick="sayiekle(5)"></td>
-                                    <td><input class="calculator-button" type="button" value="6" onclick="sayiekle(6)"></td>
-                                    <td><input class="calculator-button" type="button" value="+" onclick="sayiekle('+')"></td>
-                                </tr>
-                                <tr>
-                                    <td> <input class="calculator-button" type="button" value="1" onclick="sayiekle(1)"> </td>
-                                    <td> <input class="calculator-button" type="button" value="2" onclick="sayiekle(2)"> </td>
-                                    <td> <input class="calculator-button" type="button" value="3" onclick="sayiekle(3)"></td>
-                                    <td rowspan="2"> <input class="calculator-button" style="height: 106px" type="button" value="=" onclick="sonuc('=')"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"> <input class="calculator-button" style="width: 106px" type="button" value="0" onclick="sayiekle(0)"> </td>
-                                    <td> <input class="calculator-button" type="button" value="." onclick="sayiekle('.')"> </td>
-                                </tr>
-                            </table> -->
                         </div>
                     </div>
 
@@ -819,7 +797,36 @@
                                     <div class="world-time" data-string="New York" data-time-zone="America/New_York"></div>
                                 </div>
                                 <div class="clock-app-alarm clock-app-tab">
-                                    <p>alarm</p>
+                                    <div class="clock-app-alarm-page clock-app-alarm-show">
+                                        <div class="global-app-header">
+                                            <p id="clock-alarm-edit" class="blue-text">Düzenle</p>
+                                            <p style="grid-column: 2;">Alarm</p>
+                                            <p id="clock-alarm-add" class="blue-text">Ekle <i class="fas fa-chevron-right"></i></p>
+                                        </div>
+                                        <div class="clock-app-alarm-lists">
+                                        </div>
+                                    </div>
+                                    <div class="clock-app-alarm-page clock-app-alarm-add">
+                                        <div id="phone-image-container-header" class="global-app-header">
+                                            <p id="clock-alarm-cancel" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p>
+                                            <p style="grid-column: 2;">Alarm Ekle</p>
+                                            <p id="clock-alarm-save" class="blue-text">Kaydet</p>
+                                        </div>
+                                        <div class="clock-timer-setup-container">
+                                            <div id="clock-alarm-minute-picker"></div>
+                                            <div id="clock-alarm-second-picker"></div>
+                                        </div>
+                                        <div class="clock-add-alarm-settings">
+                                            <div id="clock-alarm-repeat-option" class="settings-app-tab secondTab nomargin" style="border-top: 1px solid var(--border-gray);">
+                                                <div class="settings-tab-title"><p>Tekrarla</p></div>
+                                                <div class="settings-tab-description"><p>Her Gün </p> <i class="fas fa-chevron-right"></i></div>
+                                            </div>
+                                            <div class="settings-app-tab secondTab nomargin" style="border-bottom: 1px solid var(--border-gray);">
+                                                <div class="settings-tab-title"><p>Etiket</p></div>
+                                                <div class="settings-tab-description"><p>Sabah Alarmı </p> <i class="fas fa-chevron-right"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="clock-app-stopwatch clock-app-tab" style="display: flex;">
                                     <div class="clock-app-tab-header">
@@ -847,7 +854,7 @@
                                 </div>
                                 <div class="clock-app-timer clock-app-tab">
                                     <div class="clock-app-timer-setup">
-                                        <div id="phone-image-container-header" class="global-app-header">
+                                        <div class="global-app-header">
                                             <p style="display: none;" id="clock-timer-cancel" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p>
                                             <p style="grid-column: 2;">Zamanlayıcı</p>
                                             <p id="clock-timer-save" class="blue-text">Kaydet</p>
@@ -858,10 +865,9 @@
                                         </div>
                                     </div>
                                     <div class="clock-app-timer-show">
-                                        <div id="phone-image-container-header" class="global-app-header">
+                                        <div class="global-app-header">
                                             <!-- <p id="clock-timer-cancel" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p> -->
-                                            <p></p>
-                                            <p>Zamanlayıcı</p>
+                                            <p style="grid-column: 2;">Zamanlayıcı</p>
                                             <p id="clock-timer-edit" class="blue-text">Düzenle <i class="fas fa-chevron-right"></i></p>
                                         </div>
                                         <div class="clock-app-timer-show-container">
