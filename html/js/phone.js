@@ -188,10 +188,9 @@ $(document).on('click', ".phone-keypad-key-call", function(e){
 
 let ContactLetters = ["#"];
 
-NM.Phone.Functions.LoadContacts = function(myContacts) {
+NM.Phone.Functions.LoadContacts = function(Contacts) {
     var ContactsObject = $(".phone-contact-list");
     $(ContactsObject).html("");
-    var TotalContacts = 0;
     ContactLetters = [];
 
     $(".phone-contacts").hide();
@@ -207,10 +206,10 @@ NM.Phone.Functions.LoadContacts = function(myContacts) {
         });
     });
 
-    if (myContacts !== null) {
+    if (Contacts !== null) {
         $(ContactsObject).append(`<div class="phone-letter-hr"><span>#</span></div>`);
 
-        $.each(myContacts, function(i, contact){
+        $.each(Contacts, function(i, contact){
             if (!ContactLetters.some(x => x == contact.name[0].toUpperCase())) {
                 let Letter = contact.name[0].toUpperCase()
                 let LetterElement = `<div class="phone-letter-hr"><span>${Letter}</span></div>`;
@@ -221,19 +220,19 @@ NM.Phone.Functions.LoadContacts = function(myContacts) {
                 }
             }
 
-            // var ContactElement = '<div class="phone-contact" data-contactid="'+i+'"><div class="phone-contact-firstletter" style="background-color: #e74c3c;">'+((contact.name).charAt(0)).toUpperCase()+'</div><div class="phone-contact-name">'+contact.name+'</div><div class="phone-contact-actions"><i class="fas fa-sort-down"></i></div><div class="phone-contact-action-buttons"> <i class="fas fa-phone-volume" id="phone-start-call"></i> <i class="whatsapp" id="new-chat-phone" style="font-size: 2.5vh;"></i> <i class="fas fa-user-edit" id="edit-contact"></i> </div></div>'
-            var ContactElement = '<div class="phone-contact" data-contactid="'+i+'"><div class="phone-contact-firstletter" style="background-color: #e74c3c;">'+((contact.name).charAt(0)).toUpperCase()+'</div><div class="phone-contact-name">'+contact.name+'</div></div>'
-            if (contact.status) {
-                // ContactElement = '<div class="phone-contact" data-contactid="'+i+'"><div class="phone-contact-firstletter" style="background-color: #2ecc71;">'+((contact.name).charAt(0)).toUpperCase()+'</div><div class="phone-contact-name">'+contact.name+'</div><div class="phone-contact-actions"><i class="fas fa-sort-down"></i></div><div class="phone-contact-action-buttons"> <i class="fas fa-phone-volume" id="phone-start-call"></i> <i class="whatsapp" id="new-chat-phone" style="font-size: 2.5vh;"></i> <i class="fas fa-user-edit" id="edit-contact"></i> </div></div>'
-                ContactElement = '<div class="phone-contact" data-contactid="'+i+'"><div class="phone-contact-firstletter" style="background-color: #2ecc71;">'+((contact.name).charAt(0)).toUpperCase()+'</div><div class="phone-contact-name">'+contact.name+'</div></div>'
+            var letterTag = `<div class="phone-contact-firstletter" style="background-color: #e74c3c;">${((contact.name).charAt(0)).toUpperCase()}</div>`
+            if (contact.image !== "nui://qb-phone/html/img/default.png") {
+                letterTag = `<div class="phone-contact-firstletter"><img class="phone-contact-firstletter-image" src="${contact.image}"></img></div>`
             }
-            TotalContacts = TotalContacts + 1
+
+            var ContactElement = '<div class="phone-contact" data-contactid="'+i+'">'+letterTag+'<div class="phone-contact-name">'+contact.name+'</div></div>'
+            if (contact.status) {
+                ContactElement = '<div class="phone-contact" data-contactid="'+i+'">'+letterTag+'<div class="phone-contact-name">'+contact.name+'</div></div>'
+            }
+            
             $(ContactsObject).append(ContactElement);
             $("[data-contactid='"+i+"']").data('contactData', contact);
         });
-        $("#total-contacts").text(TotalContacts+ " Kişi");
-    } else {
-        $("#total-contacts").text("Rehberin Boş");
     }
 };
 
