@@ -117,7 +117,7 @@ NM.Phone.Functions.LoadWhatsappChats = function(chats) {
     $(".whatsapp-chats").html("");
     $.each(chats, function(i, chat){
         var profilepicture = "./img/default.png";
-        if (chat.picture !== "default") {
+        if (chat.picture !== "default" && chat.picture !== undefined) {
             profilepicture = chat.picture
         }
         var LastMessage = NM.Phone.Functions.GetLastMessage(chat.messages);
