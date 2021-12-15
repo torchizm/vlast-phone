@@ -197,6 +197,14 @@ $(document).on('click', '#whatsapp-openedchat-send', function(e){
     var Message = $("#whatsapp-openedchat-message").val();
 
     if (Message !== null && Message !== undefined && Message !== "") {
+        var msgdata = JSON.stringify({
+            ChatNumber: OpenedChatData.number,
+            ChatDate: GetCurrentDateKey(),
+            ChatMessage: Message,
+            ChatTime: FormatMessageTime(),
+            ChatType: "message",
+        });
+
         $.post('http://qb-phone/SendMessage', JSON.stringify({
             ChatNumber: OpenedChatData.number,
             ChatDate: GetCurrentDateKey(),
@@ -411,7 +419,7 @@ NM.Phone.Functions.SetupChatMessages = function(cData, NewChatData) {
         $(".whatsapp-openedchat-messages").append(ChatDiv);
     }
 
-    if (cData.number == cData.name) {
+    if (isNumeric(cData.number) && cData.number == cData.name) {
         let addContactElement = `<div class="add-contact-container">
                                     <span>Bu kullanıcı kişi listenizde yok</span>
                                     <div id="add-new-contact-button">
@@ -424,6 +432,12 @@ NM.Phone.Functions.SetupChatMessages = function(cData, NewChatData) {
 
     $('.whatsapp-openedchat-messages').animate({scrollTop: 9999}, 1);
 }
+
+function isNumeric(str) {
+    if (typeof str != "string") return false
+    return !isNaN(str) &&
+           !isNaN(parseFloat(str))
+  }
 
 $(document).on('click', '#add-new-contact-button', function(e) {
     e.preventDefault();

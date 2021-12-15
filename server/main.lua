@@ -541,12 +541,16 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetContactPicture', function(so
     local Player = QBCore.Functions.GetPlayerByPhone(Chat.number)
 
     QBCore.Functions.ExecuteSql(false, "SELECT * FROM `players` WHERE `charinfo` LIKE '%"..Chat.number.."%'", function(result)
-        local MetaData = json.decode(result[1].metadata)
-
-        if MetaData.phone.profilepicture ~= nil then
-            Chat.picture = MetaData.phone.profilepicture
+        if (MetaData == nil) then 
+            Chat.picture = "detault"
         else
-            Chat.picture = "default"
+            local MetaData = json.decode(result[1].metadata)
+            
+            if MetaData.phone.profilepicture ~= nil then
+                Chat.picture = MetaData.phone.profilepicture
+            else
+                Chat.picture = "default"
+            end
         end
     end)
     SetTimeout(100, function()
@@ -629,7 +633,6 @@ RegisterServerEvent('qb-phone:server:EditContactNote')
 AddEventHandler('qb-phone:server:EditContactNote', function(name, number, newNote)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    print(name, number, newNote)
     QBCore.Functions.ExecuteSql(false, "UPDATE `player_contacts` SET `note` = '"..newNote.."' WHERE `citizenid` = '"..Player.PlayerData.citizenid.."' AND `name` = '"..name.."' AND `number` = '"..number.."'")
 end)
 
@@ -647,6 +650,34 @@ AddEventHandler('qb-phone:server:AddNewContact', function(name, number, iban, im
     local Player = QBCore.Functions.GetPlayer(src)
 
     QBCore.Functions.ExecuteSql(false, "INSERT INTO `player_contacts` (`citizenid`, `name`, `number`, `iban`, `image`) VALUES ('"..Player.PlayerData.citizenid.."', '"..tostring(name).."', '"..tostring(number).."', '"..tostring(iban).."', '"..tostring(image).."')")
+end)
+
+RegisterServerEvent('qb-phone:server:SendMessageToPlayer')
+AddEventHandler('qb-phone:server:SendMessageToPlayer', function(SenderNumber, TargetNumber, Message, MessageType, MessageMetaData)
+    if MessageType == nil then MessageType = "message" end
+    
+    QBCore.Functions.ExecuteSql(false, "SELECT * FROM `players` WHERE `charinfo` LIKE '%"..TargetNumber.."%'", function(data)
+        if #data == 0 then return end
+
+        local TargetData = QBCore.Functions.GetPlayerByCitizenId(data[1].citizenid)
+
+        if TargetData ~= nil then
+            local MessageData = {
+                ChatMessage = Message,
+                ChatType = MessageType,
+                ChatNumber = SenderNumber
+            }
+
+            MessageData.ChatDate = os.date("%d-") .. math.floor((os.date("%m") - 1)).. os.date("-%Y")
+            MessageData.ChatTime = os.date("%X"):sub(1, -4)
+
+            if MessageMetaData ~= nil then
+                MessageData.Data = MessageMetaData
+            end
+
+            TriggerClientEvent('qb-phone:client:ReceiveMessage', TargetData.PlayerData.source, MessageData)
+        end
+    end)
 end)
 
 RegisterServerEvent('qb-phone:server:UpdateMessages')
@@ -699,6 +730,17 @@ AddEventHandler('qb-phone:server:UpdateMessages', function(ChatMessages, ChatNum
                     end
                 end)
             end
+        else
+            -- If player sends message to unavailable number
+            QBCore.Functions.ExecuteSql(false, "SELECT * FROM `phone_messages` WHERE `citizenid` = '"..SenderData.PlayerData.citizenid.."' AND `number` = '"..ChatNumber.."' ORDER BY edited_at DESC", function(Chat)
+                if Chat[1] ~= nil then
+                    -- Update for sender
+                    QBCore.Functions.ExecuteSql(false, "UPDATE `phone_messages` SET `messages` = '"..json.encode(ChatMessages).."' WHERE `citizenid` = '"..SenderData.PlayerData.citizenid.."' AND `number` = '"..ChatNumber.."'")
+                else
+                    -- Insert for sender
+                    QBCore.Functions.ExecuteSql(false, "INSERT INTO `phone_messages` (`citizenid`, `number`, `messages`) VALUES ('"..SenderData.PlayerData.citizenid.."', '"..ChatNumber.."', '"..json.encode(ChatMessages).."')")
+                end
+            end)
         end
     end)
 end)
@@ -1203,7 +1245,6 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetPlayerHouses', function(sour
         local house = result[1].house
         if house ~= nil then
             local xd = json.decode(house)
-            print(xd.houseId)
             cb(xd.houseId)
         else
             cb(nil)

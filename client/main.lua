@@ -16,7 +16,6 @@ local PlayerJob = {}
 
 phoneProp = 0
 local phoneModel = `prop_npc_phone_02`
-local phone31 = false
 
 PhoneData = {
     MetaData = {},
@@ -700,59 +699,6 @@ function OpenPhone()
     -- end)
 end
 
--- function OpenPhone()
---     -- QBCore.Functions.TriggerCallback('qb-phone:server:HasPhone', function(HasPhone)
---         -- if HasPhone then
---             PhoneData.PlayerData = QBCore.Functions.GetPlayerData()
---         if not PhoneData.PlayerData.metadata["isdead"] then
---             SetNuiFocus(true, true)
---             SetNuiFocusKeepInput(true)
---             SendNUIMessage({
---                 action = "open",
---                 Tweets = PhoneData.Tweets,
---                 AppData = Config.PhoneApplications,
---                 CallData = PhoneData.CallData,
---                 PlayerData = PhoneData.PlayerData,
---             })
---             isOpen = true
---             phone31 = true
-           
-
---             if not PhoneData.CallData.InCall then
---                 DoPhoneAnimation('cellphone_text_in')
---             else
---                 DoPhoneAnimation('cellphone_call_to_text')
---             end
-
---             SetTimeout(250, function()
---                 newPhoneProp()
---             end)
-    
-
---             QBCore.Functions.TriggerCallback('qb-phone:server:GetGarageVehicles', function(vehicles)
---             if vehicles ~= nil then
---                 for i = 1, #vehicles do
---                     vehicles[i].garage = GarageList[tonumber(vehicles[i].garage)]
---                     vehicles[i].color1 = colors[json.decode(vehicles[i].mods).color1]
---                     vehicles[i].color2 = colors[json.decode(vehicles[i].mods).color2]
---                 end
---                 PhoneData.GarageVehicles = vehicles
---             else
---                 PhoneData.GarageVehicles = {}
---             end
---             end)
---         -- else
---         --     QBCore.Functions.Notify("ليس لديك هاتف", "error")
---         -- end
---         else 
---             QBCore.Functions.Notify("Ölüyken telefon kullanamazsın.", "error")
---         end
---     -- end)
--- end
-
-
-
-
 RegisterNUICallback('SetupGarageVehicles', function(data, cb)
     cb(PhoneData.GarageVehicles)
 end)
@@ -776,33 +722,6 @@ RegisterNUICallback('Close', function()
     SetTimeout(500, function()
         PhoneData.isOpen = false
     end)
-end)
-
--- RegisterNUICallback('Close', function()
---     if not PhoneData.CallData.InCall then
---         DoPhoneAnimation('cellphone_text_out')
---         SetTimeout(400, function()
---             StopAnimTask(PlayerPedId(), PhoneData.AnimationData.lib, PhoneData.AnimationData.anim, 2.5)
---             deletePhone()
---             PhoneData.AnimationData.lib = nil
---             PhoneData.AnimationData.anim = nil
---         end)
---     else
---         PhoneData.AnimationData.lib = nil
---         PhoneData.AnimationData.anim = nil
---         DoPhoneAnimation('cellphone_text_to_call')
---     end
---     SetNuiFocus(false, false)
---     SetNuiFocusKeepInput(false)
---     SetTimeout(500, function()
---         PhoneData.isOpen = false
---     end)
---     print('kod geçti')
---     phone31 = false
--- end)
-
-exports("phoneisphone", function()
-    return phone31
 end)
 
 RegisterNUICallback('RemoveMail', function(data, cb)
@@ -906,8 +825,6 @@ function GetKeyByNumber(Number)
     return retval
 end
 
-
-
 function ReorganizeChats(key)
     local ReorganizedChats = {}
     ReorganizedChats[1] = PhoneData.Chats[key]
@@ -917,11 +834,13 @@ function ReorganizeChats(key)
             table.insert(ReorganizedChats, chat)
         end
     end
-    print(json.encode(ReorganizedChats))
     PhoneData.Chats = ReorganizedChats
 end
 
-RegisterNUICallback('SendMessage', function(data, cb)
+
+RegisterNetEvent('qb-phone:client:ReceiveMessage')
+AddEventHandler('qb-phone:client:ReceiveMessage', function(data)
+    print("data", json.encode(data))
     local ChatMessage = data.ChatMessage
     local ChatDate = data.ChatDate
     local ChatNumber = data.ChatNumber
@@ -932,6 +851,141 @@ RegisterNUICallback('SendMessage', function(data, cb)
     local Pos = GetEntityCoords(Ped)
     local NumberKey = GetKeyByNumber(ChatNumber)
     local ChatKey = GetKeyByDate(NumberKey, ChatDate)
+
+    if PhoneData.Chats[NumberKey] ~= nil then
+        print("here 1")
+        if(PhoneData.Chats[NumberKey].messages == nil) then
+            print("here 2")
+            PhoneData.Chats[NumberKey].messages = {}
+        end
+        if PhoneData.Chats[NumberKey].messages[ChatKey] ~= nil then
+            if ChatType == "message" or ChatType == "image" then
+                table.insert(PhoneData.Chats[NumberKey].messages[ChatKey].messages, {
+                    message = ChatMessage,
+                    time = ChatTime,
+                    sender = ChatNumber,
+                    type = ChatType,
+                    data = {},
+                })
+            elseif ChatType == "location" then
+                table.insert(PhoneData.Chats[NumberKey].messages[ChatKey].messages, {
+                    message = "Konum",
+                    time = ChatTime,
+                    sender = ChatNumber,
+                    type = ChatType,
+                    data = {
+                        x = data.Data.x,
+                        y = data.Data.y,
+                    },
+                })
+            end
+            TriggerServerEvent('qb-phone:server:UpdateMessages', PhoneData.Chats[NumberKey].messages, ChatNumber, false)
+            NumberKey = GetKeyByNumber(ChatNumber)
+            ReorganizeChats(NumberKey)
+        else
+            table.insert(PhoneData.Chats[NumberKey].messages, {
+                date = ChatDate,
+                messages = {},
+            })
+            ChatKey = GetKeyByDate(NumberKey, ChatDate)
+            if ChatType == "message" or ChatType == "image" then
+                table.insert(PhoneData.Chats[NumberKey].messages[ChatKey].messages, {
+                    message = ChatMessage,
+                    time = ChatTime,
+                    sender = ChatNumber,
+                    type = ChatType,
+                    data = {},
+                })
+            elseif ChatType == "location" then
+                table.insert(PhoneData.Chats[NumberKey].messages[ChatDate].messages, {
+                    message = "Konum",
+                    time = ChatTime,
+                    sender = ChatNumber,
+                    type = ChatType,
+                    data = {
+                        x = Pos.x,
+                        y = Pos.y,
+                    },
+                })
+            end
+            TriggerServerEvent('qb-phone:server:UpdateMessages', PhoneData.Chats[NumberKey].messages, ChatNumber, true)
+            NumberKey = GetKeyByNumber(ChatNumber)
+            ReorganizeChats(NumberKey)
+        end
+    else
+        table.insert(PhoneData.Chats, {
+            name = IsNumberInContacts(ChatNumber),
+            number = ChatNumber,
+            messages = {},
+        })
+        NumberKey = GetKeyByNumber(ChatNumber)
+        table.insert(PhoneData.Chats[NumberKey].messages, {
+            date = ChatDate,
+            messages = {},
+        })
+        ChatKey = GetKeyByDate(NumberKey, ChatDate)
+        if ChatType == "message" or ChatType == "image" then
+            table.insert(PhoneData.Chats[NumberKey].messages[ChatKey].messages, {
+                message = ChatMessage,
+                time = ChatTime,
+                sender = ChatNumber,
+                type = ChatType,
+                data = {},
+            })
+        elseif ChatType == "location" then
+            table.insert(PhoneData.Chats[NumberKey].messages[ChatKey].messages, {
+                message = "Konum",
+                time = ChatTime,
+                sender = ChatNumber,
+                type = ChatType,
+                data = {
+                    x = Pos.x,
+                    y = Pos.y,
+                },
+            })
+        end
+        TriggerServerEvent('qb-phone:server:UpdateMessages', PhoneData.Chats[NumberKey].messages, ChatNumber, true)
+        NumberKey = GetKeyByNumber(ChatNumber)
+        ReorganizeChats(NumberKey)
+    end
+
+    QBCore.Functions.TriggerCallback('qb-phone:server:GetContactPicture', function(Chat)
+        SendNUIMessage({
+            action = "UpdateChat",
+            chatData = Chat,
+            chatNumber = ChatNumber,
+        })
+    end,  PhoneData.Chats[GetKeyByNumber(ChatNumber)])
+end)
+
+RegisterCommand("msgtest", function(source, raw, args)
+    data = {
+        ChatMessage = "selam test",
+        ChatDate = "15-11-22",
+        ChatNumber = "Liman",
+        ChatTime = "15:18",
+        ChatType = "message"
+    }
+
+    SendMessage(data)
+end)
+
+RegisterNUICallback('SendMessage', function(data, cb)
+    SendMessage(data, cb)
+end)
+
+function SendMessage(data)
+    local ChatMessage = data.ChatMessage
+    local ChatDate = data.ChatDate
+    local ChatNumber = data.ChatNumber
+    local ChatTime = data.ChatTime
+    local ChatType = data.ChatType
+
+    local Ped = GetPlayerPed(-1)
+    local Pos = GetEntityCoords(Ped)
+    local NumberKey = GetKeyByNumber(ChatNumber)
+    local ChatKey = GetKeyByDate(NumberKey, ChatDate)
+
     if PhoneData.Chats[NumberKey] ~= nil then
         if(PhoneData.Chats[NumberKey].messages == nil) then
             PhoneData.Chats[NumberKey].messages = {}
@@ -1034,13 +1088,14 @@ RegisterNUICallback('SendMessage', function(data, cb)
             chatNumber = ChatNumber,
         })
     end,  PhoneData.Chats[GetKeyByNumber(ChatNumber)])
-end)
+end
 
 RegisterNUICallback('SharedLocation', function(data)
     local x = data.coords.x
     local y = data.coords.y
 
     SetNewWaypoint(x, y)
+
     SendNUIMessage({
         action = "PhoneNotification",
         PhoneNotify = {
@@ -1380,7 +1435,6 @@ RegisterNUICallback('EditContactNote', function(data, cb)
     end
     Citizen.Wait(100)
     cb(PhoneData.Contacts)
-    print(Name, Number, NewNote)
     TriggerServerEvent('qb-phone:server:EditContactNote', Name, Number, NewNote)
 end)
 
@@ -2256,10 +2310,6 @@ function GetClosestPlayer()
 	return closestPlayer, closestDistance
 end
 
-RegisterCommand("commendme", function(source, raw, args)
-    TriggerServerEvent('qb-phone:server:GiveContactDetailsTest')
-end)
-
 RegisterNetEvent('qb-phone:client:GiveContactDetails')
 AddEventHandler('qb-phone:client:GiveContactDetails', function()
     local ped = GetPlayerPed(-1)
@@ -2292,7 +2342,7 @@ RegisterNUICallback('DeleteContact', function(data, cb)
                     PhoneNotify = {
                         title = "Telefon",
                         text = "Kişi silindi", 
-                        icon = "fa fa-phone-alt",
+                        icon = "phone",
                         color = "#04b543",
                         timeout = 1500,
                     },
@@ -2303,7 +2353,7 @@ RegisterNUICallback('DeleteContact', function(data, cb)
                     NotifyData = {
                         title = "Telefon", 
                         content = "Kişi silindi", 
-                        icon = "fa fa-phone-alt", 
+                        icon = "phone", 
                         timeout = 3500, 
                         color = "#04b543",
                     },
