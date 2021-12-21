@@ -13,7 +13,7 @@
     font-size: 20px;
     perspective: 1000px;
     perspective-origin: center center;
-
+    background: var(--main-background-color);
 }
 .picker-scroller {
 

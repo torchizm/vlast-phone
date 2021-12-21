@@ -35,7 +35,7 @@
     display: none;
     flex-direction: column;
     width: 100%;
-    margin-top: 32px;
+    /* margin-top: 32px; */
     flex: 1;
 }
 
@@ -81,21 +81,29 @@
 }
 
 .clock-app-tab .global-app-header {
-    top: 8px;
-    height: 33px;
-    margin-bottom: 8px;
+    height: unset;
+    top: unset;
+    margin-bottom: unset;
+    padding-top: 40px;
+    font-size: 16px;
+    background: var(--main-background-color);
     border-bottom: 1px solid var(--main-black);
+}
+
+.clock-app-tab .global-app-header .blue-text:last-child {
+    place-self: flex-end;
+    position: unset;
 }
 
 .clock-app-tab-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 8px;
     font-weight: bold;
     font-size: 16px;
+    padding-top: 40px;
     border-bottom: 1px solid var(--calculator-button-hover);
-    background: var(--second-background-color);
+    background: var(--main-background-color);
 }
 
 .clock-app-active {
@@ -103,14 +111,15 @@
 }
 
 .clock-app-footer {
-    height: 48px;
+    /* height: 48px; */
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 16px;
     text-align: center;
     padding: 8px 16px;
-    border-top: 1px solid var(--main-black)
+    border-top: 1px solid var(--main-black);
+    background: var(--main-background-color);
 }
 
 .clock-app-footer i {
@@ -147,7 +156,7 @@
 .clock-app-loaded {
     display: none;
     padding-left: 30vh;
-    height: 60vh;
+    height: 62vh;
 }
 .clock-app-loading {
     position: absolute;
@@ -176,7 +185,7 @@
     padding: 0 26px 16px 26px;
     justify-content: space-between;
     font-size: 14px;
-    border-bottom: 1px solid var(--main-black);
+    border-bottom: 1px solid var(--border-gray);
 }
 
 .clock-button {
@@ -217,19 +226,16 @@
 
 .stopwatch-lap-list {
     overflow: auto;
-    max-height: 26vh;
-}
-
-.stopwatch-lap:nth-child(even) {
-    background: var(--main-background-color);
+    max-height: 25.7vh;
 }
 
 .stopwatch-lap {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    border-bottom: 1px solid var(--main-black);
     padding: 0 16px;
+    border-bottom: 1px solid var(--border-gray);
+    background: var(--main-background-color);
 }
 
 .stopwatch-lap:last-child {
@@ -263,14 +269,14 @@
 }
 
 .world-time:last-child {
-    border-bottom: 1px solid var(--main-black);
+    border-bottom: 1px solid var(--border-gray);
 }
 
 .world-time::after {
     content: "";
     width: 100%;
     margin-top: 22%;
-    background: var(--main-black);
+    background: var(--border-gray);
     position: absolute;
     color: black;
     height: 1px;
@@ -315,7 +321,7 @@
 
 .clock-timer-setup-container {
     display: flex;
-    border-bottom: 1px solid var(--main-black);
+    border-bottom: 1px solid var(--border-gray);
     margin-bottom: 32px;
 }
 
@@ -358,6 +364,7 @@
     display: flex;
     flex-direction: column;
     padding: 0 22px 4px 22px;
+    background: var(--main-background-color);
     border-bottom: 1px solid var(--border-gray);
 }
 

@@ -1797,6 +1797,15 @@ Citizen.CreateThread(function()
         Wait(1000)
     end
 
+    -- Wait until second is 00
+    while true do
+        local _, _, _, _, _, second = GetLocalTime()
+        if tonumber(second) == tonumber(0) then
+            break
+        end
+        Citizen.Wait(999)
+    end
+
     while true do
         QBCore.Functions.TriggerCallback('qb-phone:server:GetTime', function(day, hour, minute)
             for k,v in pairs(PhoneData.Alarms) do

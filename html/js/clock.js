@@ -64,13 +64,6 @@ NM.Phone.Functions.SetupClock = function(alarms) {
         $(".clock-app-alarm-lists").empty();
 
         alarms.forEach(alarm => {
-            if (alarm.hour < 10) {
-                alarm.hour = `0${alarm.hour}`
-            }
-            if (alarm.minute < 10) {
-                alarm.minute = `0${alarm.minute}`
-            }
-
             alarm.cycleLabel = AlarmCycles.find(x => x.key == alarm.cycle).value;
 
             var alarmChild = $('<div/>', {
@@ -236,9 +229,14 @@ $(document).ready(function () {
     var numbers = [];
     var numbersTwentyFour = [];
     for (var i = 0; i < 60; i++) {
-        if (i > 0 && i < 25) {
+        if (i < 10) {
+            i = `0${i}`;
+        }
+
+        if (i < 24) {
             numbersTwentyFour.push(i);
         }
+
         numbers.push(i);
     }
 
@@ -412,10 +410,10 @@ $("#clock-alarm-save").click(function() {
     Alarm.label = $('#clock-alarm-label-option').attr("data-value");
 
     if (Alarm.hour == undefined) {
-        Alarm.hour = 0;
+        Alarm.hour = "00";
     }
     if (Alarm.minute == undefined) {
-        Alarm.minute = 0;
+        Alarm.minute = "00";
     }
 
     $.post('http://qb-phone/AddAlarm', JSON.stringify(Alarm));
@@ -423,12 +421,6 @@ $("#clock-alarm-save").click(function() {
         NM.Phone.Functions.SetupClock(data);
     });
 
-    if (Alarm.hour < 10) {
-        Alarm.hour = `0${Alarm.hour}` 
-    }
-    if (Alarm.minute < 10) {
-        Alarm.minute = `0${Alarm.minute}` 
-    }
     NM.Phone.Notifications.Add("clock", "Saat", `Saat ${Alarm.hour}:${Alarm.minute} için alarm kurdun`, "color: #ff7e1496;", 1500);
 });
 
