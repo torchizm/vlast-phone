@@ -434,7 +434,6 @@ $("#clock-alarm-save").click(function() {
 
 $('#clock-alarm-repeat-option').click(function() {
     OpenSelector("Alarm Tekrarı", AlarmCycles, function(key, selected) {
-        console.log("selected", key, selected);
         $('#clock-alarm-repeat-option').attr("data-value", key);
         $('#clock-alarm-repeat-option .settings-tab-description p').html(selected);
     });
