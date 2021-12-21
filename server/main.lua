@@ -585,6 +585,11 @@ AddEventHandler('qb-phone:server:UpdateAlarms', function(data)
     player.Functions.SetMetaData("phonealarms", data)
 end)
 
+QBCore.Functions.CreateCallback('qb-phone:server:GetTime', function(source, cb)
+    cb(tonumber(os.date('%w')), tonumber(os.date('%H')), tonumber(os.date('%M')))
+end)
+
+
 RegisterServerEvent('qb-phone:server:SetPhoneAlerts')
 AddEventHandler('qb-phone:server:SetPhoneAlerts', function(app, alerts)
     local src = source

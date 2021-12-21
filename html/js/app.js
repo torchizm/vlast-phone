@@ -733,6 +733,14 @@ NM.Screen.Notification = function(title, content, icon, timeout, color) {
     });
 }
 
+
+var beepAudio = new Audio('https://cdn.discordapp.com/attachments/840570048539262997/919252940395544636/timer-beep.ogg');
+beepAudio.volume = 0.1;
+
+function TimerBeep() {
+    beepAudio.play();
+}
+
 // NM.Screen.Notification("Nieuwe Tweet", "Dit is een test tweet like #YOLO", "twitter", 4000);
 var inNotify = false
 var dontCloseMyPhoneIdiot = false
@@ -748,8 +756,7 @@ $(document).ready(function(){
                 NM.Phone.Data.PlayerData = event.data.PlayerData;
                 break;
             case "PlayAlarm":
-                var audio = new Audio('https://cdn.discordapp.com/attachments/858816113894883372/858823936875823104/osuruk-ses-efekti.mp3');
-                audio.play();
+                NM.Phone.PlayingAudio = setInterval(TimerBeep, 1000);
                 break;
             // case "LoadPhoneApplications":
             //     NM.Phone.Functions.SetupApplications(event.data);

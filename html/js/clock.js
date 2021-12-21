@@ -11,8 +11,6 @@ var Timer = {
     "Second": "0",
     Interval: undefined
 }
-var beepAudio = new Audio('https://cdn.discordapp.com/attachments/840570048539262997/919252940395544636/timer-beep.ogg');
-beepAudio.volume = 0.1;
 
 $(document).on('click', '#clear-clock', function(event){
     $(".transactions-item-div").remove()
@@ -55,24 +53,46 @@ $(document).on('click', '.clock-app-footer-button', function(e){
     }
 })
 
+var AlarmCycles = [
+    {key: "everyday", value: "Her Gün"},
+    {key: "weekend", value: "Hafta Sonu"},
+    {key: "weekdays", value: "Hafta İçi"}
+]
+
 NM.Phone.Functions.SetupClock = function(alarms) {
     if (alarms != undefined) {
+        $(".clock-app-alarm-lists").empty();
+
         alarms.forEach(alarm => {
-            $('<div/>', {
+            if (alarm.hour < 10) {
+                alarm.hour = `0${alarm.hour}`
+            }
+            if (alarm.minute < 10) {
+                alarm.minute = `0${alarm.minute}`
+            }
+
+            alarm.cycleLabel = AlarmCycles.find(x => x.key == alarm.cycle).value;
+
+            var alarmChild = $('<div/>', {
                 class: "clock-app-alarm-list-item",
                 html: `
-                    <div class="clock-app-alarm-list-item">
-                        <div class="clock-app-alarm-list-item-description">
-                            <span>${alarm.hour}:${alarm.minute}</span>
-                            <div class="switch__container">
-                                <input id="switch-shadow" class="switch switch--shadow" type="checkbox" >
-                                <label for="switch-shadow"></label>
-                            </div>
+                    <div class="clock-app-alarm-list-item-description">
+                        <span>${alarm.hour}:${alarm.minute}</span>
+                        <div class="switch__container">
+                            <input id="switch-alarm-${alarm.id}" class="switch switch--shadow" type="checkbox" >
+                            <label for="switch-alarm-${alarm.id}"></label>
                         </div>
-                        <span class="alarm-cycle-text">${alarm.label}, ${alarm.cycle}</span>
                     </div>
-                `
-            }).attr("data-id", alarm.id).appendTo(".stopwatch-lap-list");
+                    <span class="alarm-cycle-text">${alarm.label}, ${alarm.cycleLabel}</span>`
+            }).attr("data-id", alarm.id);
+
+            var switchInput = $(alarmChild).find(`input#switch-alarm-${alarm.id}`);
+            $(switchInput).prop("checked", alarm.enabled);
+            $(switchInput).click(function() {
+                var val = $(switchInput).prop("checked");
+                $.post("https://qb-phone/UpdateAlarm", JSON.stringify({id: alarm.id, enabled: val}));
+            });
+            alarmChild.appendTo(".clock-app-alarm-lists");
         });
     }
 
@@ -87,7 +107,7 @@ $(document).on('click', '.clock-set-alarm-button', function(e){
         var value = $("#clock-transfer-iban").val()
         $.post("http://qb-phone/SetAlarm", JSON.stringify({clock: value}));
         $.post('http://qb-phone/GetAlarmData', JSON.stringify({}), function(data){
-            NM.Phone.Functions.DoclockOpen(data);
+            NM.Phone.Functions.SetupClock(data);
         });
         NM.Phone.Notifications.Add("far fa-clock", "Saat", "Saat " + value + " için alarm kurdun!", "color: #ff7e1496;", 1500);
     }
@@ -337,10 +357,6 @@ function UpdateTimer() {
     }
 }
 
-function TimerBeep() {
-    beepAudio.play();
-}
-
 $(document).on('click', '#timer-button[data-type="start"]', function(e){
     e.preventDefault();
 
@@ -383,41 +399,44 @@ $("#clock-alarm-save").click(function() {
     SwitchTimerPage(".clock-app-alarm-add", ".clock-app-alarm-show", 100);
 
     Alarm = {
-        "Hour": 0,
-        "Minute": 0,
-        "Repeat": "Everyday",
-        "Label": "None",
-        "Enabled": true
+        "hour": 0,
+        "minute": 0,
+        "cycle": "Everyday",
+        "label": "None",
+        "enabled": true
     }
 
-    Alarm.Hour = $('#clock-alarm-hour-picker').data("value");
-    Alarm.Minute = $('#clock-alarm-minute-picker').data("value");
-    Alarm.Cycle = $('#clock-alarm-repeat-option').attr("data-value");
-    Alarm.Label = $('#clock-alarm-label-option').attr("data-value");
+    Alarm.hour = $('#clock-alarm-hour-picker').data("value");
+    Alarm.minute = $('#clock-alarm-minute-picker').data("value");
+    Alarm.cycle = $('#clock-alarm-repeat-option').attr("data-value");
+    Alarm.label = $('#clock-alarm-label-option').attr("data-value");
 
-    if (Alarm.Hour == undefined) {
-        Alarm.Hour = 0;
+    if (Alarm.hour == undefined) {
+        Alarm.hour = 0;
     }
-    if (Alarm.Minute == undefined) {
-        Alarm.Minute = 0;
+    if (Alarm.minute == undefined) {
+        Alarm.minute = 0;
     }
 
     $.post('http://qb-phone/AddAlarm', JSON.stringify(Alarm));
+    $.post('http://qb-phone/GetAlarmData', JSON.stringify({}), function(data){
+        NM.Phone.Functions.SetupClock(data);
+    });
 
-    NM.Phone.Notifications.Add("clock", "Saat", "Alarm Kuruldu", "color: #ff7e1496;", 1500);
+    if (Alarm.hour < 10) {
+        Alarm.hour = `0${Alarm.hour}` 
+    }
+    if (Alarm.minute < 10) {
+        Alarm.minute = `0${Alarm.minute}` 
+    }
+    NM.Phone.Notifications.Add("clock", "Saat", `Saat ${Alarm.hour}:${Alarm.minute} için alarm kurdun`, "color: #ff7e1496;", 1500);
 });
 
-
 $('#clock-alarm-repeat-option').click(function() {
-    var AlarmCycles = [
-        {key: "everyday", value: "Her Gün"},
-        {key: "weekend", value: "Hafta Sonu"},
-        {key: "haftaiçi", value: "Hafta İçi"}
-    ]
-
-    OpenSelector("Alarm Tekrarı", Options, function(val) {
-        $('#clock-alarm-repeat-option').attr("data-selected", val);
-        $('#clock-alarm-repeat-option .settings-tab-description p').html(val);
+    OpenSelector("Alarm Tekrarı", AlarmCycles, function(key, selected) {
+        console.log("selected", key, selected);
+        $('#clock-alarm-repeat-option').attr("data-value", key);
+        $('#clock-alarm-repeat-option .settings-tab-description p').html(selected);
     });
 });
 $('#clock-alarm-label-option').click(function() {
@@ -428,8 +447,9 @@ $('#clock-alarm-add-label-cancel').click(function() {
     SwitchTimerPage('.clock-app-alarm-add-label', '.clock-app-alarm-add', 100);
 });
 $('#clock-alarm-add-label-save').click(function() {
-    var val = $('#clock-alarm-label-option-input').value();
-    $('#clock-alarm-label-option-input').value('');
+    var val = $('#clock-alarm-label-option-input').val();
+    $('#clock-alarm-label-option-input').val('');
+    $('#clock-alarm-label-option').attr('data-value', val);
     $('#clock-alarm-label-option .settings-tab-description p').html(val);
     SwitchTimerPage('.clock-app-alarm-add-label', '.clock-app-alarm-add', 100);
 });

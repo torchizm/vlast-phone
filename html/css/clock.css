@@ -357,7 +357,7 @@
 .clock-app-alarm-list-item {
     display: flex;
     flex-direction: column;
-    padding: 0 22px;
+    padding: 0 22px 4px 22px;
     border-bottom: 1px solid var(--border-gray);
 }
 

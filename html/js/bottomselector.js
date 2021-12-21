@@ -8,7 +8,6 @@ $(document).on('click', '.phone-bottom-slector-close-button, .gray-background', 
 });
 
 function OpenSelector(title, items, cb) {
-    console.log("selam kanka");
     var itemsElement = ".phone-bottom-selector-items";
     $(itemsElement).empty();
 
@@ -24,7 +23,7 @@ function OpenSelector(title, items, cb) {
         }).attr("data-value", item.key);
 
         $(itemElement).click(function() {
-            cb(item.key);
+            cb(item.key, item.value);
 
             $('.gray-background').fadeOut(200);
             $('.phone-bottom-selector').animate({'bottom': '-100%'}, 200, function() {

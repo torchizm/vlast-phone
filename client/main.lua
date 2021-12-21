@@ -489,7 +489,7 @@ AddEventHandler("qb-phone:refresh", function()
             PhoneData.CryptoTransactions = pData.CryptoTransactions
         end
 
-        PhoneData.Alarms = PlayerData.metadata["phonealarms"]
+        PhoneData.Alarms = PhoneData.PlayerData.metadata["phonealarms"]
 
         SendNUIMessage({ 
             action = "LoadPhoneData", 
@@ -1714,11 +1714,17 @@ RegisterNUICallback('TransferMoney', function(data, cb)
     end
 end)
 
+RegisterCommand("clearalarms", function(source, raw, args)
+    PhoneData.Alarms = {}
+    PhoneData.PlayerData.metadata["phonealarms"] = {}
+    TriggerServerEvent('qb-phone:server:UpdateAlarms', {})
+end)
+
 RegisterNUICallback("AddAlarm", function(data)
     data.id = #PhoneData.Alarms + 1
-    PhoneData.Alarms[#PhoneData.Alarms + 1] = data.clock
+    PhoneData.Alarms[#PhoneData.Alarms + 1] = data
     TriggerServerEvent('qb-phone:server:UpdateAlarms', PhoneData.Alarms)
-    PlayerData.metadata["phonealarms"] = PhoneData.Alarms
+    PhoneData.PlayerData.metadata["phonealarms"] = PhoneData.Alarms
 end)
 
 RegisterNUICallback("GetAlarmData", function(data, cb)
@@ -1730,27 +1736,77 @@ RegisterNUICallback("DeleteAlarm", function(data)
         table.remove(PhoneData.Alarms, tonumber(data.id) + 1)
     end
     TriggerServerEvent('qb-phone:server:UpdateAlarms', PhoneData.Alarms)
-    PlayerData.metadata["phonealarms"] = PhoneData.Alarms
+    PhoneData.PlayerData.metadata["phonealarms"] = PhoneData.Alarms
 end)
 
--- Citizen.CreateThread(function()
---     while true do
---         local a, b, c, d, e = GetLocalTime()
---         d = d + 3
---         if d < 10 then
---             d = "0"..d
---         end
---         if e < 10 then
---             e = "0"..e
---         end
---         for i = 1, #PhoneData.Alarms do
---             if PhoneData.Alarms[i] == d..":"..e then
---                 TriggerEvent("qb-phone:PlayAlarmSound")
---             end
---         end
---         Citizen.Wait(5000)
---     end
--- end)
+RegisterNUICallback("UpdateAlarm", function(data)
+    if PhoneData.Alarms[tonumber(data.id)] then
+        PhoneData.Alarms[tonumber(data.id)].enabled = data.enabled
+    end
+    TriggerServerEvent('qb-phone:server:UpdateAlarms', PhoneData.Alarms)
+    PhoneData.PlayerData.metadata["phonealarms"] = PhoneData.Alarms    
+end)
+
+local AlarmCycles = {
+    ["everyday"] = {0, 1, 2, 3, 4, 5, 6},
+    ["weekdays"] = {1, 2, 3, 4, 5},
+    ["weekend"]  = {0, 6}
+}
+
+function CheckAlarm(v, day, hour, minute)
+    if not v.enabled then return end
+    local isDay = v.cycle == "everyday" or false
+    if isDay == false then return end
+
+    if isDay == false then
+        local found = false
+        for k,v in pairs(AlarmCycles[v.cycle]) do
+           if tonumber(v) == tonumber(day) then
+                found = true
+                break
+            end
+        end
+
+        if found == true then
+            isDay = true
+        end
+    end
+
+    local isHour = tonumber(v.hour) == tonumber(hour) or false
+    local isMinute = tonumber(v.minute) == tonumber(minute) or false
+
+    if isDay and isHour and isMinute then
+        SendNUIMessage({
+            action = "PlayAlarm"
+        })
+
+        SendNUIMessage({ 
+            action = "PhoneNotification", 
+            PhoneNotify = {
+                title = "Saat", 
+                text = v.label,
+                icon = "clock", 
+                color = "#e84118", 
+            }, 
+        })        
+    end
+end
+
+Citizen.CreateThread(function()
+    while QBCore == nil do
+        Wait(1000)
+    end
+
+    while true do
+        QBCore.Functions.TriggerCallback('qb-phone:server:GetTime', function(day, hour, minute)
+            for k,v in pairs(PhoneData.Alarms) do
+                CheckAlarm(v, day, hour, minute)
+            end
+        end)
+        Citizen.Wait(59000)
+    end
+end)
+
 
 RegisterNetEvent("qb-phone:PlayAlarmSound")
 AddEventHandler("qb-phone:PlayAlarmSound", function()
@@ -1914,7 +1970,7 @@ CancelCall = function()
     else
         SendNUIMessage({ 
             action = "PhoneNotification", 
-            PhoneNotify = { 
+            PhoneNotify = {
                 title = "Telefon", 
                 text = "Arama sonlandırıldı", 
                 icon = "fas fa-phone", 
