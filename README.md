@@ -115,4 +115,8 @@ end
 ![Stopwatch](/readme/clock_2.png)
 ![Timer](/readme/clock_3.png)
 ![Timer](/readme/clock_4.png)
+![Alarm](/readme/clock_5.png)
+![Alarm](/readme/clock_6.png)
+![Alarm](/readme/clock_7.png)
+![Alarm](/readme/clock_8.png)
 -----
