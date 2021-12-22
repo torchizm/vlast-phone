@@ -5,7 +5,6 @@ $('#save-image-to-photos').click(function() {
 });
 
 function SetupPhotos(photos) {
-    console.log(photos)
     if (photos !== undefined) {
         $('.photos-content').empty();
 
@@ -19,7 +18,6 @@ function SetupPhotos(photos) {
                     </img>`
             }).data("data", photo.Data);
 
-            console.log("photo added", photoChild)
             photoChild.appendTo(".photos-content");
         });
     }

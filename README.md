@@ -35,24 +35,26 @@ end
 
 
 ### Todo List:
-* Clock (Currently Working On)
-* Remake Bank
+* Photos App (Currently working on)
+* Rework Notification System
 * Yellowpages multi-image support
-* Twitter Accounts
-* Gallery App
-* Images will save to gallery
-* Redesing Wanteds
+* Rework Twitter
+* Remake Bank
+* Remake Wanteds
 * Improve Zoom
 
 ### Main Menu
 ![Main Menu](/readme/1.png)
 -----
-### Bank (Developing rn)
+### Photos App
+![Photos](/readme/photos_1.png)
+-----
+### Bank
 > Dependencies
 > * [vlast-bank](https://github.com/torchizm/vlast-bank)
 
 
-![Bank](/readme/2.png)
+![Bank](/readme/bank_1.png)
 -----
 ### Calculator with all functions
 ![Calculator](/readme/calculator.png)

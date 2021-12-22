@@ -116,7 +116,7 @@ $(document).on('click', '.background-option', function(e){
     PressedBackgroundObject = this;
     OldBackground = $(this).parent().find('.background-option-current');
     IsChecked = $(this).find('.background-option-current');
-    console.log(IsChecked.length)
+    
     if (IsChecked.length === 0) {
         if (PressedBackground == "custom-background") {
             $(".background-custom").show();

@@ -587,7 +587,6 @@ SetupCall = function(cData) {
         Anonymous: NM.Phone.Data.AnonymousCall,
     }), function(status){
         if (cData.number !== NM.Phone.Data.PlayerData.charinfo.phone) {
-            console.log(status);
             if(!status.IsOnline) {
                 NM.Phone.Notifications.Add("phone", "Telefon", "Aradığınzı kişiye şuanda ulaşılamıyor");
                 return;
