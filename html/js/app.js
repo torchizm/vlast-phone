@@ -364,6 +364,10 @@ $(document).on('click', '.phone-application', function(e){
                     $.post('http://qb-phone/GetTruckerData', JSON.stringify({}), function(data){
                         SetupTruckerInfo(data);
                     });
+                } else if (PressedApplication == "photos") {
+                    $.post('http://qb-phone/GetPhotos', JSON.stringify({}), function(data){
+                        SetupPhotos(data);
+                    });
                 }
             }
         }

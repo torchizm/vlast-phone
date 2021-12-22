@@ -151,27 +151,18 @@ body {
     font-family: 'SF Pro Display Regular';
     font-size: 12px;
     font-weight: bold;
-    /* padding: 2.3vh 0 0 1.9vh; */
 }
 
 #phone-icons {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* font-family: Font-1; */
     font-size: 1.3vh;
-    /* padding: 2.5vh 7.5vh 0 0vh; */
-}
-
-#phone-signal {
-    font-size: 1vh;
-    left: -0.3vh;
-    position: relative;
+    gap: 4px;
 }
 
 #phone-battery {
     font-size: 1.3vh;
-    margin: 0px -4px 0px 4px;
     position: relative;
 }
 

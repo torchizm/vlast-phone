@@ -58,6 +58,7 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetPhoneData', function(source,
             Adverts = {},
             CryptoTransactions = {},
             Tweets = {},
+            Photos = {}
             -- InstalledApps = Player.PlayerData.metadata["phonedata"].InstalledApps,
         }
 
@@ -146,8 +147,20 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetPhoneData', function(source,
                                         })
                                     end
                                 end
-    
-                                cb(PhoneData)
+
+                                QBCore.Functions.ExecuteSql(false, 'SELECT * FROM `phone_photos` WHERE `citizenid` = "'..Player.PlayerData.citizenid..'" ORDER BY `created_at` DESC', function(photos)
+                                    if photos[1] ~= nil then
+                                        for _, v in pairs(photos) do
+                                            table.insert(PhoneData.Photos, {
+                                                Url = v.url,
+                                                Data = v.data,
+                                                Date = v.created_at
+                                            })
+                                        end
+                                    end
+
+                                    cb(PhoneData)
+                                end)
                             end)
                         end)
                     end)
@@ -1282,17 +1295,16 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetCurrentFoodWorker', function
     cb(workers)
 end)
 
+RegisterServerEvent('qb-phone:server:SavePhoto')
+AddEventHandler('qb-phone:server:SavePhoto', function(url, data)
+    local player = QBCore.Functions.GetPlayer(source)
+    local data = json.encode(data)
+    print("selam", url)
+    QBCore.Functions.ExecuteSql(false, "INSERT INTO `phone_photos` (`citizenid`, `url`, `data`) VALUES ('"..player.PlayerData.citizenid.."', '"..url.."', '"..data.."')")
+end)
 
--- QBCore.Commands.Include("setmetadata", "Set metadata", {}, false, function(source, args)
--- 	local Player = QBCore.Functions.GetPlayer(source)
-	
--- 	if args[1] ~= nil then
--- 		if args[1] == "trucker" then
--- 			if args[2] ~= nil then
--- 				local newrep = Player.PlayerData.metadata["jobrep"]
--- 				newrep.trucker = tonumber(args[2])
--- 				Player.Functions.SetMetaData("jobrep", newrep)
--- 			end
--- 		end
--- 	end
--- end, "god")
+RegisterServerEvent('qb-phone:Server:DeletePhoto')
+AddEventHandler('qb-phone:server:DeletePhoto', function(url)
+    local player = QBCore.Functions.GetPlayer(source)
+    QBCore.Functions.ExecuteSql(false, "DELETE FROM `phone_photos` WHERE citizenid='"..Player.PlayerData.citizenid.."' AND url='"..url.."'")
+end)
