@@ -221,12 +221,7 @@ NM.Phone.Functions.FormatTwitterMessage = function(TwitterMessage) {
 }
 
 $(document).on('keyup', '#tweet-new-image', function() {
-    console.log('sea');
     let url = $('#tweet-new-image').prop('value');
-    console.log(url != "");
-    console.log(url.startsWith('http'), "sa");
-    console.log(url.endsWith('.png'));
-    console.log(url.endsWith('.jpg'));
 
     if (url != "" && url.startsWith('http') && (url.endsWith('.png') || url.endsWith('.jpg'))) {
         $('#new-tweet-image').css('display', 'block'); 

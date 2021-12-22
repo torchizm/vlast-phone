@@ -249,9 +249,6 @@ $(document).on('click', '.decline-invoice', function(event) {
     // var InvoiceId = $(this).parent().parent().attr('id');
     // var InvoiceData = $("#" + InvoiceId).data('invoicedata');
 
-    // console.log(InvoiceId);
-    // console.log($(this).parent().parent());
-
     // $.post('http://qb-phone/DeclineInvoice', JSON.stringify({
     //     sender: InvoiceData.sender,
     //     amount: InvoiceData.amount,
