@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="./css/calculator.css">
     <link rel="stylesheet" href="./css/clock.css">
     <link rel="stylesheet" href="./css/food.css">
+    <link rel="stylesheet" href="./css/photos.css">
     <link rel="stylesheet" href="./css/bank.css">
     <link rel="stylesheet" href="./css/whatsapp.css">
     <link rel="stylesheet" href="./css/garage.css">
@@ -96,7 +97,7 @@
                     <div id="phone-image-container-header" class="global-app-header" style="margin-bottom: 32px; z-index: 50;">
                         <p id="cancel-image-container" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p>
                         <p>Fotoğraflar</p>
-                        <p id="save-image-to-gallery" class="blue-text" style="cursor: not-allowed;">Kaydet</p>
+                        <p id="save-image-to-photos" class="blue-text">Kaydet</p>
                         <!-- <p id="cancel-settings-submenu" class="blue-text">Kaydet</p> -->
                     </div>
                     <div class="phone-image-source-container">
@@ -886,7 +887,7 @@
                                     </div>
                                     <div class="clock-app-timer-show">
                                         <div class="global-app-header">
-                                            <!-- <p id="clock-timer-cancel" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p> -->
+                                            <p id="clock-timer-cancel" style="display: none;" class="blue-text"><i class="fas fa-chevron-left"></i> Geri</p>
                                             <p style="grid-column: 2;">Zamanlayıcı</p>
                                             <p id="clock-timer-edit" class="blue-text">Düzenle <i class="fas fa-chevron-right"></i></p>
                                         </div>
@@ -1669,6 +1670,67 @@
                             </div>                            
                         </div>
                     </div>
+
+                    <div class="photos-app">
+                        <div class="photos-container">
+                            <div class="photos-app-page" data-page="photos">
+                                <div class="photos-content" data-showing="year">
+                                    <div class="photos-image-item">
+                                        <img src="https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/86/71/867186_v2.jpeg" alt="">
+                                    </div>
+                                    <div class="photos-image-item">
+                                        <img src="https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/86/71/867186_v2.jpeg" alt="">
+                                    </div>
+                                    <div class="photos-image-item">
+                                        <img src="https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/86/71/867186_v2.jpeg" alt="">
+                                    </div>
+                                    <div class="photos-image-item">
+                                        <img src="https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/86/71/867186_v2.jpeg" alt="">
+                                    </div>
+                                    <div class="photos-image-item">
+                                        <img src="https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/86/71/867186_v2.jpeg" alt="">
+                                    </div>
+                                    <div class="photos-image-item">
+                                        <img src="https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/86/71/867186_v2.jpeg" alt="">
+                                    </div>
+                                    <div class="photos-image-item">
+                                        <img src="https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/86/71/867186_v2.jpeg" alt="">
+                                    </div>
+                                    <div class="photos-image-item">
+                                        <img src="https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/86/71/867186_v2.jpeg" alt="">
+                                    </div>
+                                </div>
+                                <div class="photos-range-wrapper">
+                                    <div class="photos-range">
+                                        <p class="photos-range-selected">Yıl</p>
+                                        <p>Ay</p>
+                                        <p>Gün</p>
+                                        <p>Tümü</p>
+                                        <div class="filter-background"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="photos-footer">
+                                <div class="photos-footer-button photos-footer-button-selected">
+                                    <i class="fas fa-images"></i>
+                                    <p>Fotoğraflar</p>
+                                </div>
+                                <div class="photos-footer-button">
+                                    <i class="fas fa-heart"></i>
+                                    <p>Senin İçin</p>
+                                </div>
+                                <div class="photos-footer-button">
+                                    <i class="fas fa-bookmark"></i>
+                                    <p>Albümler</p>
+                                </div>
+                                <div class="photos-footer-button">
+                                    <i class="fas fa-search"></i>
+                                    <p>Ara</p>
+                                </div>
+                                <div class="filter-background"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="phone-currentcall-container">
@@ -1732,6 +1794,7 @@
         <script src="./js/trucker.js"></script>
         <script src="./js/calculator.js"></script>
         <script src="./js/clock.js"></script>
+        <script src="./js/photos.js"></script>
         <script src="./js/food.js"></script>
     </body>
 </html>

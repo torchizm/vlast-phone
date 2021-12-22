@@ -65,6 +65,10 @@ Config.HeaderColors = {
         "top": "black",
         "bottom": "black"
     },
+    "photos": {
+        "top": "black",
+        "bottom": "black"
+    },
 }
 
 Config.HeaderDisabledApps = [

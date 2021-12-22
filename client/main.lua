@@ -39,7 +39,8 @@ PhoneData = {
     },
     SuggestedContacts = {},
     CryptoTransactions = {},
-    Alarms = {}
+    Alarms = {},
+    Photos = {}
 }
 
 local GarageList = {
@@ -489,6 +490,10 @@ AddEventHandler("qb-phone:refresh", function()
             PhoneData.CryptoTransactions = pData.CryptoTransactions
         end
 
+        if pData.Photos ~= nil and next(pData.Photos) ~= nil then
+            PhoneData.Photos = pData.Photos
+        end
+
         PhoneData.Alarms = PhoneData.PlayerData.metadata["phonealarms"]
 
         SendNUIMessage({ 
@@ -591,6 +596,10 @@ function LoadPhone()
 
         if PhoneData.PlayerData.metadata["phonealarms"] ~= nil then 
             PhoneData.Alarms = PhoneData.PlayerData.metadata["phonealarms"]
+        end
+
+        if pData.Photos ~= nil and next(pData.Photos) ~= nil then
+            PhoneData.Photos = pData.Photos
         end
 
         SendNUIMessage({ 
@@ -3056,4 +3065,24 @@ end)
 
 RegisterNUICallback("ReleaseKeyboard", function()
     LockKeyboard = false
+end)
+
+RegisterNUICallback('GetPhotos', function(data, cb)
+    print("get photos")
+    json.encode(PhoneData.Photos)
+    cb(PhoneData.Photos)
+end)
+
+RegisterNUICallback('SaveImage', function(data)
+    table.insert(PhoneData.Photos, data)
+    TriggerServerEvent('qb-phone:server:SavePhoto', data.url, {})
+end)
+
+RegisterNUICallback('DeleteImage', function(data)
+    for k,v in pairs(PhoneData.Photos) do
+        if v.url == data.url then
+            table.remove(PhoneData, v)
+        end
+    end
+    TriggerServerEvent('qb-phone:server:DeletePhoto', data.url)
 end)

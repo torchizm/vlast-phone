@@ -144,78 +144,6 @@ Config.PhoneApplications = {
         creator = "TORCHIZM",
         title = "Sarı Sayfalar"
     },
-
-    -- ["crypto"] = {
-    --     app = "kocadede",
-    --     color = "#004682",
-    --     icon = "fas fa-chart-pie",
-    --     tooltipText = "Crypto Currency",
-	-- 	tooltipPos = "bottom",
-    --     job = false,
-    --     blockedjobs = {
-    --         "police",
-    --         "unemployed",
-    --         "ambulance",
-    --         "mechanic"
-    --     },
-    --     slot = 9,
-    --     Alerts = 0,
-	-- 	style = "",
-	-- 	password = false,
-    --     creator = "TORCHIZM",
-    --     title = "Borsa"
-    -- },
-
-    ["racing"] = {
-        app = "racing",
-        image = "racing",
-        color = "#353b48",
-        icon = "fas fa-flag-checkered",
-        tooltipText = "Racing",
-		tooltipPos = "bottom",
-        job = false,
-        blockedjobs = {
-            "police"
-        },
-        slot = 14,
-        Alerts = 0,
-		style = "",
-		password = false,
-        creator = "TORCHIZM",
-        title = "Yarışlar"
-    },
-    ["houses"] = {
-        app = "houses",
-        image = "houses",
-        color = "#267ba2",
-        icon = "fas fa-home",
-        tooltipText = "Mülkiyet",
-		tooltipPos = "bottom",
-        job = false,
-        blockedjobs = {},
-        slot = 10,
-        Alerts = 0,
-		style = "",
-		password = false,
-        creator = "TORCHIZM",
-        title = "Mülkiyet"
-    },
-    -- ["food"] = {
-    --     app = "food",
-    --     image = "food",
-    --     color = "#ab0000",
-    --     icon = "fa fa-utensils",
-    --     tooltipText = "İşletmeler",
-	-- 	tooltipPos = "bottom",
-    --     job = false,
-    --     blockedjobs = {},
-    --     slot = 14,
-    --     Alerts = 0,
-	-- 	style = "",
-	-- 	password = false,
-    --     creator = "TORCHIZM",
-    --     title = "İşletmeler"
-    -- },
     ["clock"] = {
         app = "clock",
         image = "clock",
@@ -248,6 +176,22 @@ Config.PhoneApplications = {
         creator = "TORCHIZM",
         title = "Hesap Maki..."
     },
+    ["houses"] = {
+        app = "houses",
+        image = "houses",
+        color = "#267ba2",
+        icon = "fas fa-home",
+        tooltipText = "Mülkiyet",
+		tooltipPos = "bottom",
+        job = false,
+        blockedjobs = {},
+        slot = 10,
+        Alerts = 0,
+		style = "",
+		password = false,
+        creator = "TORCHIZM",
+        title = "Mülkiyet"
+    },
     ["arrests"] = {
         app = "arrests",
         image = "arrests",
@@ -264,7 +208,40 @@ Config.PhoneApplications = {
         creator = "TORCHIZM",
         title = "Arananlar"
     },
-
+    ["photos"] = {
+        app = "photos",
+        image = "photos",
+        color = "#ff6a00",
+        icon = "fas fa-image",
+        tooltipText = "Fotoğraflar",
+		tooltipPos = "bottom",
+        job = false,
+        blockedjobs = {},
+        slot = 13,
+        Alerts = 0,
+		style = "",
+		password = false,
+        creator = "TORCHIZM",
+        title = "Fotoğraflar"
+    },
+    ["racing"] = {
+        app = "racing",
+        image = "racing",
+        color = "#353b48",
+        icon = "fas fa-flag-checkered",
+        tooltipText = "Racing",
+		tooltipPos = "bottom",
+        job = false,
+        blockedjobs = {
+            "police"
+        },
+        slot = 14,
+        Alerts = 0,
+		style = "",
+		password = false,
+        creator = "TORCHIZM",
+        title = "Yarışlar"
+    }
 }
 Config.MaxSlots = 20
 

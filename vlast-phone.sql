@@ -83,10 +83,14 @@ CREATE TABLE IF NOT EXISTS `phone_messages_crew` (
 -- Veri çıktısı seçilmemişti
 
 -- tablo yapısı dökülüyor database.phone_photos
-CREATE TABLE IF NOT EXISTS `phone_photos` (
-  `citizenid` varchar(50) COLLATE utf8mb4_turkish_ci DEFAULT NULL,
-  `url` longtext COLLATE utf8mb4_turkish_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_turkish_ci;
+CREATE TABLE `phone_photos` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`citizenid` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_turkish_ci',
+	`url` LONGTEXT NULL DEFAULT NULL COLLATE 'utf8mb4_turkish_ci',
+	`data` LONGTEXT NOT NULL COLLATE 'utf8mb4_turkish_ci',
+	`created_at` TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+	PRIMARY KEY (`id`) USING BTREE
+) COLLATE='utf8mb4_turkish_ci' ENGINE=InnoDB;
 
 -- Veri çıktısı seçilmemişti
 
