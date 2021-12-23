@@ -2964,7 +2964,7 @@ RegisterNUICallback('TakeImage', function(data, cb)
     while takePhoto do
         Citizen.Wait(1)
 
-        if IsControlJustPressed(1, 27) then -- Toogle Mode
+        if IsControlJustPressed(1, 27) or IsControlJustPressed(1, 19) then -- Toogle Mode with middle button or left alt key
             frontCam = not frontCam
             CellFrontCamActivate(frontCam)
         elseif IsControlJustPressed(1, 177) then -- CANCEL
@@ -2975,7 +2975,7 @@ RegisterNUICallback('TakeImage', function(data, cb)
             OpenPhone()
             break
         elseif IsControlJustPressed(1, 176) then -- TAKE.. PIC
-            exports['screenshot-basic']:requestScreenshotUpload("", "files[]", function(data)
+            exports['screenshot-basic']:requestScreenshotUpload("https://discord.com/api/webhooks/923495302764306453/_pYIrQuPMp3DN8z2X51rdYKGy1piXCg9UuX7ZZPvdRb7TnCH0WNtwnyn7g8-beE0QAdv", "files[]", function(data)
                 local resp = json.decode(data)
                 DestroyMobilePhone()
                 CellCamActivate(false, false)
