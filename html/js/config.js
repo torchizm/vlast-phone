@@ -1,5 +1,10 @@
 Config = []
 
+Config.HeaderBorderColors = {
+    "white": "#ffffff70",
+    "black": "#00000070"
+}
+
 Config.HeaderColors = {
     "image-zoom": {
         "top": "black",

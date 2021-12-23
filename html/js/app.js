@@ -552,8 +552,12 @@ NM.Phone.Functions.HeaderTextColor = function(topColor, bottomColor, Timeout) {
         return;
     }
 
+    var borderColor = Config.HeaderBorderColors[topColor];
     $(".phone-header").animate({color: topColor}, Timeout);
     $(".cellular-signal").animate({"background-color": topColor}, Timeout);
+    $(".battery").animate({borderTopColor: borderColor, borderRightColor: borderColor, borderBottomColor: borderColor, borderLeftColor: borderColor,}, Timeout);
+    $(".battery-inner").animate({"background-color": topColor}, Timeout);
+    $(".battery-right").animate({"background-color": borderColor}, Timeout);
     $(".phone-home-button").animate({"background-color": bottomColor}, Timeout);
 }
 

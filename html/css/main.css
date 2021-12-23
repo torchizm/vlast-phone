@@ -161,15 +161,49 @@ body {
     gap: 4px;
 }
 
-#phone-battery {
-    font-size: 1.3vh;
+.battery {
+    display: flex;
+    align-items: baseline;
+    border-radius: 4px;
+    border: 1px solid rgb(255, 255, 255, 0.5);
+    width: 20px;
+    height: 12px;
     position: relative;
+    padding-right: 1px;
+}
+
+.battery-inner {
+    height: 8px;
+    width: 12px;
+    background-color: white;
+    border-radius: 2px;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    margin-right: 1px;
+}
+
+.battery-right {
+    position: absolute;
+    width: 2px;
+    height: 3px;
+    background: white;
+    right: -3px;
+    top: 4px;
+    border-radius: 16px;
+    opacity: 0.5;
+}
+
+.cellular {
+    display: flex;
+    align-items: baseline;
+    gap: 1px;
 }
 
 .cellular-signal {
-    width: 4px;
+    width: 3px;
     background: #ffffff;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 
 .cellular-signal:last-child {
