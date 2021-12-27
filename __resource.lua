@@ -4,13 +4,12 @@ ui_page "html/index.html"
 
 client_scripts {
     '@PolyZone/client.lua',
-    'client/main.lua',
-    'client/animation.lua',
+    'client/*.lua',
     'config.lua',
 }
 
 server_scripts {
-    'server/main.lua',
+    'server/*.lua',
     'config.lua',
 }
 

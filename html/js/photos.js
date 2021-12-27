@@ -1,12 +1,22 @@
 var Photos = [];
 
-var Months = ["Ocak", "Şubat", "Mart", "Nisan",
-              "Mayıs", "Haziran", "Temmuz", "Ağustos",
-              "Eylül", "Ekim", "Kasım", "Aralık"];
+var Months = {
+    "long": ["Ocak", "Şubat", "Mart", "Nisan",
+             "Mayıs", "Haziran", "Temmuz", "Ağustos",
+             "Eylül", "Ekim", "Kasım", "Aralık"],
+    "short": ["Oca", "Şub", "Mar", "Nis",
+              "May", "Haz", "Tem", "Ağu",
+              "Eyl", "Eki", "Kas", "Ara"]
+}
 
 $('#save-image-to-photos').click(function() {
     var url = $('.phone-image-source').prop('src');
-    $.post('http://qb-phone/SaveImage', JSON.stringify({url: url}))
+    var location = $('.phone-image-souce').attr('data-location');
+    var data = {
+        "albums": [NM.Phone.Data.Applications[NM.Phone.Data.currentApplication].tooltipText],
+        "location": location
+    }
+    $.post('http://qb-phone/SaveImage', JSON.stringify({url: url, data: data}))
     NM.Phone.Notifications.Add('photos', 'Fotoğraflar', 'Fotoğraf kaydedildi')
 });
 
@@ -27,22 +37,44 @@ function SetupPhotos(_) {
     }
 
     $('.photos-content').empty();
+    var kind = $('.photos-content').attr("data-showing");
 
+    var titleDates = [];
+    
     Photos.forEach(photo => {
-        var kind = $('.photos-content').attr("data-showing");
-        photoChild = GetPhotoObject(photo, kind);
+        var titleDate;
+        
+        switch (kind) {
+            case "day":
+                titleDate = new Date(photo.Date).getDay();
+                break;
+            case "year":
+                titleDate = new Date(photo.Date).getMonth();
+                break;
+            case "month":
+                titleDate = new Date(photo.Date).getFullYear();
+                break;
+            default:
+                titleDate = undefined;
+        }
+
+        photoChild = GetPhotoObject(photo, kind, titleDates.includes(titleDate) ? "none" : "block");
         $(photoChild).appendTo('.photos-content');
+
+        if (titleDate !== undefined && !titleDates.includes(titleDate)) {
+            titleDates.push(titleDate);
+        }
     });
 }
 
-function GetPhotoObject(photo, kind) {
+function GetPhotoObject(photo, kind, includeDate) {
     var date = new Date(photo.Date);
     switch (kind) {
         case "year":
             var photoChild = $('<div/>', {
                 class: 'photos-image-item',
                 html: `
-                    <span>${date.getFullYear()}</span>
+                    <span style="display: ${includeDate}">${date.getFullYear()}</span>
                     <img src='${photo.Url}'></img>`
             }).data('data', photo.Data);
             return photoChild;
@@ -50,15 +82,19 @@ function GetPhotoObject(photo, kind) {
             var photoChild = $('<div/>', {
                 class: 'photos-image-item',
                 html: `
-                    <span>${Months[date.getMonth()]}</span>
-                    <img src='${photo.Url}'></img>`
+                    <span style="display: ${includeDate}" class="photo-img-title">${Months["long"][date.getMonth()]} ${date.getFullYear()} <i class="fas fa-chevron-right"></i></span>
+                    <img src='${photo.Url}'></img>
+                    <div class="photo-img-details">
+                        <span style="display: ${photo.Data.location == undefined ? "none" : "block"}" class="photo-img-details-text">${photo.Data.location}</span>
+                        <span class="photo-img-details-date">${Months["short"][date.getMonth()]} ${date.getDay()}</span>
+                    </div>`
             }).data('data', photo.Data);
             return photoChild;
         case "day":
             var photoChild = $('<div/>', {
                 class: 'photos-image-item',
                 html: `
-                    <span>${date.getDay()}</span>
+                    <span style="display: ${includeDate}">${date.getDay()}</span>
                     <img src='${photo.Url}'></img>`
                 }).data('data', photo.Data);
             return photoChild;

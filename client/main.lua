@@ -3066,23 +3066,3 @@ end)
 RegisterNUICallback("ReleaseKeyboard", function()
     LockKeyboard = false
 end)
-
-RegisterNUICallback('GetPhotos', function(data, cb)
-    print("get photos")
-    json.encode(PhoneData.Photos)
-    cb(PhoneData.Photos)
-end)
-
-RegisterNUICallback('SaveImage', function(data)
-    table.insert(PhoneData.Photos, data)
-    TriggerServerEvent('qb-phone:server:SavePhoto', data.url, {})
-end)
-
-RegisterNUICallback('DeleteImage', function(data)
-    for k,v in pairs(PhoneData.Photos) do
-        if v.url == data.url then
-            table.remove(PhoneData, v)
-        end
-    end
-    TriggerServerEvent('qb-phone:server:DeletePhoto', data.url)
-end)

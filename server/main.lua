@@ -151,6 +151,7 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetPhoneData', function(source,
                                 QBCore.Functions.ExecuteSql(false, 'SELECT * FROM `phone_photos` WHERE `citizenid` = "'..Player.PlayerData.citizenid..'" ORDER BY `created_at` DESC', function(photos)
                                     if photos[1] ~= nil then
                                         for _, v in pairs(photos) do
+                                            print(json.encode(photos))
                                             table.insert(PhoneData.Photos, {
                                                 Url = v.url,
                                                 Data = v.data,
@@ -168,6 +169,21 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetPhoneData', function(source,
             end)
         end)
     end
+end)
+
+RegisterCommand("test", function(source, raw, args)
+    QBCore.Functions.ExecuteSql(false, 'SELECT * FROM `phone_photos` WHERE `citizenid` = "NDD19750" ORDER BY `created_at` DESC', function(photos)
+        if photos[1] ~= nil then
+            for _, v in pairs(photos) do
+                print(json.encode(photos))
+                table.insert(PhoneData.Photos, {
+                    Url = v.url,
+                    Data = v.data,
+                    Date = v.created_at
+                })
+            end
+        end
+    end)
 end)
 
 QBCore.Functions.CreateCallback('qb-phone:server:GetBankHistory', function(source, cb)
