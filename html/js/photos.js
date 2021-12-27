@@ -43,16 +43,17 @@ function SetupPhotos(_) {
     
     Photos.forEach(photo => {
         var titleDate;
+        var dateObj = new Date(photo.Date);
         
         switch (kind) {
             case "day":
-                titleDate = new Date(photo.Date).getDay();
+                titleDate = `${dateObj.getFullYear()}-${dateObj.getMonth()}-${dateObj.getDay()}`;
                 break;
             case "year":
-                titleDate = new Date(photo.Date).getMonth();
+                titleDate = `${dateObj.getFullYear()}-${dateObj.getMonth()}`;
                 break;
             case "month":
-                titleDate = new Date(photo.Date).getFullYear();
+                titleDate = dateObj.getFullYear();
                 break;
             default:
                 titleDate = undefined;
@@ -94,7 +95,7 @@ function GetPhotoObject(photo, kind, includeDate) {
             var photoChild = $('<div/>', {
                 class: 'photos-image-item',
                 html: `
-                    <span style="display: ${includeDate}">${date.getDay()}</span>
+                    <span style="display: ${includeDate}">${Months["short"][date.getMonth()]} ${date.getDay()}</span>
                     <img src='${photo.Url}'></img>`
                 }).data('data', photo.Data);
             return photoChild;

@@ -105,14 +105,20 @@
     font-size: 16px;
     font-weight: 100;
 }
-/* .photos-content[data-showing="month"] .photo-img-detials span:first-child {
-    color: var(--main-color);
-} */
 
 .photos-content[data-showing="day"] {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 4px;
+}
+
+.photos-content[data-showing="day"] .photos-image-item span {
+    position: absolute;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    margin: 16px;
+    font-size: 22px;
 }
 
 .photos-content[data-showing="all"] {
