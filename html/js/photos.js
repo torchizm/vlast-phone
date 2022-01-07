@@ -10,14 +10,28 @@ var Months = {
 }
 
 $('#save-image-to-photos').click(function() {
-    var url = $('.phone-image-source').prop('src');
-    var location = $('.phone-image-souce').attr('data-location');
-    var data = {
-        "albums": [NM.Phone.Data.Applications[NM.Phone.Data.currentApplication].tooltipText],
-        "location": location
+    if ($(this).hasClass("blue-text")) {
+        var url = $('.phone-image-source').prop('src');
+        var location = $('.phone-image-souce').attr('data-location');
+        var data = {
+            "albums": [NM.Phone.Data.Applications[NM.Phone.Data.currentApplication].tooltipText],
+            "location": location
+        };
+        $.post('http://qb-phone/SaveImage', JSON.stringify({url: url, data: data}), function(_) {
+            NM.Phone.Notifications.Add('photos', 'Fotoğraflar', 'Fotoğraf Kaydedildi');
+            SetupPhotos(_);
+        });
+    } else if ($(this).hasClass("red-text")) {
+        var id = $('.phone-image-source').data('id');
+        $.post('http://qb-phone/DeleteImage', JSON.stringify({id: id}), function(_) {
+            NM.Phone.Notifications.Add('photos', 'Fotoğraflar', 'Fotoğraf Silindi')
+            $(".phone-image-container").animate({
+                'right': '-30vh'
+            }, 300);
+            NM.Phone.Functions.HeaderTextColor(NM.Phone.Data.currentApplication == null ? "white" : Config.HeaderColors[NM.Phone.Data.currentApplication]["top"], NM.Phone.Data.currentApplication == null ? "white" : Config.HeaderColors[NM.Phone.Data.currentApplication]["bottom"], 300);
+            SetupPhotos(_);
+        });
     }
-    $.post('http://qb-phone/SaveImage', JSON.stringify({url: url, data: data}))
-    NM.Phone.Notifications.Add('photos', 'Fotoğraflar', 'Fotoğraf kaydedildi')
 });
 
 $('.photos-range p').click(function() {
@@ -44,17 +58,19 @@ function SetupPhotos(_) {
     Photos.forEach(photo => {
         var titleDate;
         var includeDate;
-        var dateObj = new Date(photo.Date);
+        var dateObj = new Date(photo.created_at);
         
         switch (kind) {
             case "all":
                 photoChild = $('<div/>', {
                     class: 'photos-image-item',
                     html: `
-                        <img src='${photo.Url}'></img>`
-                }).data('data', photo.Data);
-
+                        <img class="zoomable-image" src='${photo.url}'></img>`
+                }).data('data', photo.data);
+                
+                $(photoChild).find('.zoomable-image').data('id', photo.id);
                 $(photoChild).appendTo('.photos-content');
+
                 break;
 
             case "day":
@@ -64,9 +80,10 @@ function SetupPhotos(_) {
                     class: 'photos-image-item',
                     html: `
                         <span style="display: ${includeDate}">${Months["short"][dateObj.getMonth()]} ${dateObj.getDay()}</span>
-                        <img src='${photo.Url}'></img>`
-                    }).data('data', photo.Data);
+                        <img class="zoomable-image" src='${photo.url}'></img>`
+                }).data('data', photo.data);
 
+                $(photoChild).find('.zoomable-image').data('id', photo.id);
                 $(photoChild).appendTo('.photos-content');
                 break;
                 
@@ -78,9 +95,10 @@ function SetupPhotos(_) {
                         class: 'photos-image-item',
                         html: `
                             <span>${dateObj.getFullYear()}</span>
-                            <img src='${photo.Url}'></img>`
-                    }).data('data', photo.Data);
+                            <img class="zoomable-image" src='${photo.url}'></img>`
+                    }).data('data', photo.data);
 
+                    $(photoChild).find('.zoomable-image').data('id', photo.id);
                     $(photoChild).appendTo('.photos-content');
                 }
                 break;
@@ -93,15 +111,17 @@ function SetupPhotos(_) {
                     class: 'photos-image-item',
                     html: `
                         <span style="display: ${includeDate}" class="photo-img-title">${Months["long"][dateObj.getMonth()]} ${dateObj.getFullYear()} <i class="fas fa-chevron-right"></i></span>
-                        <img src='${photo.Url}'></img>
+                        <img class="zoomable-image" src='${photo.url}'></img>
                         <div class="${includeDate == "block" ? "photo-img-details-date-included" : "photo-img-details"}">
-                            <span style="display: ${photo.Data.location == undefined ? "none" : "block"}" class="photo-img-details-text">${photo.Data.location}</span>
+                            <span style="display: ${photo.data.location == undefined ? "none" : "block"}" class="photo-img-details-text">${photo.data.location}</span>
                             <span class="photo-img-details-date">${Months["short"][dateObj.getMonth()]} ${dateObj.getDay()}</span>
                         </div>`
-                }).data('data', photo.Data);
+                }).data('data', photo.data);
+                
+                $(photoChild).find('.zoomable-image').data('id', photo.id);
                 $(photoChild).appendTo('.photos-content');
-
                 break;
+
             default:
                 break;
         }

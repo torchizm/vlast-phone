@@ -1,28 +1,27 @@
-RegisterCommand("selamnaber", function(source, raw, args)
-    print("iyi senden naber")
-end)
-
 RegisterNUICallback('GetPhotos', function(data, cb)
-    json.encode(PhoneData.Photos)
     cb(PhoneData.Photos)
 end)
 
-RegisterNUICallback('SaveImage', function(data)
+RegisterNUICallback('SaveImage', function(data, cb)
     if (data.data.location == nil) then
         data.data.location = GetTheStreet()
     end
 
-    table.insert(PhoneData.Photos, data)
-    TriggerServerEvent('qb-phone:server:SavePhoto', data.url, data.data)
+	QBCore.Functions.TriggerCallback('qb-phone:server:SavePhoto', function(id)
+		data.id = id
+		table.insert(PhoneData.Photos, data)
+        cb(PhoneData.Photos)
+    end, data.url, data.data)	
 end)
 
-RegisterNUICallback('DeleteImage', function(data)
+RegisterNUICallback('DeleteImage', function(data, cb)
     for k,v in pairs(PhoneData.Photos) do
-        if v.url == data.url then
-            table.remove(PhoneData, v)
+        if v.id == data.id then
+            table.remove(PhoneData.Photos, k)
         end
     end
-    TriggerServerEvent('qb-phone:server:DeletePhoto', data.url)
+    TriggerServerEvent('qb-phone:server:DeletePhoto', data.id)
+	cb(PhoneData.Photos)
 end)
 
 function GetTheStreet()
@@ -38,7 +37,7 @@ function GetTheStreet()
         ZoneNames['UNKNOWN'] = zone
     elseif not ZoneNames[tostring(zone)] then
         local undefinedZone = zone .. " " .. x .. " " .. y .. " " .. z
-        ZoneNames[tostring(zone)] = "Undefined Zone"
+        ZoneNames[tostring(zone)] = "Bilinmeyen Bölge"
     end
 
     if (intersectStreetName ~= nil and intersectStreetName ~= "") or (currentStreetName ~= nil and currentStreetName ~= "") then

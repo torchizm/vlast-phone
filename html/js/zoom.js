@@ -5,9 +5,19 @@ $(".phone-image-source").click(function() {
     Rotate();
 });
 
-$(document).on('click', '.whatsapp-openedchat-message-image', function(e){
+$(document).on('click', `.whatsapp-openedchat-message-image,
+                         .zoomable-image`, function(e){
     let url = $(this).prop("src");
-    OpenImage(url);
+    var data = undefined;
+
+    if ($(this).hasClass("zoomable-image")) {
+        data = $(this).data("id");
+        $("#save-image-to-photos").removeClass("blue-text");
+        $("#save-image-to-photos").addClass("red-text");
+        $("#save-image-to-photos").text("Sil");
+    }
+
+    OpenImage(url, data);
 });
 
 $(`.phone-settings-image-source,
@@ -30,13 +40,20 @@ $(`.phone-settings-image-source,
     OpenImage(url);
 });
 
-function OpenImage(url) {
+function OpenImage(url, data) {
     $(".phone-image-container").animate({
         "right": "0vh"
     }, 300);
     
     let image = $(".phone-image-source");
-    $(image).prop("src", url)
+    $(image).prop("src", url);
+    console.log("id is:", data);
+    if (data !== undefined){
+        $(image).data("id", data);
+    } else {
+        $(image).data("id", 0)
+    }
+
     if (image.width() > image.height()){
         $(image).css("top", "24vh");
     } else if (image.width() <= image.height()){
@@ -105,7 +122,15 @@ $(".phone-image-source").click(function(e) {
 $("#cancel-image-container").click(function() {
     $(".phone-image-container").animate({
         'right': '-30vh'
-    }, 300);
+    }, 300)
 
+    if ($("#save-image-to-photos").hasClass("red-text")) {
+        setTimeout(() => {
+            $("#save-image-to-photos").removeClass("red-text");
+            $("#save-image-to-photos").addClass("blue-text");
+            $("#save-image-to-photos").text("Kaydet");
+        }, 300);
+    }
+    
     NM.Phone.Functions.HeaderTextColor(NM.Phone.Data.currentApplication == null ? "white" : Config.HeaderColors[NM.Phone.Data.currentApplication]["top"], NM.Phone.Data.currentApplication == null ? "white" : Config.HeaderColors[NM.Phone.Data.currentApplication]["bottom"], 300);
 });

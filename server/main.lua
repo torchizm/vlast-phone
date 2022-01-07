@@ -150,14 +150,7 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetPhoneData', function(source,
 
                                 QBCore.Functions.ExecuteSql(false, 'SELECT * FROM `phone_photos` WHERE `citizenid` = "'..Player.PlayerData.citizenid..'" ORDER BY `created_at` DESC', function(photos)
                                     if photos[1] ~= nil then
-                                        for _, v in pairs(photos) do
-                                            print(json.encode(photos))
-                                            table.insert(PhoneData.Photos, {
-                                                Url = v.url,
-                                                Data = v.data,
-                                                Date = v.created_at
-                                            })
-                                        end
+                                        PhoneData.Photos = photos
                                     end
 
                                     cb(PhoneData)
@@ -169,21 +162,6 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetPhoneData', function(source,
             end)
         end)
     end
-end)
-
-RegisterCommand("test", function(source, raw, args)
-    QBCore.Functions.ExecuteSql(false, 'SELECT * FROM `phone_photos` WHERE `citizenid` = "NDD19750" ORDER BY `created_at` DESC', function(photos)
-        if photos[1] ~= nil then
-            for _, v in pairs(photos) do
-                print(json.encode(photos))
-                table.insert(PhoneData.Photos, {
-                    Url = v.url,
-                    Data = v.data,
-                    Date = v.created_at
-                })
-            end
-        end
-    end)
 end)
 
 QBCore.Functions.CreateCallback('qb-phone:server:GetBankHistory', function(source, cb)
@@ -1311,16 +1289,19 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetCurrentFoodWorker', function
     cb(workers)
 end)
 
-RegisterServerEvent('qb-phone:server:SavePhoto')
-AddEventHandler('qb-phone:server:SavePhoto', function(url, data)
+QBCore.Functions.CreateCallback('qb-phone:server:SavePhoto', function(source, cb, url, data)
+    local source = source
     local player = QBCore.Functions.GetPlayer(source)
     local data = json.encode(data)
-    print("selam", url)
-    QBCore.Functions.ExecuteSql(false, "INSERT INTO `phone_photos` (`citizenid`, `url`, `data`) VALUES ('"..player.PlayerData.citizenid.."', '"..url.."', '"..data.."')")
+
+    exports['ghmattimysql']:execute("INSERT INTO `phone_photos` (`citizenid`, `url`, `data`) VALUES ('"..player.PlayerData.citizenid.."', '"..url.."', '"..data.."') RETURNING id;", nil,
+    function(result)
+        cb(result[1].id)        
+    end)
 end)
 
-RegisterServerEvent('qb-phone:Server:DeletePhoto')
-AddEventHandler('qb-phone:server:DeletePhoto', function(url)
+RegisterServerEvent('qb-phone:server:DeletePhoto')
+AddEventHandler('qb-phone:server:DeletePhoto', function(id)
     local player = QBCore.Functions.GetPlayer(source)
-    QBCore.Functions.ExecuteSql(false, "DELETE FROM `phone_photos` WHERE citizenid='"..Player.PlayerData.citizenid.."' AND url='"..url.."'")
+    QBCore.Functions.ExecuteSql(false, "DELETE FROM `phone_photos` WHERE citizenid='"..player.PlayerData.citizenid.."' AND id="..id.."")
 end)

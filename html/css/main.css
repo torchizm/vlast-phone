@@ -366,7 +366,7 @@ body {
     top: -8%;
     border-radius: 1vh;
     overflow: hidden;
-    z-index: 140;
+    z-index: 150;
     box-shadow: 0 0 20px 7px rgb(0 0 0 / 65%);
     background-color: rgba(39, 39, 39, 0.6);
 }
@@ -610,6 +610,12 @@ body {
 .global-app-header .blue-text:last-child {
     position: absolute;
     right: 22px;
+}
+
+.global-app-header .red-text {
+    color: var(--main-red);
+    position: absolute;
+    right: 24px;
 }
 
 /* Phone Image Zoom */
