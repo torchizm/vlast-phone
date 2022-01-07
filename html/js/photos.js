@@ -43,70 +43,71 @@ function SetupPhotos(_) {
     
     Photos.forEach(photo => {
         var titleDate;
+        var includeDate;
         var dateObj = new Date(photo.Date);
         
         switch (kind) {
+            case "all":
+                photoChild = $('<div/>', {
+                    class: 'photos-image-item',
+                    html: `
+                        <img src='${photo.Url}'></img>`
+                }).data('data', photo.Data);
+
+                $(photoChild).appendTo('.photos-content');
+                break;
+
             case "day":
                 titleDate = `${dateObj.getFullYear()}-${dateObj.getMonth()}-${dateObj.getDay()}`;
+                includeDate = titleDates.includes(titleDate) ? "none" : "block";
+                var photoChild = $('<div/>', {
+                    class: 'photos-image-item',
+                    html: `
+                        <span style="display: ${includeDate}">${Months["short"][dateObj.getMonth()]} ${dateObj.getDay()}</span>
+                        <img src='${photo.Url}'></img>`
+                    }).data('data', photo.Data);
+
+                $(photoChild).appendTo('.photos-content');
                 break;
+                
             case "year":
                 titleDate = `${dateObj.getFullYear()}-${dateObj.getMonth()}`;
+
+                if (!titleDates.includes(titleDate)) {
+                    var photoChild = $('<div/>', {
+                        class: 'photos-image-item',
+                        html: `
+                            <span>${dateObj.getFullYear()}</span>
+                            <img src='${photo.Url}'></img>`
+                    }).data('data', photo.Data);
+
+                    $(photoChild).appendTo('.photos-content');
+                }
                 break;
+
             case "month":
                 titleDate = dateObj.getFullYear();
+                includeDate = titleDates.includes(titleDate) ? "none" : "block";
+                
+                var photoChild = $('<div/>', {
+                    class: 'photos-image-item',
+                    html: `
+                        <span style="display: ${includeDate}" class="photo-img-title">${Months["long"][dateObj.getMonth()]} ${dateObj.getFullYear()} <i class="fas fa-chevron-right"></i></span>
+                        <img src='${photo.Url}'></img>
+                        <div class="${includeDate == "block" ? "photo-img-details-date-included" : "photo-img-details"}">
+                            <span style="display: ${photo.Data.location == undefined ? "none" : "block"}" class="photo-img-details-text">${photo.Data.location}</span>
+                            <span class="photo-img-details-date">${Months["short"][dateObj.getMonth()]} ${dateObj.getDay()}</span>
+                        </div>`
+                }).data('data', photo.Data);
+                $(photoChild).appendTo('.photos-content');
+
                 break;
             default:
-                titleDate = undefined;
+                break;
         }
-
-        photoChild = GetPhotoObject(photo, kind, titleDates.includes(titleDate) ? "none" : "block");
-        $(photoChild).appendTo('.photos-content');
-
-        if (titleDate !== undefined && !titleDates.includes(titleDate)) {
+        
+        if (!titleDates.includes(titleDate)) {
             titleDates.push(titleDate);
         }
     });
-}
-
-function GetPhotoObject(photo, kind, includeDate) {
-    var date = new Date(photo.Date);
-    switch (kind) {
-        case "year":
-            var photoChild = $('<div/>', {
-                class: 'photos-image-item',
-                html: `
-                    <span style="display: ${includeDate}">${date.getFullYear()}</span>
-                    <img src='${photo.Url}'></img>`
-            }).data('data', photo.Data);
-            return photoChild;
-        case "month":
-            var photoChild = $('<div/>', {
-                class: 'photos-image-item',
-                html: `
-                    <span style="display: ${includeDate}" class="photo-img-title">${Months["long"][date.getMonth()]} ${date.getFullYear()} <i class="fas fa-chevron-right"></i></span>
-                    <img src='${photo.Url}'></img>
-                    <div class="photo-img-details">
-                        <span style="display: ${photo.Data.location == undefined ? "none" : "block"}" class="photo-img-details-text">${photo.Data.location}</span>
-                        <span class="photo-img-details-date">${Months["short"][date.getMonth()]} ${date.getDay()}</span>
-                    </div>`
-            }).data('data', photo.Data);
-            return photoChild;
-        case "day":
-            var photoChild = $('<div/>', {
-                class: 'photos-image-item',
-                html: `
-                    <span style="display: ${includeDate}">${Months["short"][date.getMonth()]} ${date.getDay()}</span>
-                    <img src='${photo.Url}'></img>`
-                }).data('data', photo.Data);
-            return photoChild;
-        case "all":
-            var photoChild = $('<div/>', {
-                class: 'photos-image-item',
-                html: `
-                    <img src='${photo.Url}'></img>`
-                }).data('data', photo.Data);
-            return photoChild;
-        default:
-            return "";
-    }
 }

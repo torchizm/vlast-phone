@@ -92,12 +92,22 @@
     font-weight: bold;
     font-size: 32px;
 }
-.photos-content[data-showing="month"] .photo-img-details {
+.photos-content[data-showing="month"] .photo-img-details-date-included {
     position: absolute;
     top: 0;
     display: flex;
     flex-direction: column;
     padding: 54px 12px;
+    text-shadow: 1px 1px 2px var(--main-color);
+    color: var(--main-background-color);
+    font-size: 24px;
+}
+.photos-content[data-showing="month"] .photo-img-details {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
     text-shadow: 1px 1px 2px var(--main-color);
     color: var(--main-background-color);
     font-size: 24px;
