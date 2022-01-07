@@ -1,5 +1,5 @@
 NM.Phone.Settings = {};
-NM.Phone.Settings.Background = "default-qbus";
+NM.Phone.Settings.Background = "ios-1";
 NM.Phone.Settings.OpenedTab = null;
 NM.Phone.Settings.Backgrounds = {
     'ios-1': {
@@ -65,12 +65,23 @@ $(document).on('click', '#accept-background', function(e){
 });
 
 NM.Phone.Functions.LoadMetaData = function(MetaData, PlayerData) {
-    if (MetaData.background !== null && MetaData.background !== undefined) {
-        NM.Phone.Settings.Background = MetaData.background;
-    } else {
-        NM.Phone.Settings.Background = "default-qbus";
+    if (MetaData.background === null || MetaData.background === undefined) {
+        MetaData.background = "ios-1";
+        
+        $.post('http://qb-phone/SetBackground', JSON.stringify({
+            background: NM.Phone.Settings.Background,
+        }));
+    } else if (!MetaData.background.startsWith('www.') && !MetaData.background.startsWith('http://') && !MetaData.background.startsWith('https://')) {
+        if (NM.Phone.Settings.Backgrounds[MetaData.background] === undefined) {
+            MetaData.background = "ios-1";
+        }
+        
+        $.post('http://qb-phone/SetBackground', JSON.stringify({
+            background: NM.Phone.Settings.Background,
+        }));
     }
 
+    NM.Phone.Settings.Background = MetaData.background;
     var hasCustomBackground = NM.Phone.Functions.IsBackgroundCustom();
 
     if (!hasCustomBackground) {

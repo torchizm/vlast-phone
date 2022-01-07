@@ -282,13 +282,6 @@ RegisterNUICallback('ClearRecentAlerts', function(data, cb)
     SendNUIMessage({ action = "RefreshAppAlerts", AppData = Config.PhoneApplications })
 end)
 
-RegisterCommand("resetbackground", function(source, raw, args)
-    local background = "default-qbus"
-
-    PhoneData.MetaData.background = background
-    TriggerServerEvent('qb-phone:server:SaveMetaData', PhoneData.MetaData)
-end)
-
 RegisterNUICallback('SetBackground', function(data)
     local background = data.background
 
@@ -693,7 +686,7 @@ function OpenPhone()
             end)
     
 
-            QBCore.Functions.TriggerCallback('qb-phone:server:GetGarageVehicles', function(vehicles)
+        QBCore.Functions.TriggerCallback('qb-phone:server:GetGarageVehicles', function(vehicles)
             if vehicles ~= nil then
                 for i = 1, #vehicles do
                     vehicles[i].garage = GarageList[tonumber(vehicles[i].garage)]
@@ -704,7 +697,7 @@ function OpenPhone()
             else
                 PhoneData.GarageVehicles = {}
             end
-            end)
+        end)
         -- else
         --     QBCore.Functions.Notify("ليس لديك هاتف", "error")
         -- end
@@ -2975,7 +2968,7 @@ RegisterNUICallback('TakeImage', function(data, cb)
             OpenPhone()
             break
         elseif IsControlJustPressed(1, 176) then -- TAKE.. PIC
-            exports['screenshot-basic']:requestScreenshotUpload("https://discord.com/api/webhooks/923495302764306453/_pYIrQuPMp3DN8z2X51rdYKGy1piXCg9UuX7ZZPvdRb7TnCH0WNtwnyn7g8-beE0QAdv", "files[]", function(data)
+            exports['screenshot-basic']:requestScreenshotUpload("https://discord.com/api/webhooks/928901478536589362/wDhERFDqe0q5PT3OHWFZsmrQfg7XsKnlLZ76j_z-FCDz-M0_C7C14SSnLbRDLIMN-S4Z", "files[]", function(data)
                 local resp = json.decode(data)
                 DestroyMobilePhone()
                 CellCamActivate(false, false)
