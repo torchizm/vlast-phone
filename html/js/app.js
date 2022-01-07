@@ -88,7 +88,6 @@ NM.Phone.Functions.SetupApplications = function(data) {
             } else {
                 var icon = `<img class="ApplicationIcon" src="./img/apps/${app.image}.png"></img>`;
                 // var icon = `<i class="ApplicationIcon ${app.icon}" style="${app.style}"></i>`;
-
             }
             if (app.app == "meos") {
                 icon = '<img src="./img/politie.png" class="police-icon">';
@@ -143,9 +142,6 @@ $(document).on('click', '.phone-application', function(e){
                 NM.Phone.Functions.ToggleApp(PressedApplication, "block");
                 
                 NM.Phone.Functions.HeaderTextColor(Config.HeaderColors[PressedApplication]["top"], Config.HeaderColors[PressedApplication]["bottom"], 300);
-                // if (NM.Phone.Functions.IsAppHeaderAllowed(PressedApplication)) {
-                    // NM.Phone.Functions.HeaderTextColor("black", 300);
-                // }
     
                 $("#phone-footer").css("bottom", "0px");
                 NM.Phone.Data.currentApplication = PressedApplication;
@@ -372,7 +368,6 @@ $(document).on('click', '.phone-application', function(e){
             }
         }
     } else {
-        // NM.Phone.Notifications.Add("fas fa-exclamation-circle", "Sistem", NM.Phone.Data.Applications[PressedApplication].tooltipText+" uygulama kullanılamıyor")
         NM.Phone.Notifications.Add("settings", "Sistem", "Bazı uygulamalar kullanılamıyor")
     }
 });
@@ -401,7 +396,6 @@ function OpenPopup(value) {
     })
 
     $(popup).find("div.mulkiyet-popup-input-buttons div:last-child").click(function() {
-        // this.parentNode.parentNode.remove();
         $(".myhouses-options-container").css("display", "none")
     })
 
@@ -520,18 +514,6 @@ NM.Phone.Functions.Close = function() {
                 }, 200, function(){
                     $(".whatsapp-openedchat").css({"display":"none"});
                 });
-                // setTimeout(function(){
-                //     $(".whatsapp-chats").css({"display":"block"});
-                //     $(".whatsapp-chats").animate({
-                //         left: 0+"vh"
-                //     }, 1);
-                //     $(".whatsapp-openedchat").animate({
-                //         left: -30+"vh"
-                //     }, 1, function(){
-                //         $(".whatsapp-openedchat").css({"display":"none"});
-                //     });
-                //     OpenedChatData.number = null;
-                // }, 450);
             }
             OpenedChatPicture = null;
             NM.Phone.Data.currentApplication = null;
@@ -622,58 +604,30 @@ NM.Phone.Notifications.Add = function(icon, title, text, color, timeout) {
     $.post('http://qb-phone/HasPhone', JSON.stringify({}), function(HasPhone){
         if (HasPhone) {
             if (timeout == null && timeout == undefined) {
-                timeout = 1500;
+                timeout = 2500;
             }
-            if (NM.Phone.Notifications.Timeout == undefined || NM.Phone.Notifications.Timeout == null) {
-                // if (color != null || color != undefined) {
-                //     $(".notification-icon").css({"color":color});
-                //     $(".notification-title").css({"color":color});
-                // } else if (color == "default" || color == null || color == undefined) {
-                //     $(".notification-icon").css({"color":"#e74c3c"});
-                //     $(".notification-title").css({"color":"#e74c3c"});
-                // }
 
-                if (icon.startsWith("fas")) {
-                    $(".notification-icon").html('<i class="'+icon+'"></i>');
-                } else {
-                    $(".notification-icon").html(`<img src="./img/apps/${icon}.png" class="police-icon-notify">`);
-                }
-                NM.Phone.Animations.TopSlideDown(".phone-notification-container", 200, 6);
-                $(".notification-title").html(title);
-                $(".notification-text").html(text);
-                if (NM.Phone.Notifications.Timeout !== undefined || NM.Phone.Notifications.Timeout !== null) {
-                    clearTimeout(NM.Phone.Notifications.Timeout);
-                }
-                NM.Phone.Notifications.Timeout = setTimeout(function(){
-                    NM.Phone.Animations.TopSlideUp(".phone-notification-container", 200, -8);
-                    NM.Phone.Notifications.Timeout = null;
-                }, timeout);
+            if (!NM.Phone.Data.IsOpen) {
+                NM.Phone.Animations.NotifySlide('.container', 300, -55)
 
-            } else {
-                // if (color != null || color != undefined) {
-                //     $(".notification-icon").css({"color":color});
-                //     $(".notification-title").css({"color":color});
-                // } else {
-                //     $(".notification-icon").css({"color":"#e74c3c"});
-                //     $(".notification-title").css({"color":"#e74c3c"});
-                // }
-
-                if (icon.startsWith("fas")) {
-                    $(".notification-icon").html('<i class="'+icon+'"></i>');
-                } else {
-                    $(".notification-icon").html(`<img src="./img/apps/${icon}.png" class="police-icon-notify">`);
-                }
-                // $(".notification-icon").html('<i class="'+icon+'"></i>');
-                $(".notification-title").html(title);
-                $(".notification-text").html(text);
-                if (NM.Phone.Notifications.Timeout !== undefined || NM.Phone.Notifications.Timeout !== null) {
-                    clearTimeout(NM.Phone.Notifications.Timeout);
-                }
-                NM.Phone.Notifications.Timeout = setTimeout(function(){
-                    NM.Phone.Animations.TopSlideUp(".phone-notification-container", 200, -8);
-                    NM.Phone.Notifications.Timeout = null;
-                }, timeout);
+                setTimeout(function() {
+                    if (!NM.Phone.Data.IsOpen) {
+                        NM.Phone.Animations.NotifySlideDown('.container', 300, -70)
+                    }
+                }, timeout + 300)
             }
+
+            $(".notification-icon").html(`<img src="./img/apps/${icon}.png" class="police-icon-notify">`);
+            $(".notification-title").html(title);
+            $(".notification-text").html(text);
+            NM.Phone.Animations.TopSlideDown(".phone-notification-container", 200, 6);
+            if (NM.Phone.Notifications.Timeout !== undefined || NM.Phone.Notifications.Timeout !== null) {
+                clearTimeout(NM.Phone.Notifications.Timeout);
+            }
+            NM.Phone.Notifications.Timeout = setTimeout(function(){
+                NM.Phone.Animations.TopSlideUp(".phone-notification-container", 200, -8);
+                NM.Phone.Notifications.Timeout = null;
+            }, timeout);
         }
     });
 }
@@ -691,54 +645,20 @@ NM.Phone.Functions.UpdateTime = function(data) {
     var NewDate = new Date();
     var NewHour = NewDate.getHours();
     var NewMinute = NewDate.getMinutes();
-    var Minutessss = NewMinute;
-    var Hourssssss = NewHour;
+    var Minutes = NewMinute;
+    var Hours = NewHour;
     if (NewHour < 10) {
-        Hourssssss = "0" + Hourssssss;
+        Hours = "0" + Hours;
     }
     if (NewMinute < 10) {
-        Minutessss = "0" + NewMinute;
+        Minutes = "0" + NewMinute;
     }
 
     if (data.InGameTime.hour < 10) {
         data.InGameTime.hour = "0" + data.InGameTime.hour;
     }
 
-    // var MessageTime = Hourssssss + ":" + Minutessss
-
-    // $("#phone-time").html(MessageTime + " <span style='font-size: 1.1vh;'>" + data.InGameTime.hour + ":" + data.InGameTime.minute + "</span>");
     $("#phone-time").html(`${data.InGameTime.hour}:${data.InGameTime.minute}`);
-}
-
-var NotificationTimeout = null;
-
-NM.Screen.Notification = function(title, content, icon, timeout, color) {
-    $.post('http://qb-phone/HasPhone', JSON.stringify({}), function(HasPhone){
-        if (HasPhone) {
-            if (color != null && color != undefined) {
-                $(".screen-notifications-container").css({"background-color":color});
-            }
-            $(".screen-notification-icon").html('<i class="'+icon+'"></i>');
-            $(".screen-notification-title").text(title);
-            $(".screen-notification-content").text(content);
-            $(".screen-notifications-container").css({'display':'block'}).animate({
-                right: 5+"vh",
-            }, 200);
-        
-            if (NotificationTimeout != null) {
-                clearTimeout(NotificationTimeout);
-            }
-        
-            NotificationTimeout = setTimeout(function(){
-                $(".screen-notifications-container").animate({
-                    right: -35+"vh",
-                }, 200, function(){
-                    $(".screen-notifications-container").css({'display':'none'});
-                });
-                NotificationTimeout = null;
-            }, timeout);
-        }
-    });
 }
 
 
@@ -749,10 +669,6 @@ function TimerBeep() {
     beepAudio.play();
 }
 
-// NM.Screen.Notification("Nieuwe Tweet", "Dit is een test tweet like #YOLO", "twitter", 4000);
-var inNotify = false
-var dontCloseMyPhoneIdiot = false
-var screenNotfiy = false
 $(document).ready(function(){
     window.addEventListener('message', function(event) {
         switch(event.data.action) {
@@ -769,49 +685,6 @@ $(document).ready(function(){
             // case "LoadPhoneApplications":
             //     NM.Phone.Functions.SetupApplications(event.data);
             //     break;
-            case "screenNotify":
-
-                if (!NM.Phone.Data.IsOpen) {
-                    NM.Phone.Animations.NotifySlide('.container', 300, -55)
-                }
-                // NM.Phone.Data.IsOpen = true;
-                // NM.Phone.Functions.closemaybe();
-                inNotify = true;
-                if (event.data.screenNotify.type == "normal") {
-                    NM.Phone.Notifications.Add(
-                        event.data.screenNotify.icon, 
-                        event.data.screenNotify.title, 
-                        event.data.screenNotify.text, 
-                        event.data.screenNotify.color, 
-                        event.data.screenNotify.timeout
-                    );
-                } else if (event.data.screenNotify.type == "phone") {
-                    NM.Phone.Functions.SetupCurrentCall(event.data.calldata);
-                }
-                window.addEventListener("keydown", function(e) {
-                    if (inNotify == true) {
-                        if (e.keyCode == 112) {
-                            inNotify = false;
-                            dontCloseMyPhoneIdiot = true;
-                        }
-                    }
-                })
-                
-                setTimeout(function() {
-                    if (!NM.Phone.Data.IsOpen) {
-                        NM.Phone.Animations.NotifySlideDown('.container', 300, -70)
-                        // NM.Phone.Data.IsOpen = false;
-                        inNotify = false;
-                        // dontCloseMyPhoneIdiot = false
-                    }
-                }, event.data.screenNotify.timeout + 300)
-                
-                break;
-            case "closeScreenNotify":
-                // 1
-                NM.Phone.Animations.NotifySlideDown('.container', 300, -70)
-                NM.Phone.Data.IsOpen = false;
-                break;
             case "LoadPhoneData":
                 NM.Phone.Functions.LoadPhoneData(event.data);
                 break;
@@ -819,10 +692,11 @@ $(document).ready(function(){
                 NM.Phone.Functions.UpdateTime(event.data);
                 break;
             case "Notification":
-                NM.Screen.Notification(event.data.NotifyData.title, event.data.NotifyData.content, event.data.NotifyData.icon, event.data.NotifyData.timeout, event.data.NotifyData.color);
-                break;
-            case "PhoneNotification":
-                NM.Phone.Notifications.Add(event.data.PhoneNotify.icon, event.data.PhoneNotify.title, event.data.PhoneNotify.text, event.data.PhoneNotify.color, event.data.PhoneNotify.timeout);
+                if (event.data.PhoneNotify.type == "phone") {
+                    NM.Phone.Functions.SetupCurrentCall(event.data.calldata);
+                } else {
+                    NM.Phone.Notifications.Add(event.data.PhoneNotify.icon, event.data.PhoneNotify.title, event.data.PhoneNotify.text, event.data.PhoneNotify.color, event.data.PhoneNotify.timeout);
+                }
                 break;
             case "RefreshAppAlerts":
                 NM.Phone.Functions.SetupAppWarnings(event.data.AppData);                
@@ -938,7 +812,7 @@ $(document).ready(function(){
 
 $(document).on('keydown', function() {
     switch(event.keyCode) {
-        case 27: // ESCAPE
+        case 27:
             NM.Phone.Functions.Close();
             break;
     }

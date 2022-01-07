@@ -36,12 +36,12 @@ end
 
 ### Todo List:
 * Photos App (Currently working on)
-* Rework Notification System
 * Yellowpages multi-image support
 * Rework Twitter
 * Remake Bank
 * Remake Wanteds
 * Improve Zoom
+* Fix App Alerts
 
 ### Main Menu
 ![Main Menu](/readme/1.png)

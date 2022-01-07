@@ -453,47 +453,6 @@ body {
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
-.screen-notifications-container {
-    display: none;
-    position: absolute;
-    background: rgba(29, 160, 242, 0.9);
-    height: 9vh;
-    width: 34vh;
-    bottom: 5vh;
-    right: -35vh;
-    border-radius: 1.7vh;
-    z-index: -5;
-}
-
-.screen-notification-icon {
-    position: absolute;
-    line-height: 9.3vh;
-    left: 2vh;
-    font-size: 3.75vh;
-    color: white;
-}
-
-.screen-notification-title {
-    position: absolute;
-    line-height: 5.5vh;
-    left: 7.5vh;
-    font-size: 1.5vh;
-    color: white;
-    font-family: 'SF Pro Display Regular';
-}
-
-.screen-notification-content {
-    position: absolute;
-    top: 4.2vh;
-    left: 7.5vh;
-    font-size: 1.2vh;
-    color: white;
-    font-family: 'SF Pro Display Light';
-    height: 3.5vh;
-    width: 26vh;
-    overflow: hidden;
-}
-
 .call-notifications-icon {
     position: absolute;
     line-height: 9.3vh;
