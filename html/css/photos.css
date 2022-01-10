@@ -160,11 +160,17 @@
     box-shadow: 0px -20px 20px 20px white inset;
 }
 
+
 .photos-app-page {
+    display: none;
     width: 100%;
     height: 100%;
     overflow: auto;
     padding: 32px 6px 108px 6px;
+}
+
+.photos-app-page-active {
+    display: block;
 }
 
 .photos-app-page::-webkit-scrollbar-thumb, .photos-content::-webkit-scrollbar-thumb,
@@ -210,4 +216,49 @@
     background: gray;
     padding: 4px 16px;
     border-radius: 16px;
+}
+
+
+.photos-app-page[data-page="albums"] {
+    position: relative;
+    overflow: hidden;
+}
+
+.photos-album-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 0 22px 108px 8px;
+    overflow: auto;
+}
+.photos-album-content::-webkit-scrollbar,
+.photos-album-content::-webkit-scrollbar-thumb {
+    width: 0px;
+}
+
+.photos-album-content .photos-image-item {
+    margin: 12px 0 0 0;
+}
+
+.photos-album-content .photos-image-item img {
+    border-radius: 8px;
+}
+
+.photos-album-content .photos-image-item span {
+    margin-top: 2px;
+    font-size: 18px;
+}
+
+.photos-album-content-container {
+    position: absolute;
+    overflow: hidden;
+    background: var(--main-background-color);
+    width: 100%;
+    height: 100%;
+    right: -100%;
+}
+
+#photos-album-content-header {
+    top: 0;
+    margin: -6px 0 0 0;
 }

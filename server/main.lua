@@ -1294,9 +1294,9 @@ QBCore.Functions.CreateCallback('qb-phone:server:SavePhoto', function(source, cb
     local player = QBCore.Functions.GetPlayer(source)
     local data = json.encode(data)
 
-    exports['ghmattimysql']:execute("INSERT INTO `phone_photos` (`citizenid`, `url`, `data`) VALUES ('"..player.PlayerData.citizenid.."', '"..url.."', '"..data.."') RETURNING id;", nil,
+    exports['ghmattimysql']:execute("INSERT INTO `phone_photos` (`citizenid`, `url`, `data`) VALUES ('"..player.PlayerData.citizenid.."', '"..url.."', '"..data.."') RETURNING id, created_at;", nil,
     function(result)
-        cb(result[1].id)        
+        cb(result[1].id, player.PlayerData.citizenid, result[1].created_at)       
     end)
 end)
 

@@ -7,8 +7,10 @@ RegisterNUICallback('SaveImage', function(data, cb)
         data.data.location = GetTheStreet()
     end
 
-	QBCore.Functions.TriggerCallback('qb-phone:server:SavePhoto', function(id)
+	QBCore.Functions.TriggerCallback('qb-phone:server:SavePhoto', function(id, citizenid, date)
 		data.id = id
+		data.citizenid = citizenid
+		data.created_at = date
 		table.insert(PhoneData.Photos, data)
         cb(PhoneData.Photos)
     end, data.url, data.data)	

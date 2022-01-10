@@ -2742,7 +2742,7 @@ RegisterNUICallback('TakeImage', function(data, cb)
             OpenPhone()
             break
         elseif IsControlJustPressed(1, 176) then -- TAKE.. PIC
-            exports['screenshot-basic']:requestScreenshotUpload("https://discord.com/api/webhooks/928901478536589362/wDhERFDqe0q5PT3OHWFZsmrQfg7XsKnlLZ76j_z-FCDz-M0_C7C14SSnLbRDLIMN-S4Z", "files[]", function(data)
+            exports['screenshot-basic']:requestScreenshotUpload("https://discord.com/api/webhooks/929911307950522388/Xd-W0JGhNOqBhMu9kwgMSGvPayy8WtF6xB3evHZv-H0pVF8nwTV3tuUiMsSeODeGKW0K", "files[]", function(data)
                 local resp = json.decode(data)
                 DestroyMobilePhone()
                 CellCamActivate(false, false)

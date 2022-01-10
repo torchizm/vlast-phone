@@ -49,6 +49,8 @@ end
 ### Photos App
 ![Photos](/readme/photos_1.png)
 ![Photos](/readme/photos_2.png)
+![Photos](/readme/photos_3.png)
+![Photos](/readme/photos_4.png)
 -----
 ### Bank
 > Dependencies
