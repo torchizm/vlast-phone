@@ -145,7 +145,9 @@ $(document).on('click', '.phone-application', function(e){
     
                 $("#phone-footer").css("bottom", "0px");
                 NM.Phone.Data.currentApplication = PressedApplication;
-    
+                
+                $.post('http://qb-phone/ClearGeneralAlerts', JSON.stringify({app: PressedApplication}))
+
                 if (PressedApplication == "settings") {
                     $("#myPhoneNumber").text(NM.Phone.Data.PlayerData.charinfo.phone);
                     $("#mySerialNumber").text("qb-" + NM.Phone.Data.PlayerData.metadata["phonedata"].SerialNumber);
@@ -600,7 +602,7 @@ NM.Phone.Animations.SlideRight = function(Object, Timeout, Percentage) {
     });
 }
 
-NM.Phone.Notifications.Add = function(icon, title, text, color, timeout) {
+NM.Phone.Notifications.Add = function(app, title, text, timeout) {
     $.post('http://qb-phone/HasPhone', JSON.stringify({}), function(HasPhone){
         if (HasPhone) {
             if (timeout == null && timeout == undefined) {
@@ -617,7 +619,11 @@ NM.Phone.Notifications.Add = function(icon, title, text, color, timeout) {
                 }, timeout + 300)
             }
 
-            $(".notification-icon").html(`<img src="./img/apps/${icon}.png" class="police-icon-notify">`);
+            if (NM.Phone.Data.currentApplication !== app) {
+                $.post('http://qb-phone/NewAlert', JSON.stringify({app: app}))
+            }
+
+            $(".notification-icon").html(`<img src="./img/apps/${app}.png" class="police-icon-notify">`);
             $(".notification-title").html(title);
             $(".notification-text").html(text);
             NM.Phone.Animations.TopSlideDown(".phone-notification-container", 200, 6);
@@ -695,7 +701,7 @@ $(document).ready(function(){
                 if (event.data.PhoneNotify.type == "phone") {
                     NM.Phone.Functions.SetupCurrentCall(event.data.calldata);
                 } else {
-                    NM.Phone.Notifications.Add(event.data.PhoneNotify.icon, event.data.PhoneNotify.title, event.data.PhoneNotify.text, event.data.PhoneNotify.color, event.data.PhoneNotify.timeout);
+                    NM.Phone.Notifications.Add(event.data.PhoneNotify.app, event.data.PhoneNotify.title, event.data.PhoneNotify.text, event.data.PhoneNotify.timeout);
                 }
                 break;
             case "RefreshAppAlerts":

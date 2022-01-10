@@ -226,10 +226,9 @@ AddEventHandler('qb-phone:client:RaceNotify', function(message)
     SendNUIMessage({
         action = "Notification",
         PhoneNotify = {
-            title = "racing",
+            app = "racing",
+            title = "Yarışlar",
             text = message,
-            icon = "fas fa-flag-checkered",
-            color = "#353b48",
             timeout = 1500,
         },
     })
@@ -329,14 +328,14 @@ function CalculateTimeToDisplay()
     return obj
 end
 
-RegisterCommand("testnotif", function()
+RegisterCommand("testnotif", function(source, raw, args)
+    local app = args:split(" ")[2]
     SendNUIMessage({ 
         action = "Notification", 
         PhoneNotify = { 
-            title = "Phone", 
-            text = "Arama sonlandırıldı 1", 
-            icon = "Phone", 
-            color = "#e84118", 
+            app = app, 
+            title = "Test", 
+            text = "Test test test test", 
         }, 
     })
 end)
@@ -1102,10 +1101,9 @@ RegisterNUICallback('SharedLocation', function(data)
     SendNUIMessage({
         action = "Notification",
         PhoneNotify = {
+            app = "whatsapp",
             title = "Whatsapp",
             text = "Konum ayarlandı",
-            icon = "whatsapp",
-            color = "#25D366",
             timeout = 1500,
         },
     })
@@ -1133,10 +1131,9 @@ AddEventHandler('qb-phone:client:UpdateMessages', function(ChatMessages, SenderN
         end
 
         local PhoneNotify = {
-            title = "Whatsapp",
+            app = "whatsapp",
+            title = "Mesajlar",
             text = ""..IsNumberInContacts(SenderNumber).." kişisinden yeni mesaj",
-            icon = "whatsapp",
-            color = "#25D366",
             timeout = 4000,
         } 
         if SenderNumber == PhoneData.PlayerData.charinfo.phone then
@@ -1159,8 +1156,6 @@ AddEventHandler('qb-phone:client:UpdateMessages', function(ChatMessages, SenderN
                 Chats = Chats,
             })
         end,  PhoneData.Chats)
-        Config.PhoneApplications['whatsapp'].Alerts = Config.PhoneApplications['whatsapp'].Alerts + 1
-        TriggerServerEvent('qb-phone:server:SetPhoneAlerts', "whatsapp")
     else
         PhoneData.Chats[NumberKey].messages = ChatMessages
 
@@ -1171,10 +1166,9 @@ AddEventHandler('qb-phone:client:UpdateMessages', function(ChatMessages, SenderN
         end
 
         local PhoneNotify = {
-            title = "Whatsapp",
+            app = "whatsapp",
+            title = "Mesajlar",
             text = ""..IsNumberInContacts(SenderNumber).." kişisinden yeni mesaj",
-            icon = "whatsapp",
-            color = "#25D366",
             timeout = 4000,
         }
 
@@ -1199,8 +1193,6 @@ AddEventHandler('qb-phone:client:UpdateMessages', function(ChatMessages, SenderN
                 Chats = Chats,
             })
         end,  PhoneData.Chats)
-        Config.PhoneApplications['whatsapp'].Alerts = Config.PhoneApplications['whatsapp'].Alerts + 1
-        TriggerServerEvent('qb-phone:server:SetPhoneAlerts', "whatsapp")
     end
 end)
 
@@ -1209,11 +1201,10 @@ AddEventHandler("qb-phone-new:client:BankNotify", function(text)
     SendNUIMessage({
         action = "Notification",
         NotifyData = {
+            app = "bank", 
             title = "Banka", 
             content = text, 
-            icon = "bank", 
             timeout = 3500, 
-            color = "#ff002f",
         },
     })
 end)
@@ -1223,15 +1214,12 @@ AddEventHandler('qb-phone:client:NewMailNotify', function(MailData)
     SendNUIMessage({
         action = "Notification",
         PhoneNotify = {
+            app = "mail",
             title = "Mail",
             text = MailData.sender.. " adresinden yeni mail",
-            icon = "mail",
-            color = "#ff002f",
             timeout = 1500,
         },
     })
-    Config.PhoneApplications['mail'].Alerts = Config.PhoneApplications['mail'].Alerts + 1
-    TriggerServerEvent('qb-phone:server:SetPhoneAlerts', "mail")
 end)
 
 RegisterNUICallback('PostAdvert', function(data)
@@ -1245,11 +1233,9 @@ AddEventHandler('qb-phone:client:UpdateAdverts', function(Adverts, LastAd)
     SendNUIMessage({
         action = "Notification",
         PhoneNotify = {
+            app = "yellowpages",
             title = "Sarı Sayfalar",
             text = "Yeni ilan "..LastAd,
-            icon = "yellowpages",
-            color = "#ff8f1a",
-            timeout = 2500,
         },
     })
 
@@ -1443,10 +1429,9 @@ RegisterNUICallback('PostNewTweet', function(data, cb)
                         SendNUIMessage({
                             action = "Notification",
                             PhoneNotify = {
+                                app = "twitter",
                                 title = "Twitter", 
                                 text = "Kendini etiketleyemezsin", 
-                                icon = "twitter",
-                                color = "#1DA1F2",
                             },
                         })
                     end)
@@ -1468,10 +1453,9 @@ AddEventHandler('qb-phone:client:TransferMoney', function(amount, newmoney)
     SendNUIMessage({
         action = "Notification",
         PhoneNotify = {
+            app = "bank",
             title = "Banka",
             text = "Hesabınıza $"..amount.."para geldi",
-            icon = "fas fa-university",
-            color = "#8c7ae6",
         },
     })
     SendNUIMessage({ 
@@ -1489,21 +1473,18 @@ AddEventHandler('qb-phone:client:UpdateTweets', function(src, Tweets, NewTweetDa
         SendNUIMessage({
             action = "Notification",
             PhoneNotify = {
+                app = "twitter",
                 title = "Yeni Tweet (@"..NewTweetData.firstName.." "..NewTweetData.lastName..")", 
                 text = NewTweetData.message, 
-                icon = "twitter",
-                color = "#29a7f3",
             },
         })
     else
         SendNUIMessage({
             action = "Notification",
             PhoneNotify = {
+                app = "twitter",
                 title = "Twitter", 
                 text = "Yeni bir tweet paylaşıldı", 
-                icon = "twitter",
-                color = "#29a7f3",
-                timeout = 1000,
             },
         })
     end
@@ -1527,10 +1508,9 @@ AddEventHandler('qb-phone:client:GetMentioned', function(TweetMessage, AppAlerts
     SendNUIMessage({
         action = "Notification",
         PhoneNotify = {
+            app = "twitter",
             title = "Bir tweette sizden bahsedildi",
             text = TweetMessage.message,
-            icon = "twitter",
-            color = "#1DA1F2",
         },
     })
     local TweetMessage = {firstName = TweetMessage.firstName, lastName = TweetMessage.lastName, message = escape_str(TweetMessage.message), time = TweetMessage.time, picture = TweetMessage.picture}
@@ -1549,16 +1529,24 @@ RegisterNUICallback('ClearMentions', function()
     SendNUIMessage({ action = "RefreshAppAlerts", AppData = Config.PhoneApplications })
 end)
 
+RegisterNUICallback('NewAlert', function(data)
+    Config.PhoneApplications[data.app].Alerts = Config.PhoneApplications[data.app].Alerts + 1
+    TriggerServerEvent('qb-phone:server:SetPhoneAlerts', data.app, Config.PhoneApplications[data.app].Alerts)
+
+    SendNUIMessage({ 
+        action = "RefreshAppAlerts",
+        AppData = Config.PhoneApplications
+    })
+end)
+
 RegisterNUICallback('ClearGeneralAlerts', function(data)
-    SetTimeout(400, function()
-        Config.PhoneApplications[data.app].Alerts = 0
-        SendNUIMessage({
-            action = "RefreshAppAlerts",
-            AppData = Config.PhoneApplications
-        })
-        TriggerServerEvent('qb-phone:server:SetPhoneAlerts', data.app, 0)
-        SendNUIMessage({ action = "RefreshAppAlerts", AppData = Config.PhoneApplications })
-    end)
+    Config.PhoneApplications[data.app].Alerts = 0
+    SendNUIMessage({
+        action = "RefreshAppAlerts",
+        AppData = Config.PhoneApplications
+    })
+    TriggerServerEvent('qb-phone:server:SetPhoneAlerts', data.app, 0)
+    SendNUIMessage({ action = "RefreshAppAlerts", AppData = Config.PhoneApplications })
 end)
 
 function string:split(delimiter)
@@ -1662,10 +1650,9 @@ function CheckAlarm(v, day, hour, minute)
         SendNUIMessage({ 
             action = "Notification", 
             PhoneNotify = {
+                app = "clock", 
                 title = "Saat", 
                 text = v.label,
-                icon = "clock", 
-                color = "#e84118", 
             }, 
         })        
     end
@@ -1846,11 +1833,10 @@ CancelCall = function()
     SendNUIMessage({ 
         action = "Notification", 
         NotifyData = { 
+            app = "phone", 
             title = "Telefon",
-            content = "Arama sonlandırıldı", 
-            icon = "phone", 
-            timeout = 3500, 
-            color = "#e84118",
+            text = "Arama sonlandırıldı", 
+            timeout = 3500
         }, 
     })
   
@@ -1910,11 +1896,10 @@ AddEventHandler('qb-phone:client:CancelCall', function()
     SendNUIMessage({ 
         action = "Notification", 
         PhoneNotify = { 
-            title = "Phone", 
+            app = "Phone", 
             text = "Arama sonlandırıldı", 
-            icon = "fas fa-phone", 
-            color = "#e84118", 
-        }, 
+            app = "phone", 
+        }
     })
 
     if PhoneData.isOpen then
@@ -2066,10 +2051,9 @@ function AnswerCall()
         SendNUIMessage({ 
             action = "Notification", 
             PhoneNotify = { 
+                app = "phone", 
                 title = "Telefon", 
                 text = "Gelen arama yok", 
-                icon = "fas fa-phone", 
-                color = "#e84118", 
             }, 
         })
     end
@@ -2120,10 +2104,9 @@ AddEventHandler('qb-phone:client:AnswerCall', function()
         SendNUIMessage({ 
             action = "Notification", 
             PhoneNotify = { 
+                app = "phone", 
                 title = "Telefon", 
                 text = "Gelen arama yok", 
-                icon = "fas fa-phone", 
-                color = "#e84118", 
             }, 
         })
     end
@@ -2266,10 +2249,9 @@ RegisterNUICallback('DeleteContact', function(data, cb)
             SendNUIMessage({
                 action = "Notification",
                 PhoneNotify = {
+                    app = "phone",
                     title = "Telefon",
                     text = "Kişi silindi", 
-                    icon = "phone",
-                    color = "#04b543",
                     timeout = 1500,
                 },
             })
@@ -2291,15 +2273,11 @@ AddEventHandler('qb-phone:client:AddNewSuggestion', function(SuggestionData)
     SendNUIMessage({
         action = "Notification",
         PhoneNotify = {
+            app = "phone",
             title = "Telefon",
             text = "Yeni bir önerilen kişi var", 
-            icon = "phone",
-            color = "#04b543",
         },
     })
-
-    Config.PhoneApplications["phone"].Alerts = Config.PhoneApplications["phone"].Alerts + 1
-    TriggerServerEvent('qb-phone:server:SetPhoneAlerts', "phone", Config.PhoneApplications["phone"].Alerts)
 end)
 
 RegisterNUICallback('GetCryptoData', function(data, cb)
@@ -2331,10 +2309,9 @@ AddEventHandler('qb-phone:client:RemoveBankMoney', function(amount)
     SendNUIMessage({
         action = "Notification",
         PhoneNotify = {
+            app = "bank", 
             title = "Banka",
             text = "Hesabınızdan  $"..amount..",- para çıktı", 
-            icon = "fas fa-university", 
-            color = "#ff002f",
             timeout = 3500,
         },
     })
@@ -2352,11 +2329,9 @@ AddEventHandler('qb-phone:client:AddTransaction', function(SenderData, Transacti
     SendNUIMessage({
         action = "Notification",
         PhoneNotify = {
+            app = "crypto",
             title = "Crypto",
             text = Message, 
-            icon = "crypto",
-            color = "#04b543",
-            timeout = 1500,
         },
     })
 
