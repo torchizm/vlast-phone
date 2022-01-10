@@ -145,7 +145,7 @@ $(document).on('click', '#myhouse-option-transfer-confirm', function(e){
                 });
             }, 100);
         } else {
-            NM.Phone.Notifications.Add("fas fa-home", "Emlak", "Yanlış ID girdiniz", "#27ae60", 2500);
+            NM.Phone.Notifications.Add("houses", "Emlak", "Yanlış ID girdiniz");
             shakeElement(".myhouse-option-transfer-container");
             $(".myhouse-option-transfer-container-citizenid").val("");
         }

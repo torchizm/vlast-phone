@@ -58,7 +58,7 @@ $(document).on('click', '#accept-background', function(e){
         $(".phone-background").css({"background-image":"url('"+NM.Phone.Settings.Background+"')"});
     }
     
-    NM.Phone.Notifications.Add("fas fa-paint-brush", "Ayarlar", "Arkaplan değiştirildi");
+    NM.Phone.Notifications.Add("settings", "Ayarlar", "Arkaplan değiştirildi");
     $.post('http://qb-phone/SetBackground', JSON.stringify({
         background: NM.Phone.Settings.Background,
     }))
@@ -176,7 +176,7 @@ $(document).on('click', '.quick-background', function(e){
         background: NM.Phone.Settings.Background,
     }))
 
-    NM.Phone.Notifications.Add("fas fa-paint-brush", "Ayarlar", "Arkaplan değiştirildi");
+    NM.Phone.Notifications.Add("settings", "Ayarlar", "Arkaplan değiştirildi");
     $(".background-custom").hide();
 });
 
@@ -194,7 +194,7 @@ $(document).on('click', '#accept-custom-background', function(e){
         background: NM.Phone.Settings.Background,
     }));
 
-    NM.Phone.Notifications.Add("fas fa-paint-brush", "Ayarlar", "Arkaplan değiştirildi");
+    NM.Phone.Notifications.Add("settings", "Ayarlar", "Arkaplan değiştirildi");
     $(".background-custom").hide();
 });
 
@@ -215,11 +215,11 @@ $(document).on('click', '#accept-profilepicture', function(e){
     e.preventDefault();
     var ProfilePicture = NM.Phone.Data.MetaData.profilepicture;
     if (ProfilePicture === "default") {
-        NM.Phone.Notifications.Add("fas fa-paint-brush", "Ayarlar", "Varsayılan profil fotoğrafı ayarlandı")
+        NM.Phone.Notifications.Add("settings", "Ayarlar", "Varsayılan profil fotoğrafı ayarlandı")
         $("[data-settingstab='profilepicture']").find('.settings-tab-icon').html('<img src="./img/default.png">');
         $(`.settings-${NM.Phone.Settings.OpenedTab}-tab`).animate({"right": "-100%"}, 200);
     } else {
-        NM.Phone.Notifications.Add("fas fa-paint-brush", "Ayarlar", "Profil fotoğrafı değiştirildi")
+        NM.Phone.Notifications.Add("settings", "Ayarlar", "Profil fotoğrafı değiştirildi")
         $("[data-settingstab='profilepicture']").find('.settings-tab-icon').html('<img src="'+ProfilePicture+'">');
     }
     // $(`.settings-${NM.Phone.Settings.OpenedTab}-tab`).animate({"right": "-100%"}, 200);
@@ -238,7 +238,7 @@ $(document).on('click', '#accept-custom-profilepicture', function(e){
     // $(PressedProfilePictureObject).append('<div class="profilepicture-option-current"><i class="fas fa-check-circle"></i></div>');
     // NM.Phone.Animations.TopSlideUp(".profilepicture-custom", 200, -23);
     
-    NM.Phone.Notifications.Add("fas fa-paint-brush", "Ayarlar", "Profil fotoğrafı değiştirildi");
+    NM.Phone.Notifications.Add("settings", "Ayarlar", "Profil fotoğrafı değiştirildi");
     $(`.settings-${NM.Phone.Settings.OpenedTab}-tab`).animate({"right": "-100%"}, 200);
     // NM.Phone.Animations.TopSlideUp(".settings-"+NM.Phone.Settings.OpenedTab+"-tab", 200, -100);
     $("[data-settingstab='profilepicture']").find('.settings-tab-icon').html('<img src="'+url+'">');
@@ -264,7 +264,7 @@ $(document).on('click', '.profilepicture-option', function(e){
             });
 
             let url = "./img/default.png";
-            NM.Phone.Notifications.Add("fas fa-paint-brush", "Ayarlar", "Profil fotoğrafı değiştirildi");
+            NM.Phone.Notifications.Add("settings", "Ayarlar", "Profil fotoğrafı değiştirildi");
             // NM.Phone.Animations.TopSlideUp(".settings-"+NM.Phone.Settings.OpenedTab+"-tab", 200, -100);
             $("[data-settingstab='profilepicture']").find('.settings-tab-icon').html('<img src="'+url+'">');
             $(".phone-settings-image-source").prop('src', url);
@@ -280,7 +280,7 @@ $(document).on('click', '.profilepicture-option', function(e){
                 $("body").css("display", "block");
 
                 if (url != "") {
-                    NM.Phone.Notifications.Add("fas fa-paint-brush", "Ayarlar", "Profil fotoğrafı değiştirildi");
+                    NM.Phone.Notifications.Add("settings", "Ayarlar", "Profil fotoğrafı değiştirildi");
                     // $(`.settings-${NM.Phone.Settings.OpenedTab}-tab`).animate({"right": "-100%"}, 200);
                     // NM.Phone.Animations.TopSlideUp(".settings-"+NM.Phone.Settings.OpenedTab+"-tab", 200, -100);
                     $("[data-settingstab='profilepicture']").find('.settings-tab-icon').html('<img src="'+url+'">');
@@ -313,7 +313,7 @@ $(document).on('click', '#take-profile-photo', function(e){
         $("body").css("display", "block");
 
         if (url != "") {
-            NM.Phone.Notifications.Add("fas fa-paint-brush", "Ayarlar", "Profil fotoğrafı değiştirildi");
+            NM.Phone.Notifications.Add("settings", "Ayarlar", "Profil fotoğrafı değiştirildi");
             // $(`.settings-${NM.Phone.Settings.OpenedTab}-tab`).animate({"right": "-100%"}, 200);
             // NM.Phone.Animations.TopSlideUp(".settings-"+NM.Phone.Settings.OpenedTab+"-tab", 200, -100);
             $("[data-settingstab='profilepicture']").find('.settings-tab-icon').html('<img src="'+url+'">');

@@ -161,7 +161,7 @@ $(document).on('click', '#new-advert-submit', function(e){
         $('#new-advert-image').prop("src", "");
         $('#new-advert-image').css("display", "none");
     } else {
-        NM.Phone.Notifications.Add("fas fa-ad", "Sarı Sayfalar", "Boş ilan veremessin", "#ff8f1a", 2000);
+        NM.Phone.Notifications.Add("yellowpages", "Sarı Sayfalar", "Boş ilan veremessin");
     }
 });
 

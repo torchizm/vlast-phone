@@ -6,7 +6,7 @@ $(document).on('click', '.bank-app-account', function(e) {
     copyText.setSelectionRange(0, 99999);
     document.execCommand("copy");
 
-    NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", "IBAN Kopyalandı", "#badc58", 1750);
+    NM.Phone.Notifications.Add("bank", "Bank", "IBAN Kopyalandı");
 });
 
 var CurrentTab = "accounts";
@@ -118,17 +118,17 @@ $(document).on('click', '#accept-transfer', function(e) {
                     $("#bank-transfer-amount").val("");
                     $(".bank-app-account-balance").html("$ " + data.NewAmount);
                     $(".bank-app-account-balance").data('balance', data.NewAmount);
-                    NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", "$ " + amount + " Tutarındaki transfer gerçekleşti", "#badc58", 1500);
+                    NM.Phone.Notifications.Add("bank", "Banka", "$ " + amount + " Tutarındaki transfer gerçekleşti");
                 } else {
-                    NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", "Yetersiz Bakiye", "#badc58", 1500);
+                    NM.Phone.Notifications.Add("bank", "Banka", "Yetersiz Bakiye");
                 }
             })
             // NM.Phone.Animations.TopSlideUp(".bank-app-transfer", 400, -100);
         } else {
-            NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", "Yetersiz Bakiye", "#badc58", 1500);
+            NM.Phone.Notifications.Add("bank", "Bank", "Yetersiz Bakiye");
         }
     } else {
-        NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", "Bütün alanları doldurunuz", "#badc58", 1750);
+        NM.Phone.Notifications.Add("bank", "Bank", "Bütün alanları doldurunuz");
     }
 });
 
@@ -158,16 +158,16 @@ $(document).on('click', '.pay-invoice', function(event) {
                         $("#" + InvoiceId).remove();
                     }, 100);
                 });
-                NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", InvoiceData.amount + "$ Tutardındaki fatura ödendi", "#badc58", 1500);
+                NM.Phone.Notifications.Add("bank", "Bank", InvoiceData.amount + "$ Tutardındaki fatura ödendi");
                 var amountData = $(".bank-app-account-balance").data('balance');
                 $("#bank-transfer-amount").val(amountData - InvoiceData.amount);
                 $(".bank-app-account-balance").data('balance', amountData - InvoiceData.amount);
             } else {
-                NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", "Yetersiz Bakiye", "#badc58", 1500);
+                NM.Phone.Notifications.Add("bank", "Bank", "Yetersiz Bakiye");
             }
         });
     } else {
-        NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", "Yetersiz Bakiye", "#badc58", 1500);
+        NM.Phone.Notifications.Add("bank", "Bank", "Yetersiz Bakiye");
     }
 });
 
@@ -198,16 +198,16 @@ $(document).on('click', '.bank-app-invoices-footer', function(event) {
                     var amountData = $(".bank-app-account-balance").data('balance');
                     $("#bank-transfer-amount").val(amountData - InvoiceData.amount);
                     $(".bank-app-account-balance").data('balance', amountData - InvoiceData.amount);
-                    NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", TotalBalance + "$ Tutardındaki fatura ödendi", "#badc58", 1500);
+                    NM.Phone.Notifications.Add("bank", "Banka", TotalBalance + "$ Tutardındaki fatura ödendi");
                     $('#total-fine-amount').html('0$');
                     $('.bank-app-invoices-list').empty();
                 } else {
-                    NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", "Ödeme Başarısız Oldu", "#badc58", 1500);
+                    NM.Phone.Notifications.Add("bank", "Banka", "Ödeme Başarısız Oldu");
                 }
             });
         });
     } else {
-        NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", "Yetersiz Bakiye", "#badc58", 1500);
+        NM.Phone.Notifications.Add("bank", "Bank", "Yetersiz Bakiye");
     }
 });
 
@@ -231,18 +231,18 @@ $(document).on('click', '.decline-invoice', function(event) {
                         $("#" + InvoiceId).remove();
                     }, 100);
                 });
-                NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", InvoiceData.amount + "$ Tutardındaki fatura ödendi", "#badc58", 1500);
+                NM.Phone.Notifications.Add("bank", "Bank", InvoiceData.amount + "$ Tutardındaki fatura ödendi");
                 var amountData = $(".bank-app-account-balance").data('balance');
                 $("#bank-transfer-amount").val(amountData - InvoiceData.amount);
                 var kalanfatura = TotalBalance - InvoiceData.amount 
                 $("#total-fine-amount").html(+TotalBalance - InvoiceData.amount+"$");
                 $(".bank-app-account-balance").data('balance', amountData - InvoiceData.amount);
             } else {
-                NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", "Yetersiz Bakiye", "#badc58", 1500);
+                NM.Phone.Notifications.Add("bank", "Banka", "Yetersiz Bakiye");
             }
         });
     } else {
-        NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", "Yetersiz Bakiye", "#badc58", 1500);
+        NM.Phone.Notifications.Add("bank", "Banka", "Yetersiz Bakiye");
     }
     
     // event.preventDefault();
@@ -261,7 +261,7 @@ $(document).on('click', '.decline-invoice', function(event) {
     //         $("#" + InvoiceId).remove();
     //     }, 100);
     // });
-    // NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", InvoiceData.amount + "$ Tutardındaki fatura ödendi", "#badc58", 1500);
+    // NM.Phone.Notifications.Add("bank", "Bank", InvoiceData.amount + "$ Tutardındaki fatura ödendi", "#badc58", 1500);
 });
 
 NM.Phone.Functions.LoadBankInvoices = function(invoices) {
@@ -350,7 +350,7 @@ $(document).on('click', '.bank-app-my-contact', function(e) {
         $("#bank-transfer-iban").val(PressedContactData.iban);
         $.post("http://qb-phone/aiakos-inputcheck", JSON.stringify({input: false}));
     } else {
-        NM.Phone.Notifications.Add("fas fa-university", "Vlast Bank", "Bu numaraya tanımlı bir hesap bulunmuyor.", "#badc58", 2500);
+        NM.Phone.Notifications.Add("bank", "Bank", "Bu numaraya tanımlı bir hesap bulunmuyor.");
     }
     NM.Phone.Animations.TopSlideUp(".bank-app-my-contacts", 400, -100);
 });

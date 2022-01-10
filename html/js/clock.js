@@ -12,12 +12,6 @@ var Timer = {
     Interval: undefined
 }
 
-$(document).on('click', '#clear-clock', function(event){
-    $(".transactions-item-div").remove()
-    NM.Phone.Notifications.Add("fas fa-university", "Saat", "Transfer geçmişin temizlendi!", "#badc58", 1750);
-    $.post("http://qb-phone/ClearclockData");
-})
-
 var CurrentTab = "stopwatch";
 
 $(document).on('click', '#new-alarm', function(e){
@@ -93,21 +87,6 @@ NM.Phone.Functions.SetupClock = function(alarms) {
     $(".clock-app-loaded").css({"display":"block"}).animate({"padding-left":"0"}, 0);
     UpdateWorldTimes();
 }
-
-$(document).on('click', '.clock-set-alarm-button', function(e){
-    var type = $(this).attr("id")
-    if (type == "accept-alarm") {
-        var value = $("#clock-transfer-iban").val()
-        $.post("http://qb-phone/SetAlarm", JSON.stringify({clock: value}));
-        $.post('http://qb-phone/GetAlarmData', JSON.stringify({}), function(data){
-            NM.Phone.Functions.SetupClock(data);
-        });
-        NM.Phone.Notifications.Add("far fa-clock", "Saat", "Saat " + value + " için alarm kurdun!", "color: #ff7e1496;", 1500);
-    }
-    setTimeout(() => {
-        NM.Phone.Animations.TopSlideUp(".clock-app-transfer", 400, -100) 
-    }, 100);
-})
 
 $(document).on('click', '#stopwatch-button[data-type="lap"]', function(e){
     e.preventDefault();
@@ -288,14 +267,14 @@ $('#clock-timer-save').click(function() {
     }
 
     if (IsTimerValid(Number(Timer.Minute), Number(Timer.Second)) === false) {
-        NM.Phone.Notifications.Add("clock", "Saat", `Daha sonraki zamanlar için zamanlayıcı kurabilirsiniz`, "color: #ff7e1496;", 1500);
+        NM.Phone.Notifications.Add("clock", "Saat", `Daha sonraki zamanlar için zamanlayıcı kurabilirsiniz`,);
         return;
     }
     
     $(`#timer-button[data-type="start"] p`).html('Durdur');
     $(`#timer-button[data-type="start"]`).attr('data-type', 'stop');
 
-    NM.Phone.Notifications.Add("clock", "Saat", `${Timer.Minute} dakika ${Timer.Second} saniye sonrası için zamanlayıcı kuruldu`, "color: #ff7e1496;", 1500);
+    NM.Phone.Notifications.Add("clock", "Saat", `${Timer.Minute} dakika ${Timer.Second} saniye sonrası için zamanlayıcı kuruldu`);
     
     UpdateTimer();
     Timer.Interval = setInterval(UpdateTimer, 1000);
@@ -350,7 +329,7 @@ function UpdateTimer() {
         $(`#timer-button[data-type="stop"] p`).html('Başlat');
         $(`#timer-button[data-type="stop"]`).attr('data-type', 'start');
 
-        NM.Phone.Notifications.Add("clock", "Saat", "Zamanlayıcı durdu", "color: #ff7e1496;", 1500);
+        NM.Phone.Notifications.Add("clock", "Saat", "Zamanlayıcı durdu");
         NM.Phone.PlayingAudio = setInterval(TimerBeep, 1000);
     }
 }
@@ -421,7 +400,7 @@ $("#clock-alarm-save").click(function() {
         NM.Phone.Functions.SetupClock(data);
     });
 
-    NM.Phone.Notifications.Add("clock", "Saat", `Saat ${Alarm.hour}:${Alarm.minute} için alarm kurdun`, "color: #ff7e1496;", 1500);
+    NM.Phone.Notifications.Add("clock", "Saat", `Saat ${Alarm.hour}:${Alarm.minute} için alarm kurdun`);
 });
 
 $('#clock-alarm-repeat-option').click(function() {

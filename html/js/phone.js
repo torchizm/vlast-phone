@@ -273,7 +273,7 @@ $(document).on('click', '#phone-contact-message', function(e){
             });
         }, 400)
     } else {
-        NM.Phone.Notifications.Add("contacts", "Rehber", "idek", "default", 3500);
+        NM.Phone.Notifications.Add("phone", "Rehber", "Kendine mesaj atamazsın");
     }
 });
 
@@ -867,6 +867,6 @@ $("#phone-contact-details-note-field").focusout(function() {
         ContactNote: ContactNote
     }), function(PhoneContacts){
         NM.Phone.Functions.LoadContacts(PhoneContacts);
-        NM.Phone.Notifications.Add("contacts", "Rehber", "Kişi notu kaydedildi", "var(--main-light-green)");
+        NM.Phone.Notifications.Add("contacts", "Rehber", "Kişi notu kaydedildi");
     });
 });

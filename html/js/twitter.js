@@ -258,7 +258,7 @@ $(document).on('click', '#send-tweet', function(e){
         })
         NM.Phone.Animations.TopSlideUp(".twitter-new-tweet-tab", 450, -120);
     } else {
-        NM.Phone.Notifications.Add("twitter", "Twitter", "Bir mesaj girmediniz", "#1DA1F2");
+        NM.Phone.Notifications.Add("twitter", "Twitter", "Bir mesaj girmediniz");
     }
 });
 
@@ -323,7 +323,7 @@ function CopyMentionTag(elem) {
     var $temp = $("<input>");
     $("body").append($temp);
     $temp.val($(elem).data('mentiontag')).select();
-    NM.Phone.Notifications.Add("twitter", "Twitter", $(elem).data('mentiontag')+ " kopyalandı", "rgb(27, 149, 224)", 1250);
+    NM.Phone.Notifications.Add("twitter", "Twitter", $(elem).data('mentiontag')+ " kopyalandı");
     document.execCommand("copy");
     $temp.remove();
 }

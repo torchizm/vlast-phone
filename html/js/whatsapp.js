@@ -208,7 +208,7 @@ $(document).on('click', '#whatsapp-openedchat-send', function(e){
         $("#whatsapp-openedchat-message").val("");
         AutoGrow();
     } else {
-        NM.Phone.Notifications.Add("whatsapp", "Whatsapp", "Boş mesaj gönderemezsin", "#25D366", 1750);
+        NM.Phone.Notifications.Add("whatsapp", "Whatsapp", "Boş mesaj gönderemezsin");
     }
 });
 
@@ -230,7 +230,7 @@ $(document).on('keypress', function (e) {
                 $("#whatsapp-openedchat-message").val("");
                 AutoGrow();
             } else {
-                NM.Phone.Notifications.Add("whatsapp", "Whatsapp", "Boş mesaj gönderemezsin", "#25D366", 1750);
+                NM.Phone.Notifications.Add("whatsapp", "Whatsapp", "Boş mesaj gönderemezsin", "#25D366");
             }
         }
     }

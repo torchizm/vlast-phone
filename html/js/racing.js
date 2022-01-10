@@ -33,7 +33,7 @@ $(document).on('click', '.racing-race', function(e){
             OpenedRaceElement = this;
         }
     } else {
-        NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış", "Yarış zaten başladı", "#1DA1F2");
+        NM.Phone.Notifications.Add("racing", "Yarışlar", "Yarış zaten başladı");
     }
 });
 
@@ -90,14 +90,14 @@ function SetupRaces(Races) {
                     Buttons = '<div class="race-buttons"> <div class="race-button" id="quit-race" data-toggle="racetooltip" data-placement="right" title="Quit"><i class="fas fa-sign-out-alt"></i></div>';
                 } else {
                     if (!race.RaceData.Started) {
-                        Buttons = '<div class="race-buttons"> <div class="race-button" id="start-race" data-toggle="racetooltip" data-placement="left" title="Start"><i class="fas fa-flag-checkered"></i></div><div class="race-button" id="quit-race" data-toggle="racetooltip" data-placement="right" title="Quit"><i class="fas fa-sign-out-alt"></i></div>';
+                        Buttons = '<div class="race-buttons"> <div class="race-button" id="start-race" data-toggle="racetooltip" data-placement="left" title="Start"><i class="racing"></i></div><div class="race-button" id="quit-race" data-toggle="racetooltip" data-placement="right" title="Quit"><i class="fas fa-sign-out-alt"></i></div>';
                     } else {
                         Buttons = '<div class="race-buttons"> <div class="race-button" id="quit-race" data-toggle="racetooltip" data-placement="right" title="Quit"><i class="fas fa-sign-out-alt"></i></div>';
                     }
                 }
             }
             var Racers = GetAmountOfRacers(race.RaceData.Racers);
-            var element = '<div class="racing-race" id="raceid-'+i+'"> <span class="race-name"><i class="fas fa-flag-checkered"></i> '+race.RaceData.RaceName+'</span> <span class="race-track">'+Locked+'</span> <div class="race-infomation"> <div class="race-infomation-tab" id="race-information-laps">'+LapLabel+'</div> <div class="race-infomation-tab" id="race-information-distance">'+race.RaceData.Distance+' m</div> <div class="race-infomation-tab" id="race-information-player"><i class="fas fa-user"></i> '+Racers+'</div> </div> '+Buttons+' </div> </div>';
+            var element = '<div class="racing-race" id="raceid-'+i+'"> <span class="race-name"><i class="racing"></i> '+race.RaceData.RaceName+'</span> <span class="race-track">'+Locked+'</span> <div class="race-infomation"> <div class="race-infomation-tab" id="race-information-laps">'+LapLabel+'</div> <div class="race-infomation-tab" id="race-information-distance">'+race.RaceData.Distance+' m</div> <div class="race-infomation-tab" id="race-information-player"><i class="fas fa-user"></i> '+Racers+'</div> </div> '+Buttons+' </div> </div>';
             $(".racing-races").append(element);
             $("#raceid-"+i).data('RaceData', race);
             if (!race.RaceData.Started) {
@@ -138,13 +138,13 @@ $(document).on('click', '#join-race', function(e){
                                 SetupRaces(Races);
                             });
                         } else {
-                            NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış düzenleyicisindesin", "#1DA1F2");
+                            NM.Phone.Notifications.Add("racing", "Yarışlar", "Yarış düzenleyicisindesin");
                         }
                     });
                 }
             })
         } else {
-            NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış", "Zaten bir yarıştasın", "#1DA1F2");
+            NM.Phone.Notifications.Add("racing", "Yarışlar", "Zaten bir yarıştasın");
         }
     });
 });
@@ -260,14 +260,14 @@ $(document).on('click', '#create-race', function(e){
                     if (!InRace) {
                         $(".racing-create").fadeIn(200);
                     } else {
-                        NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış", "Zaten bir yarıştasın", "#1DA1F2");
+                        NM.Phone.Notifications.Add("racing", "Yarışlar", "Zaten bir yarıştasın");
                     }
                 });
             } else {
-                NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış", "Yarış düzenleyicisindesin", "#1DA1F2");
+                NM.Phone.Notifications.Add("racing", "Yarışlar", "Yarış düzenleyicisindesin");
             }
         } else {
-            NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış", "Yarış oluşturmak için yetkin yok", "#1DA1F2");
+            NM.Phone.Notifications.Add("racing", "Yarışlar", "Yarış oluşturmak için yetkin yok");
         }
     });
 });
@@ -289,14 +289,14 @@ $(document).on('click', '#racing-create-accept', function(e){
                         $(".racing-create-trackname").val("");
                     });
                 } else {
-                    NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış", "Yarış kullanılamıyor", "#1DA1F2");
+                    NM.Phone.Notifications.Add("racing", "Yarış", "Yarış kullanılamıyor");
                 }
             } else {
-                NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış", "Yarış oluşturabilmek için yetkiniz yok", "#1DA1F2");
+                NM.Phone.Notifications.Add("racing", "Yarış", "Yarış oluşturabilmek için yetkiniz yok");
             }
         });
     } else {
-        NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış", "Yarış ismi girmelisin", "#1DA1F2");
+        NM.Phone.Notifications.Add("racing", "Yarış", "Yarış ismi girmelisin");
     }
 });
 
@@ -342,19 +342,19 @@ $(document).on('click', '#setup-race-accept', function(e){
                                         $('.dropdown').find('span').text("Select a Track");
                                     });
                                 } else {
-                                    NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış", "Şuanda yarış yapamassınız", "#1DA1F2");
+                                    NM.Phone.Notifications.Add("racing", "Yarışlar", "Şuanda yarış yapamassınız");
                                 }
                             });
                         } else {
-                            NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış", "Yarış turu giriniz", "#1DA1F2");
+                            NM.Phone.Notifications.Add("racing", "Yarışlar", "Yarış turu giriniz");
                         }
                     } else {
-                        NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış", "Bir yarış haritası seçmediniz", "#1DA1F2");
+                        NM.Phone.Notifications.Add("racing", "Yarışlar", "Bir yarış haritası seçmediniz");
                     }
                 }
             })
         } else {
-            NM.Phone.Notifications.Add("fas fa-flag-checkered", "Yarış", "Zaten aktif bir yarıştasınız", "#1DA1F2");
+            NM.Phone.Notifications.Add("racing", "Yarışlar", "Zaten aktif bir yarıştasınız");
         }
     });
 });
@@ -382,7 +382,7 @@ $(document).on('click', '.racing-leaderboard-item', function(e){
 
     var Data = $(this).data('LeaderboardData');
 
-    $(".racing-leaderboard-details-block-trackname").html('<i class="fas fa-flag-checkered"></i> '+Data.RaceName);
+    $(".racing-leaderboard-details-block-trackname").html('<i class="racing"></i> '+Data.RaceName);
     $(".racing-leaderboard-details-block-list").html("");
     $.each(Data.LastLeaderboard, function(i, leaderboard){
         var lastname = leaderboard.Holder[1]
@@ -427,7 +427,7 @@ $(document).on('click', '#leaderboards-race', function(e){
             $(".racing-leaderboards").html("");
             $.each(Races, function(i, race){
                 if (race.LastLeaderboard.length > 0) {
-                    var elem = '<div class="racing-leaderboard-item" id="leaderboard-item-'+i+'"> <span class="racing-leaderboard-item-name"><i class="fas fa-flag-checkered"></i> '+race.RaceName+'</span> <span class="racing-leaderboard-item-info">Click for more details</span> </div>'
+                    var elem = '<div class="racing-leaderboard-item" id="leaderboard-item-'+i+'"> <span class="racing-leaderboard-item-name"><i class="racing"></i> '+race.RaceName+'</span> <span class="racing-leaderboard-item-info">Click for more details</span> </div>'
                     $(".racing-leaderboards").append(elem);
                     $("#leaderboard-item-"+i).data('LeaderboardData', race);
                 }
