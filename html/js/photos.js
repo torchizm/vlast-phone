@@ -26,7 +26,7 @@ $('#save-image-to-photos').click(function() {
             SetupPhotos(_);
         });
     } else if ($(this).hasClass("red-text")) {
-        var id = $('.phone-image-source').data('id');
+        var id = $('.phone-image-source').attr('data-id');
         $.post('http://qb-phone/DeleteImage', JSON.stringify({id: id}), function(_) {
             NM.Phone.Notifications.Add('photos', 'Fotoğraflar', 'Fotoğraf Silindi')
             $(".phone-image-container").animate({
@@ -51,8 +51,46 @@ $('.photos-footer-button').click(function() {
 
     $('.photos-app-page-active').removeClass('photos-app-page-active');
 
-    if (target === "albums") {
-        SetupAlbums();
+    if (target !== "foryou") {
+        var slicks = ['.photos-foryou-memories', '.photos-foryou-featured-photos'];
+
+        slicks.forEach(slick => {
+            $(slick).slick('slickPause');
+        });
+    }
+
+    switch (target) {
+        case "albums":
+            SetupAlbums();
+            break;
+        case "foryou":
+            Array.from(Array(5)).forEach((x, i) => {
+                $('.photos-foryou-memories, .photos-foryou-featured-photos').slick('slickRemove', i - 1);
+            });
+
+            var shuffel = Photos.sort(() => Math.random() - Math.random()).slice(0, 5);
+
+            shuffel.forEach(photo => {
+                $('.photos-foryou-memories').slick('slickAdd', `
+                    <div class="photos-image-item">
+                        <img class="zoomable-image" src="${photo.url}" alt="" data-id="${photo.id}">
+                    </div>
+                `);
+            });
+
+            shuffel = Photos.sort(() => Math.random() - Math.random()).slice(0, 5);
+            shuffel.forEach(photo => {
+                $('.photos-foryou-featured-photos').slick('slickAdd', `
+                    <div class="photos-image-item">
+                        <img class="zoomable-image" src="${photo.url}" alt="" data-id="${photo.id}">
+                    </div>
+                `);
+            });
+
+            $('.photos-foryou-memories, .photos-foryou-featured-photos').slick('slickPlay');
+            break;
+        default:
+            break;
     }
 
     $(`.photos-app-page[data-page="${target}"]`).addClass('photos-app-page-active');
@@ -98,7 +136,7 @@ function SetupPhotos(_) {
                         <img class="zoomable-image" src='${photo.url}'></img>`
                 }).data('data', photo.data);
                 
-                $(photoChild).find('.zoomable-image').data('id', photo.id);
+                $(photoChild).find('.zoomable-image').attr('data-id', photo.id);
                 $(photoChild).appendTo('.photos-app-page[data-page="photos"] .photos-content');
 
                 break;
@@ -113,7 +151,7 @@ function SetupPhotos(_) {
                         <img class="zoomable-image" src='${photo.url}'></img>`
                 }).data('data', photo.data);
 
-                $(photoChild).find('.zoomable-image').data('id', photo.id);
+                $(photoChild).find('.zoomable-image').attr('data-id', photo.id);
                 $(photoChild).appendTo('.photos-app-page[data-page="photos"]  .photos-content');
                 break;
                 
@@ -128,7 +166,7 @@ function SetupPhotos(_) {
                         <img src='${photo.url}'></img>`
                     }).data('data', photo.data);
                     
-                    var imgElement = $(photoChild).find('img').data('id', photo.id);
+                    var imgElement = $(photoChild).find('img').attr('data-id', photo.id);
                     
                     $(imgElement).click(function() {
                         var title = dateObj.getFullYear();
@@ -155,7 +193,7 @@ function SetupPhotos(_) {
                         </div>`
                 }).data('data', photo.data);
                 
-                var imgElement = $(photoChild).find('img').data('id', photo.id);
+                var imgElement = $(photoChild).find('img').attr('data-id', photo.id);
 
                 $(imgElement).click(function() {
                     var title = `${Months["long"][dateObj.getMonth()]} ${dateObj.getFullYear()}`;
@@ -230,7 +268,7 @@ function OpenAlbum(title, images) {
             <img class="zoomable-image" src='${photo.url}'></img>`
         }).data('data', photo.data);
         
-        $(littleImage).find('.zoomable-image').data('id', photo.id);
+        $(littleImage).find('.zoomable-image').attr('data-id', photo.id);
         $(littleImage).appendTo('.photos-album-content-inside');
     });
     
@@ -266,7 +304,17 @@ $('#photos-search-bar-input').keyup(function(e) {
                 <img class="zoomable-image" src='${photo.url}'></img>`
         }).data('data', photo.data);
         
-        $(photoChild).find('.zoomable-image').data('id', photo.id);
+        $(photoChild).find('.zoomable-image').attr('data-id', photo.id);
         $(photoChild).appendTo('.photos-app-page[data-page="search"] .photos-content');
     });
+});
+
+$('.photos-foryou-memories, .photos-foryou-featured-photos').slick({
+    autoplay: false,
+    pauseOnHover: true,
+    autoplaySpeed: 3000,
+    slidesToShow: 1,
+    arrows: false,
+    centerMode: true,
+    variableWidth: true
 });

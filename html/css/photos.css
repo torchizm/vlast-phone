@@ -306,3 +306,42 @@
     text-align: right;
     right: 16px;
 }
+
+.photos-foryou-container {
+    display: flex;
+    flex-direction: column;
+}
+
+span.photos-foryou-header {
+    position: relative;
+    padding: 16px 24px;
+    font-size: 32px;
+    font-weight: bold;
+}
+span.photos-foryou-header::after {
+    content: '';
+    position: absolute;
+    width: 92%;
+    height: 2px;
+    bottom: 6px;
+    background: var(--main-light-gray);
+    right: 0;
+}
+
+span.photos-foryou-title {
+    font-size: 16px;
+    margin: 8px 24px;
+    font-weight: bold;
+}
+
+:root {
+    --img-width: 276px;
+}
+
+.photos-foryou-container .photos-image-item img {
+    width: var(--img-width) !important;
+}
+.photos-foryou-container .photos-image-item {
+    width: var(--img-width) !important;
+    padding: 0 6px;
+}

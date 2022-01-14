@@ -11,7 +11,7 @@ $(document).on('click', `.whatsapp-openedchat-message-image,
     var data = undefined;
 
     if ($(this).hasClass("zoomable-image")) {
-        data = $(this).data("id");
+        data = $(this).attr("data-id");
         $("#save-image-to-photos").removeClass("blue-text");
         $("#save-image-to-photos").addClass("red-text");
         $("#save-image-to-photos").text("Sil");
@@ -49,9 +49,9 @@ function OpenImage(url, data) {
     $(image).prop("src", url);
 
     if (data !== undefined){
-        $(image).data("id", data);
+        $(image).attr("data-id", data);
     } else {
-        $(image).data("id", 0)
+        $(image).attr("data-id", 0)
     }
 
     if (image.width() > image.height()){
