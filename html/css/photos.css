@@ -70,6 +70,7 @@
     font-size: 32px;
     letter-spacing: 2px;
     text-shadow: 2px 2px 4px var(--main-black);
+    pointer-events: none;
 }
 .photos-content[data-showing="year"] .photos-image-item img {
     border-radius: 16px;
@@ -101,6 +102,7 @@
     text-shadow: 1px 1px 2px var(--main-color);
     color: var(--main-background-color);
     font-size: 24px;
+    pointer-events: none;
 }
 .photos-content[data-showing="month"] .photo-img-details {
     position: absolute;
@@ -111,10 +113,12 @@
     text-shadow: 1px 1px 2px var(--main-color);
     color: var(--main-background-color);
     font-size: 24px;
+    pointer-events: none;
 }
 .photos-content[data-showing="month"] .photo-img-details-date {
     font-size: 16px;
     font-weight: 100;
+    pointer-events: none;
 }
 
 .photos-content[data-showing="day"] {
@@ -124,8 +128,13 @@
     gap: 4px;
 }
 
+.photos-content[data-showing="day"] .photos-image-item {
+    position: relative;
+}
+
 .photos-content[data-showing="day"] .photos-image-item span {
     position: absolute;
+    top: 0;
     color: white;
     text-shadow: 1px 1px 2px black;
     margin: 16px;
@@ -251,14 +260,49 @@
 
 .photos-album-content-container {
     position: absolute;
+    padding: 32px 6px 108px;
+    top: 0px;
     overflow: hidden;
     background: var(--main-background-color);
     width: 100%;
     height: 100%;
     right: -100%;
+    x-index: 70|
 }
 
 #photos-album-content-header {
     top: 0;
     margin: -6px 0 0 0;
+}
+
+.photos-search-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 8px;
+}
+
+.photos-search-bar textarea {
+    background: lightgray;
+    height: 28px;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    padding: 4px 20px 4px 20px;
+    font-size: 1.4vh;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+}
+
+.photos-search-bar .fa-search {
+    position: absolute;
+    margin: 4px;
+    color: gray;
+}
+.photos-search-bar .fa-times-circle {
+    position: absolute;
+    text-align: right;
+    right: 16px;
 }

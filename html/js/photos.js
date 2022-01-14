@@ -38,8 +38,6 @@ $('.photos-footer-button').click(function() {
     var current = $('.photos-footer-button-selected').attr('data-page');
     var target = $(this).attr('data-page');
 
-    console.log("current, target:", current, target);
-
     if (current === target || target == null) {
         return;
     }
@@ -116,37 +114,54 @@ function SetupPhotos(_) {
                 break;
                 
             case "year":
-                titleDate = `${dateObj.getFullYear()}-${dateObj.getMonth()}`;
-
+                titleDate = dateObj.getFullYear();
+                
                 if (!titleDates.includes(titleDate)) {
                     var photoChild = $('<div/>', {
                         class: 'photos-image-item',
                         html: `
-                            <span>${dateObj.getFullYear()}</span>
-                            <img class="zoomable-image" src='${photo.url}'></img>`
+                        <span>${dateObj.getFullYear()}</span>
+                        <img src='${photo.url}'></img>`
                     }).data('data', photo.data);
-
-                    $(photoChild).find('.zoomable-image').data('id', photo.id);
+                    
+                    var imgElement = $(photoChild).find('img').data('id', photo.id);
+                    
+                    $(imgElement).click(function() {
+                        var title = dateObj.getFullYear();
+                        var filteredPhotos = Photos.filter(x => new Date(x.created_at).getFullYear() == dateObj.getFullYear());
+                        OpenAlbum(title, filteredPhotos);
+                    });
+                    
                     $(photoChild).appendTo('.photos-app-page[data-page="photos"]  .photos-content');
                 }
                 break;
-
+                
             case "month":
-                titleDate = dateObj.getFullYear();
+                titleDate = `${dateObj.getFullYear()}-${dateObj.getMonth()}`;
                 includeDate = titleDates.includes(titleDate) ? "none" : "block";
                 
                 var photoChild = $('<div/>', {
                     class: 'photos-image-item',
                     html: `
                         <span style="display: ${includeDate}" class="photo-img-title">${Months["long"][dateObj.getMonth()]} ${dateObj.getFullYear()} <i class="fas fa-chevron-right"></i></span>
-                        <img class="zoomable-image" src='${photo.url}'></img>
+                        <img src='${photo.url}'></img>
                         <div class="${includeDate == "block" ? "photo-img-details-date-included" : "photo-img-details"}">
                             <span style="display: ${photo.data.location == undefined ? "none" : "block"}" class="photo-img-details-text">${photo.data.location}</span>
                             <span class="photo-img-details-date">${Months["short"][dateObj.getMonth()]} ${dateObj.getDay()}</span>
                         </div>`
                 }).data('data', photo.data);
                 
-                $(photoChild).find('.zoomable-image').data('id', photo.id);
+                var imgElement = $(photoChild).find('img').data('id', photo.id);
+
+                $(imgElement).click(function() {
+                    var title = `${Months["long"][dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+                    var filteredPhotos = Photos.filter(x => {
+                        var date = new Date(x.created_at);
+                        return date.getFullYear() == dateObj.getFullYear() && date.getMonth() == dateObj.getMonth();
+                    });
+                    OpenAlbum(title, filteredPhotos);
+                });
+
                 $(photoChild).appendTo('.photos-app-page[data-page="photos"]  .photos-content');
                 break;
 
@@ -164,7 +179,6 @@ function SetupAlbums() {
     var albums = {};
 
     Photos.forEach(photo => {
-        console.log(photo);
         if (photo.data.albums.length === 0) {
             return;
         }
@@ -195,26 +209,60 @@ function SetupAlbums() {
 
         $(photoChild).click(function() {
             var album = $(this).prop('data-album');
-            var albumPhotos = Photos.filter(photo =>photo.data.albums.includes(album));
-            $('.photos-app-page[data-page="albums"] .photos-content').empty();
-
-            albumPhotos.forEach(photo => {
-                littleImage = $('<div/>', {
-                    class: 'photos-image-item',
-                    html: `
-                    <img class="zoomable-image" src='${photo.url}'></img>`
-                }).data('data', photo.data);
-                
-                $(littleImage).find('.zoomable-image').data('id', photo.id);
-                $('#album-name').text(album);
-                $(littleImage).appendTo('.photos-app-page[data-page="albums"] .photos-content');
-            });
-            
-            NM.Phone.Animations.SlideLeft('.photos-album-content-container', 250, 0);
+            var albumPhotos = Photos.filter(photo => photo.data.albums.includes(album));
+            OpenAlbum(album, albumPhotos);
         });
     }
 }
 
+function OpenAlbum(title, images) {
+    $('.photos-album-content-inside').empty();
+    $('#album-name').text(title);
+
+    images.forEach(photo => {
+        littleImage = $('<div/>', {
+            class: 'photos-image-item',
+            html: `
+            <img class="zoomable-image" src='${photo.url}'></img>`
+        }).data('data', photo.data);
+        
+        $(littleImage).find('.zoomable-image').data('id', photo.id);
+        $(littleImage).appendTo('.photos-album-content-inside');
+    });
+    
+    NM.Phone.Animations.SlideLeft('.photos-album-content-container', 250, 0);
+}
+
 $('#cancel-album-container').click(function() {
     NM.Phone.Animations.SlideRight('.photos-album-content-container', 250, -100);
+});
+
+$('.photos-search-bar .fa-times-circle').click(function() {
+    $('#photos-search-bar-input').val('');
+    $('.photos-app-page[data-page="search"] .photos-content').empty();
+});
+
+$('#photos-search-bar-input').keyup(function(e) {
+    $('.photos-app-page[data-page="search"] .photos-content').empty();
+
+    if ($(this).val().length < 3) {
+        return;
+    }
+
+    var match = $(this).val().toLowerCase();
+    var options =  {weekday: 'long', year: 'numeric', 'month': 'long', day: 'numeric'};
+
+    Photos.filter(x => x.url.toLowerCase().includes(match) ||
+                  x.data.albums.toLocaleString().toLowerCase().includes(match) ||
+                  x.data.location.toLowerCase().includes(match) ||
+                  new Date(x.created_at).toLocaleDateString('tr-TR', options).toLowerCase().includes(match)).forEach(photo => {
+        photoChild = $('<div/>', {
+            class: 'photos-image-item',
+            html: `
+                <img class="zoomable-image" src='${photo.url}'></img>`
+        }).data('data', photo.data);
+        
+        $(photoChild).find('.zoomable-image').data('id', photo.id);
+        $(photoChild).appendTo('.photos-app-page[data-page="search"] .photos-content');
+    });
 });

@@ -51,6 +51,10 @@ end
 ![Photos](/readme/photos_2.png)
 ![Photos](/readme/photos_3.png)
 ![Photos](/readme/photos_4.png)
+![Photos](/readme/photos_5.png)
+![Photos](/readme/photos_6.png)
+![Photos](/readme/photos_7.png)
+![Photos](/readme/photos_8.png)
 -----
 ### Bank
 > Dependencies
