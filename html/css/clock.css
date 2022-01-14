@@ -388,7 +388,6 @@
 }
 
 .switch {
-    visibility: hidden;
     position: absolute;
     margin-left: -9999px;
 }
