@@ -13,8 +13,12 @@ $('#save-image-to-photos').click(function() {
     if ($(this).hasClass("blue-text")) {
         var url = $('.phone-image-source').prop('src');
         var location = $('.phone-image-souce').attr('data-location');
+        var defaultAlbum = "Kamera";
+        if (NM.Phone.Data.Applications[NM.Phone.Data.currentApplication] !== undefined) {
+            defaultAlbum = NM.Phone.Data.Applications[NM.Phone.Data.currentApplication].tooltipText
+        }
         var data = {
-            "albums": [NM.Phone.Data.Applications[NM.Phone.Data.currentApplication].tooltipText],
+            "albums": [defaultAlbum],
             "location": location
         };
         $.post('http://qb-phone/SaveImage', JSON.stringify({url: url, data: data}), function(_) {

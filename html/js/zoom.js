@@ -47,7 +47,7 @@ function OpenImage(url, data) {
     
     let image = $(".phone-image-source");
     $(image).prop("src", url);
-    console.log("id is:", data);
+    
     if (data !== undefined){
         $(image).data("id", data);
     } else {

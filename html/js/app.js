@@ -133,6 +133,22 @@ NM.Phone.Functions.IsAppHeaderAllowed = function(app) {
 $(document).on('click', '.phone-application', function(e){
     e.preventDefault();
     var PressedApplication = $(this).data('app');
+
+    if (PressedApplication == "camera") {
+        $.post('http://qb-phone/Close', JSON.stringify({}));
+
+        $("body").css("display", "none");
+
+        $.post('http://qb-phone/TakeImage', JSON.stringify({}), function(url) {
+            $("body").css("display", "block");
+
+            if (url !== "") {
+                OpenImage(url);
+            }
+        });
+        return;
+    };
+
     var AppObject = $("."+PressedApplication+"-app");
 
     if (AppObject.length !== 0) {
