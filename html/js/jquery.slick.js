@@ -1697,7 +1697,7 @@
     };
 
     Slick.prototype.play = Slick.prototype.slickPlay = function() {
-        
+
         var _ = this;
 
         _.autoPlay();

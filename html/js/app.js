@@ -113,7 +113,7 @@ NM.Phone.Functions.SetupAppWarnings = function(AppData) {
 
         if (app.Alerts > 0) {
             $(AppObject).html(app.Alerts);
-            $(AppObject).css({"display":"block"});
+            $(AppObject).css({"display":"flex"});
         } else {
             $(AppObject).css({"display":"none"});
         }

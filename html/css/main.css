@@ -485,17 +485,17 @@ body {
 
 .app-unread-alerts {
     position: absolute;
-    width: 2vh;
-    height: 2vh;
-    top: -.5vh;
-    left: -.5vh;
+    width: 1.6vh;
+    height: 1.6vh;
+    top: -.4vh;
+    right: -.4vh;
     color: white;
-    text-align: center;
-    line-height: 2vh;
     background: #d63031;
     border-radius: 50%;
     font-family: 'SF Pro Display Regular';
-    font-size: 1.1vh;
+    font-size: 0.9vh;
+    justify-content: center;
+    align-items: center;
 }
 
 .emergency-button {
