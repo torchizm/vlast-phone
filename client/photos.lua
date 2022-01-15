@@ -18,7 +18,7 @@ end)
 
 RegisterNUICallback('DeleteImage', function(data, cb)
     for k,v in pairs(PhoneData.Photos) do
-        if v.id == data.id then
+        if v.id == tonumber(data.id) then
             table.remove(PhoneData.Photos, k)
         end
     end
