@@ -17,17 +17,16 @@ PlayerData.metadata["phone"] = PlayerData.metadata["phone"] ~= nil and PlayerDat
 
 * If not exists, Add this code as a new function to qb-core/server/player.lua
 ```lua
-QBCore.Player.CreateSerialNumber = function()
+function QBCore.Player.CreateSerialNumber()
     local UniqueFound = false
     local SerialNumber = nil
-
     while not UniqueFound do
         SerialNumber = math.random(11111111, 99999999)
-        QBCore.Functions.ExecuteSql(true, "SELECT COUNT(*) as count FROM `players` WHERE `metadata` LIKE '%"..SerialNumber.."%'", function(result)
-            if result[1].count == 0 then
-                UniqueFound = true
-            end
-        end)
+        local query = '%' .. SerialNumber .. '%'
+        local result = MySQL.Sync.prepare('SELECT COUNT(*) as count FROM players WHERE metadata LIKE ?', { query })
+        if result == 0 then
+            UniqueFound = true
+        end
     end
     return SerialNumber
 end
